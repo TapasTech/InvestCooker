@@ -1,7 +1,6 @@
 # 安装
 ```
-# add in Gemfile
-gem 'invest_cooker', git: 'git@github.com:TapasTech/invest_cooker.git'
+gem 'invest_cooker', git: 'git@github.com:TapasTech/InvestCooker.git'
 ```
 
 # 内容
