@@ -27,12 +27,7 @@ module InvestCooker
       # 因为聚源的 json 文件只有一行，所以没有问题
       def read(file_name)
         connection do |sftp|
-          line = ''
-          result =
-            sftp.file.open(File.join(@source_path, file_name), "r") do |f|
-              line = f.gets
-            end
-          line
+          sftp.file.open(File.join(@source_path, file_name), "r") { |f| f.gets }
         end.force_encoding("GB18030").encode("UTF-8")
       end
 
