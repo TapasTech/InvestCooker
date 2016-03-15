@@ -10,3 +10,4 @@ module InvestCooker
 end
 
 require 'invest_cooker/gli'
+require 'invest_cooker/cbn'
