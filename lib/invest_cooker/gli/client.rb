@@ -11,16 +11,16 @@ module InvestCooker
         Time
       end
 
-      TIME_ZONE = time_zone_for_rails_or_application
+      TIME_ZONE = -> { time_zone_for_rails_or_application }
 
-      def initialize(time=TIME_ZONE.now)
+      def initialize(time=TIME_ZONE.call.now)
         @folder = time.strftime('%Y%m%d')
         @source_path = File.join(Settings.glidata.source_path, @folder)
         @target_path = File.join(Settings.glidata.target_path, @folder)
       end
 
       def date
-        @date ||= TIME_ZONE.parse(@folder)
+        @date ||= TIME_ZONE.call.parse(@folder)
       end
 
       # 根据文件名读取文件的第一行为字符串，并转换成 UTF-8
