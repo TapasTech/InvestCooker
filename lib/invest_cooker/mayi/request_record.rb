@@ -1,4 +1,5 @@
 require 'mongoid'
+require 'kaminari'
 
 module InvestCooker
   module MAYI
