@@ -1,3 +1,5 @@
+require 'mongoid'
+
 module InvestCooker
   module MAYI
     class RequestRecord

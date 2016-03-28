@@ -2,7 +2,11 @@ module InvestCooker
   module MAYI
     class DocumentParser
 
-      DATE_FORMAT = Settings.mayi.date_format
+      # DATE_FORMAT = Settings.mayi.date_format
+
+      def self.date_format
+        Settings.mayi.date_format
+      end
 
       def self.dump(invest_information, action)
         i = invest_information
@@ -20,8 +24,8 @@ module InvestCooker
               composeOrg:       i.compose_organization,
               content:          dump_content(i),
               gmtCreate:        dump_gmt_create(i),
-              gmtModified:      i.updated_at.strftime(DATE_FORMAT),
-              newsPubTime:      i.origin_date.strftime(DATE_FORMAT),
+              gmtModified:      i.updated_at.strftime(date_format),
+              newsPubTime:      i.origin_date.strftime(date_format),
               tags:             i.tags,
               keywords:         i.keywords,
               stocks:           dump_stocks(i),
@@ -99,7 +103,7 @@ module InvestCooker
           i.created_at
         else
           i.document.created_at
-        end.strftime(DATE_FORMAT)
+        end.strftime(date_format)
       end
 
       def self.dump_regions(invest_information)
@@ -160,7 +164,7 @@ module InvestCooker
 
         [{
           originUrl:     i.origin_url                        || "",
-          originDate:    i.origin_date.strftime(DATE_FORMAT) || "",
+          originDate:    i.origin_date.strftime(date_format) || "",
           originWebsite: i.origin_website                    || "",
         }]
       end
