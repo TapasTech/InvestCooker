@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
     "lib/invest_cooker/gli.rb",
     "lib/invest_cooker/gli/client.rb",
     "lib/invest_cooker/gli/service.rb",
+    "lib/invest_cooker/gli/document_parser.rb",
     "lib/invest_cooker/cbn/client.rb"
   ]
 end

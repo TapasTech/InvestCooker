@@ -9,6 +9,7 @@ gem 'invest_cooker', git: 'git@github.com:TapasTech/InvestCooker.git'
   - GLI
     - Client  # 聚源文件服务器的客户端
     - Service # 聚源文件服务器的文件读取程序, 提供了读取当天新文件的功能
+    - DocumentParser # 把 Invest::Information 转换为聚源数据交换服务器需要的 hash
   - CBN
     - Client # 读取投研团队生产的新闻文件客户端
 ```
@@ -18,7 +19,6 @@ gem 'invest_cooker', git: 'git@github.com:TapasTech/InvestCooker.git'
 - InvestCooker::GLI::Client
 
 ```
-
 gem 'monadic' # 因为用到了 Try
 
 Settings.glidata.source_path # 读取文件的地址
@@ -36,6 +36,12 @@ InvestCooker::GLI::Client 或兼容其接口的 client 对象
 ::GLI::ReadDataJob # ActiveJob 用来读取聚源文件
 
 $redis_gli # 连接到 redis 的客户端
+```
+
+- InvestCooker::GLI::DocumentParser
+```
+Invest::Information
+Invest::OutputColumn
 ```
 
 - InvestCooker::CBN::Client
