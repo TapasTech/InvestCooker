@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
 
     "lib/invest_cooker/mayi.rb",
     "lib/invest_cooker/mayi/client.rb",
-    "lib/invest_cooker/mayi/document_parser.rb"
+    "lib/invest_cooker/mayi/document_parser.rb",
+    "lib/invest_cooker/mayi/request_record.rb"
   ]
 end
