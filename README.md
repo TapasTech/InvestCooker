@@ -14,6 +14,8 @@ gem 'invest_cooker', git: 'git@github.com:TapasTech/InvestCooker.git'
     - Client # 读取投研团队生产的新闻文件客户端
   - MAYI
     - Client # 蚂蚁新链路客户端
+    - DocumentParser # Invest::Information 转换为蚂蚁接口需要的 hash
+    - RequestRecord # 请求记录
 ```
 
 # 依赖
@@ -42,6 +44,7 @@ $redis_gli # 连接到 redis 的客户端
 
 - InvestCooker::GLI::DocumentParser
 ```
+Documnet
 Invest::Information
 Invest::OutputColumn
 ```
@@ -65,4 +68,23 @@ gem 'oj'
 InvestCooker::MAYI::RequestRecord # 请求记录
 Settings.mayi.urls[api_name][action_name] # 蚂蚁 API:Action 对应的 url 地址配置
 Utils::RSA # RSA签名工具
+```
+
+- InvestCooker::MAYI::DocumentParser
+```
+gem 'oj'
+
+Document
+Invest::Information
+Invest::OutputColumn
+ActiveSupport::Gzip
+Base64
+Utils::Image # 图片工具类
+Settings.mayi.date_format # 日期格式
+Settings.max_image_size # 最大图片大小
+```
+
+- InvestCooker::MAYI::RequestRecord
+```
+gem 'mongoid'
 ```
