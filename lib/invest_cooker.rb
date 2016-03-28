@@ -10,7 +10,7 @@ module InvestCooker
 end
 
 require 'mongoid'
-require 'kaminarid'
+require 'kaminari'
 
 require 'invest_cooker/gli'
 require 'invest_cooker/cbn'
