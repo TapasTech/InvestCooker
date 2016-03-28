@@ -12,6 +12,8 @@ gem 'invest_cooker', git: 'git@github.com:TapasTech/InvestCooker.git'
     - DocumentParser # 把 Invest::Information 转换为聚源数据交换服务器需要的 hash
   - CBN
     - Client # 读取投研团队生产的新闻文件客户端
+  - MAYI
+    - Client # 蚂蚁新链路客户端
 ```
 
 # 依赖
@@ -53,4 +55,14 @@ gem 'kaminari'
 Settings.glidata.target_path # 读取文件的地址, 也就是 InvestCooker::GLI::Client 的写入文件的地址
 
 $gli_sftp_pool # 需要兼容 gem 'connection_pool', 可以得到 gli 服务器的 sftp 链接
+```
+
+- InvestCooker::MAYI::Client
+```
+gem 'rest-client'
+gem 'oj'
+
+InvestCooker::MAYI::RequestRecord # 请求记录
+Settings.mayi.urls[api_name][action_name] # 蚂蚁 API:Action 对应的 url 地址配置
+Utils::RSA # RSA签名工具
 ```
