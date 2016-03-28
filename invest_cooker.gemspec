@@ -22,4 +22,5 @@ Gem::Specification.new do |s|
     "lib/invest_cooker/mayi/document_parser.rb",
     "lib/invest_cooker/mayi/request_record.rb"
   ]
+  s.add_dependency 'kaminari'
 end
