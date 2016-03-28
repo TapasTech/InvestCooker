@@ -16,6 +16,10 @@ gem 'invest_cooker', git: 'git@github.com:TapasTech/InvestCooker.git'
     - Client # 蚂蚁新链路客户端
     - DocumentParser # Invest::Information 转换为蚂蚁接口需要的 hash
     - RequestRecord # 请求记录
+  - YICAI
+    - RequestRecord # 请求记录
+    - CheckGenerator # 签名生成器
+    - PushClient # 推送文章给一财的客户端
 ```
 
 # 依赖
@@ -87,4 +91,26 @@ Settings.max_image_size # 最大图片大小
 - InvestCooker::MAYI::RequestRecord
 ```
 gem 'mongoid'
+gem 'kaminari'
+```
+
+- InvestCooker::YICAI::RequestRecord
+```
+gem 'mongoid'
+gem 'kaminari'
+```
+
+- InvestCooker::YICAI::CheckGenerator
+```
+Digest::MD5
+ENV['HUGO_INVEST_SERVER_YICAI_APP_KEY']
+```
+
+－ InvestCooker::YICAI::PushClient
+```
+gem 'rest-client'
+gem 'oj'
+
+Settings.yicai[type].url #一财文章类型对应的 url
+InvestCooker::YICAI::RequestRecord
 ```

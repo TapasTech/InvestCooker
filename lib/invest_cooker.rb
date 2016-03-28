@@ -17,3 +17,4 @@ Kaminari::Hooks.init
 require 'invest_cooker/gli'
 require 'invest_cooker/cbn'
 require 'invest_cooker/mayi'
+require 'invest_cooker/yicai'
