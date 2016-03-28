@@ -129,7 +129,7 @@ Digest::MD5
 ENV['HUGO_INVEST_SERVER_YICAI_APP_KEY']
 ```
 
-－ InvestCooker::YICAI::PushClient
+- InvestCooker::YICAI::PushClient
 ```
 gem 'rest-client'
 gem 'oj'
