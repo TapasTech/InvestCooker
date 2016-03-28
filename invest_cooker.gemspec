@@ -23,4 +23,5 @@ Gem::Specification.new do |s|
     "lib/invest_cooker/mayi/request_record.rb"
   ]
   s.add_dependency 'kaminari'
+  s.add_dependency 'mongoid'
 end

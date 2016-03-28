@@ -9,6 +9,9 @@ module InvestCooker
   end
 end
 
+require 'mongoid'
+require 'kaminarid'
+
 require 'invest_cooker/gli'
 require 'invest_cooker/cbn'
 require 'invest_cooker/mayi'
