@@ -10,6 +10,8 @@ gem 'invest_cooker', git: 'git@github.com:TapasTech/InvestCooker.git'
     - Client  # 聚源文件服务器的客户端
     - Service # 聚源文件服务器的文件读取程序, 提供了读取当天新文件的功能
     - DocumentParser # 把 Invest::Information 转换为聚源数据交换服务器需要的 hash
+    - Validator # 校验聚源输入的文章
+    - Record # 用来记录每日读取的聚源文件
   - CBN
     - Client # 读取投研团队生产的新闻文件客户端
   - MAYI
@@ -51,6 +53,27 @@ $redis_gli # 连接到 redis 的客户端
 Documnet
 Invest::Information
 Invest::OutputColumn
+```
+
+- InvestCooker::GLI::Validator
+```
+gem 'nokogiri'
+
+Documnet
+Invest::Column
+InvestCooker::GLI::Client
+Settings.glidata.reject_origin_websites # 聚源来的文章拒收来源列表
+```
+
+- InvestCooker::GLI::Record
+```
+Documnet
+::GLI::RecordFileJob
+InvestCooker::GLI::Client
+InvestCooker::GLI::Service
+$redis_object # 连接到 redis 的客户端
+Settings.invest_bi.create_gli_record # InvestBI 创建聚源记录接口 url
+Settings.invest_web_url # 投研资讯系统地址
 ```
 
 - InvestCooker::CBN::Client
