@@ -12,8 +12,8 @@ end
 require 'mongoid'
 require 'kaminari'
 
+Kaminari::Hooks.init
+
 require 'invest_cooker/gli'
 require 'invest_cooker/cbn'
 require 'invest_cooker/mayi'
-
-Kaminari::Hooks.init
