@@ -49,8 +49,8 @@ module InvestCooker
         fail '大分类不符合要求' unless VALID_CATAGORY_SET.include? catagory_column_hash.keys.first
         fail '栏目不符合要求' unless valid_column_set | catagory_column_hash.values.first == valid_column_set
 
-        fail '修改时间不可解析' unless TIME_ZONE.parse(data[:XGSJ]).present?
-        fail '信息发布时间不可解析' unless TIME_ZONE.parse(data[:XXFBRQ]).present?
+        fail '修改时间不可解析' unless TIME_ZONE.call.parse(data[:XGSJ]).present?
+        fail '信息发布时间不可解析' unless TIME_ZONE.call.parse(data[:XXFBRQ]).present?
 
         # # 验证信息内容
         # content = format_content(content_to_plain_text(data[:XXNR]))

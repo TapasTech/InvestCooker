@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'invest_cooker'
-  s.version     = '0.0.7'
+  s.version     = '0.0.8'
   s.date        = '2016-03-12'
   s.summary     = "Invest cooker cooks hugo invest system."
   s.description = "Invest cooker cooks hugo invest system."
@@ -26,7 +26,8 @@ Gem::Specification.new do |s|
 
     "lib/invest_cooker/yicai/request_record.rb",
     "lib/invest_cooker/yicai/check_generator.rb",
-    "lib/invest_cooker/yicai/push_client.rb"
+    "lib/invest_cooker/yicai/push_client.rb",
+    "lib/invest_cooker/yicai/client.rb"
   ]
   s.add_dependency 'kaminari'
   s.add_dependency 'mongoid'

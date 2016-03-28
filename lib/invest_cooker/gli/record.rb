@@ -12,7 +12,7 @@ module InvestCooker
       }
 
       NEED_UPDATE_DAYS = -> {
-        $redis_object.smembers(UPDATE_DAYS_KEY).map { |date| TIME_ZONE.parse(date) }
+        $redis_object.smembers(UPDATE_DAYS_KEY).map { |date| TIME_ZONE.call.parse(date) }
       }
 
       CLEAR_UPDATE_DAYS = -> {
@@ -26,7 +26,7 @@ module InvestCooker
           RestClient.post Settings.invest_bi.create_gli_record, data_hash.as_json
         end
 
-        def update_daily(date: TIME_ZONE.now.beginning_of_day)
+        def update_daily(date: TIME_ZONE.call.now.beginning_of_day)
           client  = InvestCooker::GLI::Client.new(date)
           service = InvestCooker::GLI::Service.new(client)
 

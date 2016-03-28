@@ -22,6 +22,7 @@ gem 'invest_cooker', git: 'git@github.com:TapasTech/InvestCooker.git'
     - RequestRecord # 请求记录
     - CheckGenerator # 签名生成器
     - PushClient # 推送文章给一财的客户端
+    - Client # 读取一财网 SOAP 的客户端
 ```
 
 # 依赖
@@ -136,4 +137,16 @@ gem 'oj'
 
 Settings.yicai[type].url #一财文章类型对应的 url
 InvestCooker::YICAI::RequestRecord
+```
+
+- InvestCooker::YICAI::Client
+```
+gem 'savon'
+
+Base64
+Hash#find_by_key(key) # 搜索一个 hash 中 key 的 value
+::YICAI::ExtractZipJob
+Settings.yicai.zip_folder # 解压目录名
+ENV['HUGO_INVEST_SERVER_YICAI_ACCOUNT']
+ENV['HUGO_INVEST_SERVER_YICAI_PASSWORD']
 ```
