@@ -27,8 +27,10 @@ Gem::Specification.new do |s|
     "lib/invest_cooker/yicai/request_record.rb",
     "lib/invest_cooker/yicai/check_generator.rb",
     "lib/invest_cooker/yicai/push_client.rb",
-    "lib/invest_cooker/yicai/client.rb"
+    "lib/invest_cooker/yicai/client.rb",
+    # 经济观察报
+    "lib/invest_cooker/jjgcb/client.rb",
+    # 一财网编
+    "lib/invest_cooker/ycwb/client.rb"
   ]
-  # s.add_dependency 'kaminari'
-  # s.add_dependency 'mongoid'
 end

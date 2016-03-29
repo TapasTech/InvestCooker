@@ -15,12 +15,5 @@ module InvestCooker
   end
 end
 
-# require 'mongoid'
-# require 'kaminari'
-#
-# Kaminari::Hooks.init
-
-# require 'invest_cooker/gli'
-# require 'invest_cooker/cbn'
-# require 'invest_cooker/mayi'
-# require 'invest_cooker/yicai'
+# 开始不 require 任何 module
+# 由应用的项目自行 require

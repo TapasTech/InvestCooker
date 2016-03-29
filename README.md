@@ -23,6 +23,10 @@ gem 'invest_cooker', git: 'git@github.com:TapasTech/InvestCooker.git'
     - CheckGenerator # 签名生成器
     - PushClient # 推送文章给一财的客户端
     - Client # 读取一财网 SOAP 的客户端
+  - JJGCB # 经济观察报
+    - Client # 读取经济观察报的稿件客户端
+  - YCWB # 一财网编
+    - Client # 读取一财网编的稿件客户端
 ```
 
 # 依赖
@@ -149,4 +153,23 @@ Hash#find_by_key(key) # 搜索一个 hash 中 key 的 value
 Settings.yicai.zip_folder # 解压目录名
 ENV['HUGO_INVEST_SERVER_YICAI_ACCOUNT']
 ENV['HUGO_INVEST_SERVER_YICAI_PASSWORD']
+```
+
+- InvestCooker::JJGCB::Client
+```
+wget
+::JJGCB::ExtractRARJob
+Settings.jjgcb.ftp # 经济观察报 FTP 地址
+ENV['HUGO_INVEST_SERVER_JJGCB_USERNAME'] # 经济观察报 FTP 用户名
+ENV['HUGO_INVEST_SERVER_JJGCB_PASSWORD'] # 经济观察报 FTP 密码
+Settings.jjgcb.rar_folder # 经济观察报解压地址
+```
+
+- InvestCooker::YCWB::Client
+```
+gem 'rest-client'
+
+::YCWB::ReadListJob
+Digest::MD5
+ENV['HUGO_INVEST_SERVER_YCWB_KEY'] # 秘钥
 ```
