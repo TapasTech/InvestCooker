@@ -29,6 +29,6 @@ Gem::Specification.new do |s|
     "lib/invest_cooker/yicai/push_client.rb",
     "lib/invest_cooker/yicai/client.rb"
   ]
-  s.add_dependency 'kaminari'
-  s.add_dependency 'mongoid'
+  # s.add_dependency 'kaminari'
+  # s.add_dependency 'mongoid'
 end
