@@ -3,6 +3,11 @@
 gem 'invest_cooker', git: 'git@github.com:TapasTech/InvestCooker.git'
 ```
 
+# 使用
+```
+在 config/initializers/invest_cooker.rb 中 require 需要的模块
+```
+
 # 内容
 ```
 - InvestCooker
