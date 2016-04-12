@@ -31,6 +31,8 @@ gem 'invest_cooker', git: 'git@github.com:TapasTech/InvestCooker.git'
     - Client # 读取经济观察报的稿件客户端
   - YCWB # 一财网编
     - Client # 读取一财网编的稿件客户端
+- InvestAdmin
+  - StockChineseNameAbbr # 配置股票中文简称
 
 # 依赖
 
@@ -161,3 +163,5 @@ gem 'rest-client'
 Digest::MD5
 ENV['HUGO_INVEST_SERVER_YCWB_KEY'] # 秘钥
 ```
+
+- InvestCooker::InvestAdmin::StockChineseNameAbbr

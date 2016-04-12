@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'invest_cooker'
-  s.version     = '0.0.9'
-  s.date        = '2016-03-12'
+  s.version     = '0.0.10'
+  s.date        = '2016-04-12'
   s.summary     = "Invest cooker cooks hugo invest system."
   s.description = "Invest cooker cooks hugo invest system."
   s.authors     = ["li-thy-um"]
@@ -31,6 +31,10 @@ Gem::Specification.new do |s|
     # 经济观察报
     "lib/invest_cooker/jjgcb/client.rb",
     # 一财网编
-    "lib/invest_cooker/ycwb/client.rb"
+    "lib/invest_cooker/ycwb/client.rb",
+
+    # invest_admin
+    "lib/invest_admin.rb",
+    "lib/invest_admin/stock_chinese_name_abbr.rb"
   ]
 end
