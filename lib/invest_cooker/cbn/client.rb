@@ -22,7 +22,9 @@ module InvestCooker
 
       # 读取当天文件夹下所有 json 文件名
       # @return list_of_file_names
-      def list(page=nil, per=nil, &filter=->(_) { true })
+      def list(page=nil, per=nil, &filter=nil)
+        filter ||= ->(_) { true }
+
         files =
           connection { |sftp| sftp.dir.entries(@source) }
             .select { |file| file.name =~ REGEXP_JSON_FILE }
