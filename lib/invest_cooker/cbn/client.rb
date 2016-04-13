@@ -22,7 +22,7 @@ module InvestCooker
 
       # 读取当天文件夹下所有 json 文件名
       # @return list_of_file_names
-      def list(page=nil, per=nil, &filter=nil)
+      def list(page=nil, per=nil, &filter)
         filter ||= ->(_) { true }
 
         files =
