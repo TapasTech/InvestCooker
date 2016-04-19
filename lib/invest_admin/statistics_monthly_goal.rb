@@ -3,8 +3,12 @@ module InvestAdmin
     include Mongoid::Document
 
     field :name, type: String
-    field :goal, type: Integer
+    field :daily_average_goal, type: Integer
 
     validates :name, uniqueness: true
+
+    def goal
+      @goal ||= daily_average_goal * Time.days_in_month(Time.zone.now.month)
+    end
   end
 end
