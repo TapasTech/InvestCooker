@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'invest_cooker'
-  s.version     = '0.0.11'
+  s.version     = '0.0.12'
   s.date        = '2016-04-12'
   s.summary     = "Invest cooker cooks hugo invest system."
   s.description = "Invest cooker cooks hugo invest system."
@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
 
     # invest_admin
     "lib/invest_admin.rb",
-    "lib/invest_admin/stock_chinese_name_abbr.rb"
+    "lib/invest_admin/stock_chinese_name_abbr.rb",
+    "lib/invest_admin/statistics_monthly_goal.rb"
   ]
 end

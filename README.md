@@ -33,6 +33,7 @@ gem 'invest_cooker', git: 'git@github.com:TapasTech/InvestCooker.git'
     - Client # 读取一财网编的稿件客户端
 - InvestAdmin
   - StockChineseNameAbbr # 配置股票中文简称
+  - StatisticsMonthlyGoal # 统计信息月度目标
 
 # 依赖
 
@@ -165,3 +166,5 @@ ENV['HUGO_INVEST_SERVER_YCWB_KEY'] # 秘钥
 ```
 
 - InvestCooker::InvestAdmin::StockChineseNameAbbr
+
+- InvestCooker::InvestAdmin::StatisticsMonthlyGoal
