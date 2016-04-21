@@ -7,6 +7,8 @@ Gem::Specification.new do |s|
   s.authors     = ["li-thy-um"]
   s.email       = 'lithium4010@163.com'
   s.files       = [
+    "lib/base_document_parser.rb",
+    
     "lib/invest_cooker.rb",
 
     "lib/invest_cooker/gli.rb",
