@@ -66,9 +66,9 @@ module InvestCooker
         end
       end
 
-      Chain(self).after_dump { |result| Oj.dump(result).remove_utf_8_char_can_not_parse_to_gbk_char }
-                 .after_dump { |result| Oj.load(result).as_json }
-                 .after_dump { |result| InvestCooker::MAYI::DocumentParser.download_and_replace_image_src_gzip!(result) }
+      after_dump { |result| Oj.dump(result).remove_utf_8_char_can_not_parse_to_gbk_char }
+      after_dump { |result| Oj.load(result).as_json }
+      after_dump { |result| InvestCooker::MAYI::DocumentParser.download_and_replace_image_src_gzip!(result) }
 
       attribute(:articleId) do
         id.to_s
