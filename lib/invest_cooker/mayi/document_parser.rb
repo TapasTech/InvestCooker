@@ -1,4 +1,4 @@
-require 'base_document_parser'
+require 'invest_cooker/base_document_parser'
 
 module InvestCooker
   module MAYI
