@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
     "lib/invest_admin.rb",
     "lib/invest_admin/stock_chinese_name_abbr.rb",
     "lib/invest_admin/statistics_monthly_goal.rb",
-    'live/invest_admin/admin.rb'
+    'lib/invest_admin/admin.rb',
+    'lib/invest_admin/release_note.rb'
   ]
 end
