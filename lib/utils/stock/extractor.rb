@@ -44,7 +44,7 @@ module Utils
           # 1. 根据优先级找到文章中所有可能的股票名
           # 2. 找到文中可能的相关股票
           info_list =
-            stocks_name_codes_data.
+            stocks_name_codes_data
             .map { |code, *name_list| {name: name_list.find_obj(&content.method(:index)), code: code} }
             .select { |info| info[:name].present? }
 
