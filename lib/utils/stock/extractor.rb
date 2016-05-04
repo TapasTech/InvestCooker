@@ -43,11 +43,18 @@ module Utils
         @stock_info ||= begin
           # 1. 根据优先级找到文章中所有可能的股票名
           # 2. 找到文中可能的相关股票
-          stocks_name_codes_data
-          .map { |code, *name_list| {name: name_list.find_obj(&content.method(:index)), code: code} }
-          .select { |info| info[:name].present? }
-          .group_by { |info| info[:name] }.each_pair
-          .mash { |name, infos| [name, EXTRACT_STOCK_CODES_FROM_INFO[infos]] }
+          info_list =
+            stocks_name_codes_data.
+            .map { |code, *name_list| {name: name_list.find_obj(&content.method(:index)), code: code} }
+            .select { |info| info[:name].present? }
+
+          stock_codes  = info_list.map { |info| info[:code] }
+          stocks_array = ::Stock.where(:code.in => stock_codes).to_a
+
+          info_list
+            .group_by { |info| info[:name] }
+            .each_pair
+            .mash { |name, infos| [name, EXTRACT_STOCK_CODES_FROM_INFO[infos, stocks_array]] }
         end
       end
 
@@ -69,8 +76,9 @@ module Utils
         # end
       end
 
-      EXTRACT_STOCK_CODES_FROM_INFO = lambda do |infos|
-        infos.flat_map { |info| ::Stock.find_by(code: info[:code]).relative_stocks }.uniq.map(&:code)
+      EXTRACT_STOCK_CODES_FROM_INFO = lambda do |infos, stocks|
+        codes = infos.map { |info| info[:code] }
+        stocks.select { |s| codes.include?(s.code) }.flat_map(&:relative_stocks).uniq.map(&:code)
       end
 
       REMOVE_IGNORE = lambda do |stock_info, content|
