@@ -1,12 +1,15 @@
 Gem::Specification.new do |s|
   s.name        = 'invest_cooker'
-  s.version     = '0.1.3'
+  s.version     = '0.2.0'
   s.date        = '2016-04-12'
   s.summary     = "Invest cooker cooks hugo invest system."
   s.description = "Invest cooker cooks hugo invest system."
   s.authors     = ["li-thy-um"]
   s.email       = 'lithium4010@163.com'
   s.files       = [
+    "lib/utils.rb",
+    "lib/utils/cache.rb",
+
     "lib/base_document_parser.rb",
 
     "lib/invest_cooker.rb",
