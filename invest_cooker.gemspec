@@ -43,6 +43,7 @@ Gem::Specification.new do |s|
 
     # invest_admin
     "lib/invest_admin.rb",
+    "lib/invest_admin/relative_stock.rb",
     "lib/invest_admin/stock_chinese_name_abbr.rb",
     "lib/invest_admin/statistics_monthly_goal.rb",
     'lib/invest_admin/admin.rb',

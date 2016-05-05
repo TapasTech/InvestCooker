@@ -30,13 +30,12 @@ module Utils
       # 文章中出现的需要打股码的所有股票的中文
       def name_list
         @name_list ||=
-          # ::Stock.where(:code.in => stock_name_map_codes.values.flatten).flat_map(&:name_list).uniq
           begin
             stock_codes = stock_name_map_codes.values.flatten.uniq
-            ::JYDBStock
-            .collection_by_codes(stock_codes)
-            .flat_map(&:name_list)
-            .uniq
+            stocks_name_codes_data
+              .select { |code, *names| stock_codes.include?(code) }
+              .flat_map { |code, *names| names }
+              .uniq
           end
       end
 
@@ -80,7 +79,12 @@ module Utils
       end
 
       EXTRACT_STOCK_CODES_FROM_INFO = lambda do |infos|
-        infos.flat_map { |info| ::JYDBStock.find_by_code(code: info[:code]).relative_stocks }.uniq.map(&:code)
+        # 1. info 中的 code
+        # 2. 找到 code 关联的 codes
+        # 3. codes || code
+        infos.map { |info| info[:code] }
+        .flat_map { |code| InvestAdmin::RelativeStock.where(codes: code).first.try(:codes) || code  }
+        .uniq
       end
 
       REMOVE_IGNORE = lambda do |stock_info, content|
