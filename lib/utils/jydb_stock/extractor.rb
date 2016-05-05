@@ -75,7 +75,7 @@ module Utils
       CACHE_ARRAY = lambda do
         Utils::Cache.redis.fetch(STOCK_NAME_CACHE_KEY, expires_in: 4.hours) do
           # 这里严格按照股票的 name_list 顺序确定优先级
-          ::JYDBStock.all.map { |stock| [stock.code] + stock.name_list }
+          ::JYDBStock.all.map { |stock| [stock.code] + stock.name_list }.to_a
         end
       end
 
