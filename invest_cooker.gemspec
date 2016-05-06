@@ -9,9 +9,6 @@ Gem::Specification.new do |s|
   s.files       = [
     "lib/utils.rb",
     "lib/utils/cache.rb",
-    "lib/utils/stock.rb",
-    "lib/utils/stock/adder.rb",
-    "lib/utils/stock/extractor.rb",
     "lib/utils/jydb_stock.rb",
     "lib/utils/jydb_stock/adder.rb",
     "lib/utils/jydb_stock/extractor.rb",
