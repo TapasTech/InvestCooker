@@ -15,7 +15,7 @@ module InvestCooker
           # 内容中图片
           content_doc = Nokogiri::HTML(json_hash['content']).at('body')
           content_doc.css('img')
-            .each   { |img| img['src'] = handle_image(json_hash, img['src']) }
+            .map    { |img| img['src'] = handle_image(json_hash, img['src']); img }
             .select { |img| img['src'].blank? }.each(&:unlink)
           # 压缩替换内容
           json_hash['content'] = Base64.strict_encode64(ActiveSupport::Gzip.compress(content_doc.inner_html))
