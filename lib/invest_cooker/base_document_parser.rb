@@ -3,7 +3,7 @@ class BaseDocumentParser
 
     def dump(document, options={})
       # 特殊情况不用全部 dump
-      hash = @skip_dump && document.instance_exec(options, @skip_dump) || evaluate_result(document, options)
+      hash = @skip_dump && document.instance_exec(options, &@skip_dump) || evaluate_result(document, options)
 
       # dump 前处理 document
       @before_dumps.to_a.each { |block| evaluate_considering_block_arity(document, options, block) }
