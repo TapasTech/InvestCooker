@@ -71,9 +71,9 @@ module Utils
       POSSIBLE_STOCK_CODES_REGEXP =
         Regexp.new(MARKET_ORDER.keys.map { |market_code| "[\\^\\w\\d]+\\.#{market_code}" }.join('|'))
 
-      CACHE_ARRAY = lambda do
-        # NOTE 手动过期
-        Utils::Cache.redis.fetch(STOCK_NAME_CACHE_KEY) do
+      CACHE_ARRAY = lambda do |cache_key=nil|
+        cache_key ||= STOCK_NAME_CACHE_KEY.call
+        Utils::Cache.redis.fetch(cache_key) do
           # 这里严格按照股票的 name_list 顺序确定优先级
           ::JYDBStock.all.map { |stock| [stock.code] + stock.name_list }.to_a
         end
