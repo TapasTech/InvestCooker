@@ -46,7 +46,7 @@ module InvestCooker
 
       # 下线文章只要 :articleId
       skip_dump do |action|
-        {articleId: i.id.to_s}.as_json if action.to_sym == :unpublish
+        {articleId: id.to_s}.as_json if action.to_sym == :unpublish
       end
 
       # 填写聚源来的不应修改的字段，以确保我们没有修改
