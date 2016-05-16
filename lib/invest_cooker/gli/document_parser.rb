@@ -88,9 +88,9 @@ module InvestCooker
       # 1 下线
       # 文章栏目不包含目标栏目时，下线
       attribute(:status) do |target:|
+        next 1 if state != :published
         col_codes   = columns.map { |col| col[:code] }
         doc_targets = Invest::OutputColumn.where(:code.in => col_codes).pluck(:target).uniq.as_json
-        next 1 if state != :published
         doc_targets.include?(target.to_s) ? 0 : 1
       end
 
@@ -116,7 +116,7 @@ module InvestCooker
           origin_website = self.origin_website
         end
 
-        [{status: 0, origin_url: origin_url.to_s, origin_date: origin_date.to_s, origin_website: origin_website.to_s}]
+        [{status: 0, origin_url: origin_url.to_s, origin_date: origin_date.as_json, origin_website: origin_website.to_s}]
       end
     end
   end
