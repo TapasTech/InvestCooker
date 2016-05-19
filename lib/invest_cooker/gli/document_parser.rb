@@ -77,7 +77,7 @@ module InvestCooker
       end
 
       attribute(:news_pub_time) do
-        origin_date.as_json
+        publish_at.as_json
       end
 
       attribute(:keywords) do
