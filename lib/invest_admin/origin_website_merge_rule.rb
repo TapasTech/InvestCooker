@@ -1,7 +1,7 @@
 # InvestAdmin::OriginWebsiteMergeRule
 # 新闻来源合并规则
 # 某些情况下，希望源文章的新闻来源在首次编辑时变成另一个新闻来源
-class InvestAdmin
+module InvestAdmin
   class OriginWebsiteMergeRule
     include Mongoid::Document
 
