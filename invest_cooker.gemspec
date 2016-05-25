@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'invest_cooker'
-  s.version     = '0.2.1'
+  s.version     = '0.2.2'
   s.date        = '2016-04-12'
   s.summary     = 'Invest cooker cooks hugo invest system.'
   s.description = 'Invest cooker cooks hugo invest system.'
@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
   s.files       = [
     'lib/utils.rb',
     'lib/utils/cache.rb',
+    'lib/utils/smooth_cache.rb',
     'lib/utils/jydb_stock.rb',
     'lib/utils/jydb_stock/adder.rb',
     'lib/utils/jydb_stock/extractor.rb',

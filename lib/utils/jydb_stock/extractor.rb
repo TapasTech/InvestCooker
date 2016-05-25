@@ -65,19 +65,15 @@ module Utils
       end
 
       def stocks_name_codes_data
-        @stocks_name_codes_data ||= CACHE_ARRAY.call
+        @stocks_name_codes_data ||= CACHE.fetch
+      end
+
+      CACHE = Utils::SmoothCache.new('add_stock_codes_cache') do |stocks|
+        stocks.map { |stock| [stock.code] + stock.name_list }.to_a
       end
 
       POSSIBLE_STOCK_CODES_REGEXP =
         Regexp.new(MARKET_ORDER.keys.map { |market_code| "[\\^\\w\\d]+\\.#{market_code}" }.join('|'))
-
-      CACHE_ARRAY = lambda do |cache_key=nil|
-        cache_key ||= STOCK_NAME_CACHE_KEY.call
-        Utils::Cache.redis.fetch(cache_key) do
-          # 这里严格按照股票的 name_list 顺序确定优先级
-          ::JYDBStock.all.map { |stock| [stock.code] + stock.name_list }.to_a
-        end
-      end
 
       EXTRACT_STOCK_CODES_FROM_INFO = lambda do |infos|
         # 1. info 中的 code
