@@ -7,7 +7,7 @@ module Utils
     end
 
     def fetch
-      Utils::Cache.redis.read cache_key
+      Utils::Cache.redis.read key
     end
 
     def build(data)
