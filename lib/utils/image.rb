@@ -50,7 +50,8 @@ module Utils
       Timeout.timeout 30 do
         return if size_of(url) > 4_000 # 4M 以上的图片不存
         qiniu = Qiniu.new(open(url), "#{UUID.new.generate}.#{type_of(url)}")
-        Chain(qiniu).upload._.cdn_url
+        qiniu.upload
+        qiniu.cdn_url
       end
     rescue => error
       puts error
@@ -58,22 +59,28 @@ module Utils
 
     # Qiniu
     # 上传七牛
-    Qiniu = Struct.new(:image_file, :key) do
+    class Qiniu
+      SDK        = Object::Qiniu
+      URL        = ENV['QINIU_UPLOAD_URL'].freeze
+      ACCESS_KEY = ENV['HUGO_INVEST_SERVER_QINIU_ACCESS_KEY'].freeze
+      SECRET_KEY = ENV['HUGO_INVEST_SERVER_QINIU_SECRET_KEY'].freeze
+
+      SDK.establish_connection! access_key: ACCESS_KEY, secret_key: SECRET_KEY
+
+      attr_reader :cdn_url
+
+      def initialize(image_file, key)
+        @image_file = image_file
+        @key = key
+      	@cdn_url = "#{ENV['QINIU_BUCKET_INVEST_IMAGE_URL']}/#{key}"
+        @uptoken = SDK::Auth.generate_uptoken(SDK::Auth::PutPolicy.new(ENV['QINIU_BUCKET_INVEST_IMAGE_NAME']))
+      end
+
       def upload
-        RestClient.post config.upload_url,
-                        token: config.uptoken.call,
-                        file:  image_file,
-                        key:   key
-      end
-
-      def cdn_url
-        @cdn_url ||= "#{config.buckets.invest.url}/#{key}"
-      end
-
-      private
-
-      def config
-        @config ||= Settings.qiniu
+        RestClient.post URL,
+                        token: @uptoken,
+                        file:  @image_file,
+                        key:   @key
       end
     end
   end
