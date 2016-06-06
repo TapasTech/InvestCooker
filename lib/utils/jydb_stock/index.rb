@@ -6,10 +6,11 @@ module Utils
     class Index
 
       # {first_word => [{name:, code:}, ...]}
+      # 双字索引
       NAME_INDEX = Utils::SmoothCache.new('add_stock_codes_index_name') do |stocks|
         stocks.flat_map do |stock|
           stock.name_list.map { |name| {code: stock.code, name: name} }
-        end.group_by { |hash| hash[:name].first }
+        end.group_by { |hash| hash[:name][0..1] }
       end
 
       def initialize(content)
@@ -23,9 +24,7 @@ module Utils
 
       # [[code, name1, name2, ...], ...]
       def stocks_name_codes_data
-        keys = @content.chars.uniq & @name_index.keys
-
-        @name_index.values_at(*keys).flatten(1).uniq
+        @name_index.select { |key, _| @content.index(key) }.values.flatten(1).uniq
           .group_by { |hash| hash[:code] }
           .map      { |code, list| __ordered_names__(list).unshift(code) }
       end
