@@ -25,7 +25,7 @@ module Utils
       def stocks_name_codes_data
         keys = @content.chars.uniq & @name_index.keys
 
-        @name_index.values_at(*keys).uniq
+        @name_index.values_at(*keys).flatten(1).uniq
           .group_by { |hash| hash[:code] }
           .map      { |code, list| __ordered_names__(list).unshift(code) }
       end
