@@ -3,6 +3,7 @@ module Utils
   module JYDBStock
 
     # Extractor 分析文章中股票信息的逻辑
+    # 准确提取文章中关联的股票
     class Extractor
 
       def initialize(content)
@@ -57,15 +58,24 @@ module Utils
           # 1. 根据优先级找到文章中所有可能的股票名
           # 2. 找到文中可能的相关股票
           stocks_name_codes_data
-          .map { |code, *name_list| {name: name_list.find_obj(&content.method(:index)), code: code} }
-          .select { |info| info[:name].present? }
-          .group_by { |info| info[:name] }.each_pair
-          .mash { |name, infos| [name, EXTRACT_STOCK_CODES_FROM_INFO[infos]] }
+            .map { |code, *name_list| {name: name_list.find_obj(&content.method(:index)), code: code} }
+            .select { |info| info[:name].present? }
+            .group_by { |info| info[:name] }.each_pair
+            .mash { |name, infos| [name, EXTRACT_STOCK_CODES_FROM_INFO[infos]] }
         end
       end
 
+      # 这里利用 index 快速筛掉大部分股票
+      # 做了新旧版平滑处理
       def stocks_name_codes_data
-        @stocks_name_codes_data ||= CACHE.fetch
+        @stocks_name_codes_data ||= begin
+          index = Utils::JYDBStock::Index.new(@content)
+          if index.ready?
+            index.stocks_name_codes_data
+          else
+            CACHE.fetch
+          end
+        end
       end
 
       CACHE = Utils::SmoothCache.new('add_stock_codes_cache') do |stocks|
