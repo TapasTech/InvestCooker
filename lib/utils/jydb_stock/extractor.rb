@@ -21,11 +21,14 @@ module Utils
         end[fake_indexes_for_skip(name)]
       end
 
-      # 找出文中所有股票名包含该名字的股票名的位置
+      # 找出文中所有股票名包含该名字的股票名的开始位置
+      # e.g.
+      #   when content == "中国南方航空股份 南方航空"
+      #   assert_true fake_indexes_for_skip('南方航空') == [2]
       def fake_indexes_for_skip(name)
         name_list
         .select { |fake| fake.index(name) && fake != name }
-        .flat_map(&content.method(:index_scan)).uniq
+        .flat_map { |fake| content.index_scan(fake).map { |i| i + fake.index(name) } }.uniq
       end
 
       # 文章中出现的需要打股码的所有股票的中文
