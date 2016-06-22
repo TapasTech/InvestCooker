@@ -81,7 +81,7 @@ module InvestCooker
       end
 
       attribute(:keywords) do
-        tags.try(:join, ',').to_s
+        (special_subjects.to_a - InnerTag.pluck(:name)).join(',')
       end
 
       # 0 发布｜更新
