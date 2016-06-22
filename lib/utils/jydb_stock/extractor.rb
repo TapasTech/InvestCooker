@@ -86,7 +86,8 @@ module Utils
       end
 
       POSSIBLE_STOCK_CODES_REGEXP =
-        Regexp.new(MARKET_ORDER.keys.map { |market_code| "[\\^\\w\\d]+\\.#{market_code}" }.join('|'))
+        # Regexp.new("[\\^\\w\\.]+\\.(?:#{MARKET_ORDER.keys.join('|')})") # 修岑的方法，简单测试过可用
+        Regexp.new(MARKET_ORDER.keys.map { |market_code| "[\\^\\w\\.]+\\.#{market_code}" }.join('|'))
 
       EXTRACT_STOCK_CODES_FROM_INFO = lambda do |infos|
         # 1. info 中的 code
