@@ -107,7 +107,7 @@ module InvestCooker
       end
 
       attribute(:tags) do
-        tags
+        output_special_subjects
       end
 
       attribute(:keywords) do
