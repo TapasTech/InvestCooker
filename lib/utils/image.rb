@@ -11,7 +11,7 @@ module Utils
 
     # 不带编辑 ID 的图片地址
     def self.src_without_editor_id(src)
-      src.split('#')[0]
+      src.to_s.split('#')[0]
     end
 
     # 加上了编辑 ID 的图片地址
