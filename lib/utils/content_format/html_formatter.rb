@@ -20,6 +20,7 @@ module Utils
         # doc 的子元素必然为 p 的列表，且 p 中不可能嵌套有 p
         p_tags.search('br').unlink
         p_tags.each(&ClassMethods.method(:remove_blank_char))
+        p_tags.search('strong').each(&ClassMethods.method(:remove_blank_node))
         p_tags.each(&ClassMethods.method(:remove_blank_node))
         p_tags.each(&ClassMethods.method(:add_two_chinese_space_before_paragraph))
       end

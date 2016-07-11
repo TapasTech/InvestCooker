@@ -1,25 +1,11 @@
 require 'invest_cooker/base_document_parser'
+require 'invest_cooker/do_not_change_gli_fields'
 
 module InvestCooker
   module GLI
     class DocumentParser < BaseDocumentParser
 
-      # 填写聚源来的不应修改的字段，以确保我们没有修改
-      before_dump do
-        case source
-        when 'glidata'
-          self.source_id = document.source_id
-          [:author, :compose_organization, :created_at, :origin_date]
-            .select { |attr_name| self[attr_name].blank? }
-            .each   { |attr_name| self[attr_name] = document[attr_name] }
-
-        when 'cbn'
-          self.compose_organization ||= Settings.constants.compose_organization.cbn
-          self.origin_url           ||= 'www.yicai.com'
-          self.origin_date            = publish_at
-          self.source_id              = id.to_s
-        end
-      end
+      include DoNotChangeGLIFields
 
       attribute(:article_id) do |target:|
         next "#{id}_gli" if target == :glidata

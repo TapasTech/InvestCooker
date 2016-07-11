@@ -40,7 +40,7 @@ module Utils
     def format_with(field_name)
       lambda do |formatter_klass, *methods|
         field_value =
-          formatter_klass.format(self.public_send(field_name)) do |formatter|
+          formatter_klass.format(self[field_name]) do |formatter|
             methods.each(&formatter.method(:send))
           end
         send :"#{field_name}=", field_value

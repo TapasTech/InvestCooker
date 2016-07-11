@@ -1,4 +1,5 @@
 require 'invest_cooker/base_document_parser'
+require 'invest_cooker/do_not_change_gli_fields'
 
 module InvestCooker
   module MAYI
@@ -49,22 +50,7 @@ module InvestCooker
         {articleId: id.to_s}.as_json if action.to_sym == :unpublish
       end
 
-      # 填写聚源来的不应修改的字段，以确保我们没有修改
-      before_dump do
-        case source
-        when 'glidata'
-          self.source_id = document.source_id
-          [:author, :compose_organization, :created_at, :origin_date]
-            .select { |attr_name| self[attr_name].blank? }
-            .each   { |attr_name| self[attr_name] = document[attr_name] }
-
-        when 'cbn'
-          self.compose_organization ||= Settings.constants.compose_organization.cbn
-          self.origin_url           ||= 'www.yicai.com'
-          self.origin_date            = publish_at
-          self.source_id              = id.to_s
-        end
-      end
+      include DoNotChangeGLIFields
 
       after_dump { |result| Oj.dump(result).remove_utf_8_char_can_not_parse_to_gbk_char }
       after_dump { |result| Oj.load(result).as_json }
