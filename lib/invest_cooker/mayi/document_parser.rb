@@ -18,8 +18,8 @@ module InvestCooker
         end
 
         # 内容中图片
-        def handle_content_images(json_hash)
-          unless live?
+        def handle_content_images(json_hash, is_live)
+          unless is_live
             content_doc = Nokogiri::HTML(json_hash['content']).at('body')
             content_doc.css('img').map { |img| img['src'] = handle_image(json_hash, img['src']); img }
                                   .select { |img| img['src'].blank? }
@@ -67,7 +67,7 @@ module InvestCooker
       after_dump { |result| Oj.dump(result).remove_utf_8_char_can_not_parse_to_gbk_char }
       after_dump { |result| Oj.load(result).as_json }
       after_dump { |result| InvestCooker::MAYI::DocumentParser.handle_title_image(result) }
-      after_dump { |result| InvestCooker::MAYI::DocumentParser.handle_content_images(result) }
+      after_dump { |result| InvestCooker::MAYI::DocumentParser.handle_content_images(result, live?) }
       after_dump { |result| InvestCooker::MAYI::DocumentParser.gzip_content(result) }
 
       attribute(:articleId) do
