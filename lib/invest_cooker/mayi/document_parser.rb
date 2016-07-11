@@ -127,7 +127,7 @@ module InvestCooker
       end
 
       attribute(:origins) do
-        self.origin_website = '' if live?
+        origin_website = live? ? '' : self.origin_website
         [{originUrl: origin_url.to_s, originDate: origin_date.to_s, originWebsite: origin_website.to_s}]
       end
 
@@ -157,9 +157,12 @@ module InvestCooker
 
       attribute(:content) do
         format_content
-        next content unless live?
-        remove_stock_code_highlight # 直播稿件去除股码高亮
-        html_preview
+        if live?
+          remove_stock_code_highlight # 直播稿件去除股码高亮
+          html_preview
+        else
+          content
+        end
       end
     end
   end
