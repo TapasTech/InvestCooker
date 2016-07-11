@@ -97,12 +97,10 @@ module InvestCooker
 
       attribute(:origins) do
         if live?
-          origin_website = ''
+          [{status: 1, origin_url: '', origin_date: '', origin_website: ''}]
         else
-          origin_website = self.origin_website
+          [{status: 0, origin_url: origin_url.to_s, origin_date: origin_date.as_json, origin_website: origin_website.to_s}]
         end
-
-        [{status: 0, origin_url: origin_url.to_s, origin_date: origin_date.as_json, origin_website: origin_website.to_s}]
       end
     end
   end
