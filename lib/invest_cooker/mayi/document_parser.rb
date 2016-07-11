@@ -10,17 +10,29 @@ module InvestCooker
         # 下载、编码 json_hash 中的图片并插入 json_hash['images']
         # 替换 json_hash 中的图片 url 为 json_hash['images'] 中的 index
         # 压缩 json_hash['content'] 并 base64
-        def download_and_replace_image_src_gzip!(json_hash)
-          # 标题图片
+
+        # 标题图片
+        def handle_title_image(json_hash)
           json_hash['titleImage'] = handle_image(json_hash, json_hash['titleImage'])
-          # 内容中图片
-          content_doc = Nokogiri::HTML(json_hash['content']).at('body')
-          content_doc.css('img')
-            .map    { |img| img['src'] = handle_image(json_hash, img['src']); img }
-            .select { |img| img['src'].blank? }.each(&:unlink)
-          # 压缩替换内容
-          json_hash['content'] = Base64.strict_encode64(ActiveSupport::Gzip.compress(content_doc.inner_html))
-          # 返回结果
+          json_hash
+        end
+
+        # 内容中图片
+        def handle_content_images(json_hash)
+          unless live?
+            content_doc = Nokogiri::HTML(json_hash['content']).at('body')
+            content_doc.css('img').map { |img| img['src'] = handle_image(json_hash, img['src']); img }
+                                  .select { |img| img['src'].blank? }
+                                  .each(&:unlink)
+            json_hash['content'] = content_doc.inner_html
+          end
+
+          json_hash
+        end
+
+        # 压缩替换内容
+        def gzip_content(json_hash)
+          json_hash['content'] = Base64.strict_encode64(ActiveSupport::Gzip.compress(json_hash['content']))
           json_hash
         end
 
@@ -54,7 +66,9 @@ module InvestCooker
 
       after_dump { |result| Oj.dump(result).remove_utf_8_char_can_not_parse_to_gbk_char }
       after_dump { |result| Oj.load(result).as_json }
-      after_dump { |result| InvestCooker::MAYI::DocumentParser.download_and_replace_image_src_gzip!(result) }
+      after_dump { |result| InvestCooker::MAYI::DocumentParser.handle_title_image(result) }
+      after_dump { |result| InvestCooker::MAYI::DocumentParser.handle_content_images(result) }
+      after_dump { |result| InvestCooker::MAYI::DocumentParser.gzip_content(result) }
 
       attribute(:articleId) do
         id.to_s
