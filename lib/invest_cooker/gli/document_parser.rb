@@ -44,14 +44,15 @@ module InvestCooker
 
       attribute(:content) do
         format_content
-        # ---- 去掉正文中的图片 src 关联的编辑 ID
-        doc = html_doc
-        doc.css('img').each { |img| img['src'] = img['src'].split('#')[0] }
-        self.content = doc.inner_html.gsub(/\n/, '')
-        # ----
-        next content unless live?
-        remove_stock_code_highlight # 直播稿件去除股码高亮
-        html_preview
+        # 2016-07-11 蚂蚁直播只传文本
+        if live?
+          preview
+        else
+          # 去掉正文中的图片 src 关联的编辑 ID
+          doc = html_doc
+          doc.css('img').each { |img| img['src'] = Utils::Image.src_without_editor_id(img['src']) }
+          doc.inner_html.gsub(/\n/, '')
+        end
       end
 
       attribute(:gmt_create) do

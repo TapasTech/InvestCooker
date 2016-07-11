@@ -146,9 +146,9 @@ module InvestCooker
 
       attribute(:content) do
         format_content
+        # 2016-07-11 蚂蚁直播只传文本
         if live?
-          remove_stock_code_highlight # 直播稿件去除股码高亮
-          html_preview
+          preview
         else
           content
         end
