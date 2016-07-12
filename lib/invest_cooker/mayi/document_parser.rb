@@ -130,7 +130,15 @@ module InvestCooker
         if live?
           [{status: 1, originUrl: '', originDate: '', originWebsite: ''}]
         else
-          [{status: 0, originUrl: origin_url.to_s, originDate: origin_date.as_json, originWebsite: origin_website.to_s}]
+          if origin_url.present?
+            [{status: 0, originUrl: origin_url.to_s, originDate: origin_date.as_json, originWebsite: origin_website.to_s}]
+          else
+            if source == 'cbn'
+              [{status: 0, originUrl: 'http://www.dtcj.com/', originDate: origin_date.as_json, originWebsite: origin_website.to_s}]
+            else
+              [{status: 0, originUrl: 'NoUrl', originDate: origin_date.as_json, originWebsite: origin_website.to_s}]
+            end
+          end
         end
       end
 
