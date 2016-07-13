@@ -14,7 +14,7 @@ module DoNotChangeGLIFields
 
       when 'cbn'
         self.compose_organization ||= Settings.constants.compose_organization.cbn
-        self.origin_url           ||= 'www.yicai.com'
+        self.origin_url           ||= 'http://www.dtcj.com/'
         self.origin_date            = publish_at
         self.source_id              = id.to_s
       end
