@@ -29,6 +29,10 @@ module Utils
         doc.inner_html.gsub(/\n/, '').presence || ''
       end
 
+      def remove_blank_before_p_tags
+        p_tags.each(&ClassMethods.method(:remove_blank_before_paragraph))
+      end
+
       private
 
       VALID_TAGS = {
@@ -104,6 +108,10 @@ module Utils
           # 这里如果开头是图片标签，则不加空格
           return if start_with_a_img_tag?(p_tag)
           p_tag.inner_html = "\u3000\u3000#{p_tag.inner_html}"
+        end
+
+        def self.remove_blank_before_paragraph(p_tag)
+          p_tag.inner_html = p_tag.inner_html.utf8_strip
         end
 
         def self.start_with_a_img_tag?(p_tag)

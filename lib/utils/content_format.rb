@@ -33,6 +33,10 @@ module Utils
       format_by HTMLFormatter, :ensure_dubble_chinese_blank_before_each_paragraph
     end
 
+    def ant_remove_blank
+      format_by HTMLFormatter, :remove_blank_before_p_tags
+    end
+
     def format_by(formatter_klass, *methods)
       format_with(:content)[formatter_klass, *methods]
     end
