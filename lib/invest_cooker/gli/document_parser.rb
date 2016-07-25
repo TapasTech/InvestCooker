@@ -96,10 +96,11 @@ module InvestCooker
       end
 
       # 过滤掉不属于 target 的栏目
+      # 如果接收方是 mayi, 原创 是一个特殊栏目不要过滤
       attribute(:columns) do |target:|
         target_column_codes = Invest::OutputColumn.where(target: target).pluck(:code)
         columns_with_status
-          .select { |c| target_column_codes.include?(c['code'])}
+          .select { |c| target_column_codes.include?(c['code']) || c['name'] == '原创' && target.to_s == 'mayi' }
           .map    { |c| {column_code: c['code'].to_i, column_name: c['name'], status: c['status']} }
           .presence || [{column_code: "", column_name: "", status: 1}]
       end
