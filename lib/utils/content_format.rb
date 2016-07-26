@@ -7,6 +7,18 @@ module Utils
       end
     end
 
+    def clear_style_of_content
+      format_with(:content)[HTMLFormatter, :clear_style]
+    end
+
+    def clear_style_of_summary
+      format_with(:summary)[HTMLFormatter, :clear_style]
+    end
+
+    def clear_style_of_title
+      format_with(:title)[HTMLFormatter, :clear_style]
+    end
+
     def content_to_plain_text
       format_by(HTMLFormatter, :clear_content_by_dom)
       format_by(StringFormatter, *[
