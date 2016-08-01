@@ -128,7 +128,7 @@ module Utils
         end
 
         def self.remove_blank_br_node(node)
-          node.unlink if node.parent.content.blank
+          node.unlink if node.parent.content.blank?
           nil
         end
 
