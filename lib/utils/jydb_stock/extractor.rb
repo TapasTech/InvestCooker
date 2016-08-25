@@ -56,15 +56,16 @@ module Utils
         @possible_stock_codes ||= content.scan(POSSIBLE_STOCK_CODES_REGEXP).uniq
       end
 
+      # 1. 根据优先级找到文章中所有可能的股票名
+      # 2. 找到文中可能的相关股票
       def stock_info
         @stock_info ||= begin
-          # 1. 根据优先级找到文章中所有可能的股票名
-          # 2. 找到文中可能的相关股票
           stocks_name_codes_data
             .map { |code, *name_list| {name: name_list.find_obj(&content.method(:index)), code: code} }
             .select { |info| info[:name].present? }
-            .group_by { |info| info[:name] }.each_pair
-            .mash { |name, infos| [name, EXTRACT_STOCK_CODES_FROM_INFO[infos]] }
+            .group_by { |info| info[:name] }
+            .map { |name, infos| [name, EXTRACT_STOCK_CODES_FROM_INFO[infos, InvestAdmin::RelativeStock.code_hash]] }
+            .to_h
         end
       end
 
@@ -91,12 +92,12 @@ module Utils
         # Regexp.new("[#{CODES_CHARS}]+\\.(?:#{MARKET_ORDER.keys.join('|')})") # 修岑的方法，简单测试过可用
         Regexp.new(MARKET_ORDER.keys.map { |market_code| "[#{CODES_CHARS}]+\\.#{market_code}" }.join('|'))
 
-      EXTRACT_STOCK_CODES_FROM_INFO = lambda do |infos|
+      EXTRACT_STOCK_CODES_FROM_INFO = lambda do |infos, relative_codes|
         # 1. info 中的 code
         # 2. 找到 code 关联的 codes
         # 3. codes || code
         infos.map { |info| info[:code] }
-        .flat_map { |code| InvestAdmin::RelativeStock.where(codes: code).first.try(:codes) || code  }
+        .flat_map { |code| relative_codes[code] || code }
         .uniq
       end
 

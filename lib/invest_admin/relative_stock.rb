@@ -9,6 +9,16 @@ module InvestAdmin
     index codes: 1
 
     class << self
+      def code_hash
+        hash = {}
+        all.pluck(:codes).each do |codes|
+          codes.each do |code|
+            hash[code] = codes
+          end
+        end
+        hash
+      end
+
       private
 
       def init!
