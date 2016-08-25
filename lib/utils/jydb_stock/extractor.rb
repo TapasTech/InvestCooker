@@ -60,11 +60,13 @@ module Utils
       # 2. 找到文中可能的相关股票
       def stock_info
         @stock_info ||= begin
+          relative_codes = InvestAdmin::RelativeStock.code_hash
+
           stocks_name_codes_data
             .map { |code, *name_list| {name: name_list.find_obj(&content.method(:index)), code: code} }
             .select { |info| info[:name].present? }
             .group_by { |info| info[:name] }
-            .map { |name, infos| [name, EXTRACT_STOCK_CODES_FROM_INFO[infos, InvestAdmin::RelativeStock.code_hash]] }
+            .map { |name, infos| [name, EXTRACT_STOCK_CODES_FROM_INFO[infos, relative_codes]] }
             .to_h
         end
       end
