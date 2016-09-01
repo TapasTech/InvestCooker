@@ -49,14 +49,38 @@ module Utils
     def self.upload_cdn(url)
       Timeout.timeout 30 do
         return if size_of(url) > 4_000 # 4M 以上的图片不存
-        qiniu = Qiniu.new(open(url), "#{UUID.new.generate}.#{type_of(url)}")
-        qiniu.upload
-        qiniu.cdn_url
+        cdn = CDNStore.new(url, "#{UUID.new.generate}.#{type_of(url)}")
+        cdn.upload
+        cdn.cdn_url
       end
     rescue => error
       puts error
     end
 
+    # http://developer.qiniu.com/code/v6/sdk/ruby.html#rs-fetch
+    class CDNStore
+      def initialize(target_url, key)
+        @target_url = target_url
+        @key = key
+        @cdn_url = "#{BUCKET_URL}/#{key}"
+      end
+
+      def upload
+        Qiniu::Storage.fetch BUCKET, @target_url, key
+      end
+
+      attr_reader :cdn_url
+
+      URL        = ENV['QINIU_UPLOAD_URL'].freeze
+      ACCESS_KEY = ENV['HUGO_INVEST_SERVER_QINIU_ACCESS_KEY'].freeze
+      SECRET_KEY = ENV['HUGO_INVEST_SERVER_QINIU_SECRET_KEY'].freeze
+      BUCKET     = ENV['QINIU_BUCKET_INVEST_IMAGE_NAME'].freeze
+      BUCKET_URL = ENV['QINIU_BUCKET_INVEST_IMAGE_URL'].freeze
+
+      Qiniu.establish_connection! access_key: ACCESS_KEY, secret_key: SECRET_KEY
+    end
+
+    # @deprecated
     # Qiniu
     # 上传七牛
     class Qiniu
