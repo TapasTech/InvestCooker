@@ -66,18 +66,19 @@ module Utils
       end
 
       def upload
-        Qiniu::Storage.fetch BUCKET, @target_url, key
+        CDN::Storage.fetch BUCKET, @target_url, key
       end
 
       attr_reader :cdn_url
 
+      CDN        = Object::Qiniu
       URL        = ENV['QINIU_UPLOAD_URL'].freeze
       ACCESS_KEY = ENV['HUGO_INVEST_SERVER_QINIU_ACCESS_KEY'].freeze
       SECRET_KEY = ENV['HUGO_INVEST_SERVER_QINIU_SECRET_KEY'].freeze
       BUCKET     = ENV['QINIU_BUCKET_INVEST_IMAGE_NAME'].freeze
       BUCKET_URL = ENV['QINIU_BUCKET_INVEST_IMAGE_URL'].freeze
 
-      Qiniu.establish_connection! access_key: ACCESS_KEY, secret_key: SECRET_KEY
+      CDN.establish_connection! access_key: ACCESS_KEY, secret_key: SECRET_KEY
     end
 
     # @deprecated
