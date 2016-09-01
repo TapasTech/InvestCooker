@@ -66,7 +66,7 @@ module Utils
       end
 
       def upload
-        CDN::Storage.fetch BUCKET, @target_url, key
+        CDN::Storage.fetch BUCKET, @target_url, @key
       end
 
       attr_reader :cdn_url
