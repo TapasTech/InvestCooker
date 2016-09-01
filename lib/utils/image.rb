@@ -1,4 +1,3 @@
-require 'open-uri'
 # Utils::Image
 # 图片处理工具类
 module Utils
@@ -46,9 +45,12 @@ module Utils
       FastImage.type(img_url)
     end
 
+    # NOTE 新的接口如果图片不存在，也会返回地址
     def self.upload_cdn(url)
       Timeout.timeout 30 do
-        return if size_of(url) > 4_000 # 4M 以上的图片不存
+        size = size_of(url)
+        # 4M 以上的图片不存
+        return if size <= 0 || size > 4_000
         cdn = CDNStore.new(url, "#{UUID.new.generate}.#{type_of(url)}")
         cdn.upload
         cdn.cdn_url
