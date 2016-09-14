@@ -34,9 +34,15 @@ module Utils
       format_by HTMLFormatter, :remove_stock_code_highlight
     end
 
+    # 强制清理格式，针对入库文章
     def format_content
       format_by StringFormatter, :format_line_divide_by_slash_n
       format_by HTMLFormatter,   :ensure_dubble_chinese_blank_before_each_paragraph
+    end
+
+    # 保留合法格式，移除非法格式，针对编辑过的文章
+    def soft_format_content
+      format_by HTMLFormatter, :remove_blanks
     end
 
     def remove_space

@@ -16,13 +16,22 @@ module Utils
         ClassMethods.iterate_doc(doc, &ClassMethods.method(:clear_one_node_by_dom))
       end
 
+      # doc 的子元素必然为 p 的列表，且 p 中不可能嵌套有 p
+      # NOTE 这里部分和 remove_blanks 逻辑重复, 因为新的功能不希望影响旧的功能，而同一层次的代码不希望耦合
+      # TODO 整理重构稿件格式化部分
       def ensure_dubble_chinese_blank_before_each_paragraph
-        # doc 的子元素必然为 p 的列表，且 p 中不可能嵌套有 p
         p_tags.search('br').unlink
         p_tags.each(&ClassMethods.method(:remove_blank_char))
         p_tags.search('strong').each(&ClassMethods.method(:remove_blank_node))
         p_tags.each(&ClassMethods.method(:remove_blank_node))
         p_tags.each(&ClassMethods.method(:add_two_chinese_space_before_paragraph))
+      end
+
+      def remove_blanks
+        p_tags.search('br').unlink
+        p_tags.each(&ClassMethods.method(:remove_blank_char))
+        p_tags.search('strong').each(&ClassMethods.method(:remove_blank_node))
+        p_tags.each(&ClassMethods.method(:remove_blank_node))
       end
 
       def formatted_content
