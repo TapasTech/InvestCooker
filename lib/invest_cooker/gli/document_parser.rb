@@ -46,11 +46,8 @@ module InvestCooker
         format_content
 
         # 2016-07-18 输出聚宝去掉段首空格开关
-        if $rollout.present?
-          if $rollout.active?(:ant_remove_blank)
-            ant_remove_blank
-          end
-        end
+        # 2016-09-19 去掉开关直接去空格
+        ant_remove_blank
 
         # 2016-07-11 蚂蚁直播只传文本
         if live?
