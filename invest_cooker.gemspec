@@ -7,6 +7,9 @@ Gem::Specification.new do |s|
   s.authors     = ['li-thy-um']
   s.email       = 'lithium4010@163.com'
   s.files       = [
+    'lib/quantum.rb',
+    'lib/invest_deploy.rb',
+
     'lib/monkey_patches/timezone.rb',
     'lib/monkey_patches/elasticsearch.rb',
 
