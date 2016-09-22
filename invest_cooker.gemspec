@@ -8,6 +8,7 @@ Gem::Specification.new do |s|
   s.email       = 'lithium4010@163.com'
   s.files       = [
     'lib/monkey_patches/timezone.rb',
+    'lib/monkey_patches/elasticsearch.rb',
 
     'lib/utils.rb',
     'lib/utils/cache.rb',
