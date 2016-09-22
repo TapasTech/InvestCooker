@@ -1,12 +1,14 @@
 Gem::Specification.new do |s|
   s.name        = 'invest_cooker'
-  s.version     = '0.2.16'
+  s.version     = '0.3.0'
   s.date        = '2016-04-12'
   s.summary     = 'Invest cooker cooks hugo invest system.'
   s.description = 'Invest cooker cooks hugo invest system.'
   s.authors     = ['li-thy-um']
   s.email       = 'lithium4010@163.com'
   s.files       = [
+    'lib/monkey_patches/timezone.rb',
+
     'lib/utils.rb',
     'lib/utils/cache.rb',
     'lib/utils/content_format.rb',
