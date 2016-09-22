@@ -2,7 +2,7 @@ module Utils
   class SmoothCache
     def initialize(key, &parse)
       @key = key
-      @parse = parse
+      @parse = parse || ->(_) {_}
     end
 
     def fetch
