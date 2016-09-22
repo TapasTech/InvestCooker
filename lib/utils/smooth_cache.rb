@@ -1,5 +1,11 @@
 module Utils
   class SmoothCache
+    TIME_ZONE = lambda do
+      return Time.zone             if const_defined?('Rails')
+      return Application.time_zone if const_defined?('Application')
+      Time
+    end.call
+
     def initialize(key, &parse)
       @key = key
       @parse = parse
@@ -10,7 +16,7 @@ module Utils
     end
 
     def build(data)
-      "#{@key}/#{Utils::TIME_ZONE.now.to_i}".tap do |new_key|
+      "#{@key}/#{TIME_ZONE.now.to_i}".tap do |new_key|
         cache new_key, data
       end
     end
