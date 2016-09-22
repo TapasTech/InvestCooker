@@ -20,11 +20,12 @@ module Quantum
     @jobs ||= {}
 
     unless Object.const_defined?(job)
-      job = Class.new(ActiveJob::Base) do
+      job_class = Class.new(ActiveJob::Base) do
         queue_as queue
         def perform(*args); end
       end
-      Object.const_set(name, job)
+
+      Object.const_set(job, job_class)
     end
 
     key = job_key(@from, @to, name)
