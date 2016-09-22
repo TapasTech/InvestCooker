@@ -28,6 +28,7 @@ module Quantum
       last = job.split('::').last
 
       job.split('::').reduce(Object) do |m, c|
+
         unless m.const_defined?(c)
           if c == last
             m.const_set(c, job_class)
@@ -41,6 +42,8 @@ module Quantum
     end
 
     key = job_key(@from, @to, name)
+
+    fail 'Quantum should not use a job twice' if @jobs[key].to_s == job
     @jobs[key] ||= Object.const_get(job)
   end
 
