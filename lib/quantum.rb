@@ -1,40 +1,37 @@
-class Quantum
+module Quantum
   def self.mail(from:, to:, event:, message:)
-    Register.find_job(from, to, event).class.perform_later(*message)
+    key = job_key(from, to, event)
+    job = @jobs[key]
+    fail "Quantum #{key} does not registered." if job.nil?
+    job.perform_later(*message)
   end
 
-  class Job < Struct.new(:name, :queue);
-    def class
-      begin
-        self.name.constantize
-      rescue NameError => e
-        create_job
-        retry
+  def self.config(&block)
+    class_exec(&block)
+  end
+
+  def self.tunnel(from:, to:, &block)
+    @from = from
+    @to = to
+    class_exec(&block)
+  end
+
+  def self.event(name, queue:, job:)
+    @jobs ||= {}
+
+    unless Object.const_defined?(job)
+      job = Class.new(ActiveJob::Base) do
+        queue_as queue
+        def perform(*args); end
       end
+      Object.const_set(name, job)
     end
 
-  private
-
-    def create_job
-      eval code
-    end
-
-    def code
-      <<-JOB
-        class #{self.name} < ActiveJob::Base
-          queue_as :"#{self.queue}"
-          def perform(*args); end
-        end
-      JOB
-    end
+    key = job_key(@from, @to, name)
+    @jobs[key] ||= Object.const_get(job)
   end
 
-  class Register
-    def self.find_job(sender, receiver, event)
-      job_config = Settings.quantum[sender][receiver][event]
-      Job.new(job_config[:name], job_config[:queue])
-    rescue NoMethodError
-      raise "Quantum #{sender}:#{receiver}:#{event} does not registered."
-    end
+  def self.job_key(from, to, event)
+    [from, to, event].join(':')
   end
 end
