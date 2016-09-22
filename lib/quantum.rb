@@ -21,11 +21,23 @@ module Quantum
 
     unless Object.const_defined?(job)
       job_class = Class.new(ActiveJob::Base) do
-        queue_as queue
-        def perform(*args); end
-      end
+                    queue_as queue
+                    def perform(*args); end
+                  end
 
-      Object.const_set(job, job_class)
+      last = job.split('::').last
+
+      job.split('::').reduce(Object) do |m, c|
+        unless m.const_defined?(c)
+          if c == last
+            m.const_set(c, job_class)
+          else
+            m.const_set(c, Module.new)
+          end
+        end
+
+        c
+      end
     end
 
     key = job_key(@from, @to, name)
