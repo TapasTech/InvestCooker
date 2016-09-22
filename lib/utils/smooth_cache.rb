@@ -10,7 +10,7 @@ module Utils
     end
 
     def build(data)
-      "#{@key}/#{TIME_ZONE.now.to_i}".tap do |new_key|
+      "#{@key}/#{Utils::TIME_ZONE.now.to_i}".tap do |new_key|
         cache new_key, data
       end
     end
