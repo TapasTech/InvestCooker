@@ -1,8 +1,7 @@
 module Utils
   class SmoothCache
-
     def initialize(key, &parse)
-    	@key   = key
+      @key = key
       @parse = parse
     end
 
@@ -11,7 +10,7 @@ module Utils
     end
 
     def build(data)
-      "#{@key}/#{Application.time_zone.now.to_i}".tap do |new_key|
+      "#{@key}/#{TIME_ZONE.now.to_i}".tap do |new_key|
         cache new_key, data
       end
     end
@@ -30,7 +29,7 @@ module Utils
     end
 
     def cache(key, data)
-      Utils::Cache.redis.write key, @parse.(data)
+      Utils::Cache.redis.write key, @parse.call(data)
     end
   end
 end
