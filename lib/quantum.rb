@@ -1,7 +1,7 @@
 module Quantum
   def self.mail(from:, to:, event:, message:)
     key = job_key(from, to, event)
-    job = @jobs[key]
+    job = @job_define[key]
     fail "Quantum #{key} does not registered." if job.nil?
     job.perform_later(*message)
   end
@@ -17,7 +17,13 @@ module Quantum
   end
 
   def self.event(name, queue:, job:)
-    @jobs ||= {}
+    key = job_key(@from, @to, name)
+
+    @job_define ||= {}
+    @jobs ||= []
+
+    fail 'Quantum should not redefine a event' unless @job_define[key].nil?
+    fail 'Quantum should not use a job twice' unless @jobs.find { |j| j.to_s == job }.nil?
 
     unless Object.const_defined?(job)
       job_class = Class.new(ActiveJob::Base) do
@@ -41,10 +47,8 @@ module Quantum
       end
     end
 
-    key = job_key(@from, @to, name)
-
-    fail 'Quantum should not use a job twice' if @jobs[key].to_s == job
-    @jobs[key] ||= Object.const_get(job)
+    @job_define[key] = Object.const_get(job)
+    @jobs << @job_define[key]
   end
 
   def self.job_key(from, to, event)
