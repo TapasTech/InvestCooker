@@ -2,7 +2,7 @@ module Utils
   class SmoothCache
     def initialize(key, &parse)
       @key = key
-      @parse = parse || ->(_) {_}
+      @parse = parse
     end
 
     def fetch
@@ -29,7 +29,8 @@ module Utils
     end
 
     def cache(key, data)
-      Utils::Cache.redis.write key, @parse.call(data)
+      data = @parse.call(data) unless @parse.nil?
+      Utils::Cache.redis.write key, data
     end
   end
 end
