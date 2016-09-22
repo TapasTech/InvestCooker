@@ -36,7 +36,7 @@ module Quantum
           end
         end
 
-        c
+        m.const_get(c)
       end
     end
 
