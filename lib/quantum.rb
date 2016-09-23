@@ -1,3 +1,16 @@
+# Example (in your initializers/quantum.rb)
+# ---
+# Quantum.config do
+#   tunnel from: :invest, to: :bus do
+#     event :publish,   queue: :bus_input, job: 'Gateway::PublishJob'
+#     event :depublish, queue: :bus_input, job: 'Gateway::DepublishJob'
+#   end
+# end
+#
+# (when you want to sent a message to other server)
+# ---
+# Quantum.mail(from: :invest, to: :bus, event: :publish, message: Oj.dump(data.as_json))
+
 module Quantum
   def self.mail(from:, to:, event:, message:)
     key = job_key(from, to, event)
