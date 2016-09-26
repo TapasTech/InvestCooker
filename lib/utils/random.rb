@@ -3,7 +3,7 @@
 module Utils
   class Random
     def self.digital_code(length)
-    	(SecureRandom.random_number(('9' * length).to_i)).to_s.rjust(length, '0')
+      SecureRandom.random_number(('9' * length).to_i).to_s.rjust(length, '0')
     end
 
     def self.weak_password(length)
