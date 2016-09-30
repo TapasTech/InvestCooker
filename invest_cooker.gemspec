@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'invest_cooker'
-  s.version     = '0.3.1'
+  s.version     = '0.3.2'
   s.date        = '2016-04-12'
   s.summary     = 'Invest cooker cooks hugo invest system.'
   s.description = 'Invest cooker cooks hugo invest system.'
@@ -13,6 +13,14 @@ Gem::Specification.new do |s|
     'lib/monkey_patches/timezone.rb',
     'lib/monkey_patches/pinyin.rb',
     'lib/monkey_patches/elasticsearch.rb',
+    'lib/monkey_patches/grapthql.rb',
+
+    'lib/dsl/information_tags_dsl.rb',
+    'lib/dsl/market_period_dsl.rb',
+    'lib/dsl/search_filter_dsl.rb',
+
+    'lib/concerns/remember.rb',
+    'lib/concerns/cache_by_params.rb',
 
     'lib/utils.rb',
     'lib/utils/cache.rb',

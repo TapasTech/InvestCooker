@@ -50,12 +50,14 @@ module Utils
         @tag ||= HIGHLIGHT_STOCK_CODE[name, codes]
       end
 
-      def codes_with_sort
-        # 股码按照 A/B/H/U 排序
-        codes_without_sort.sort_by { |code| MARKET_ORDER[code[-2..-1]] }
+      # 股码按照 A/B/H/U 排序
+      codes_with_sort = Module.new do
+        def codes
+          super.sort_by { |code| MARKET_ORDER[code[-2..-1]] }
+        end
       end
 
-      alias_method_chain :codes, :sort
+      prepend codes_with_sort
 
       STANDARD_STOCK_STRINGS = lambda do |name, codes|
         codes.size.times
