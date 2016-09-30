@@ -35,8 +35,8 @@ GraphQL::Relay::Mutation.class_exec do
 
           elsif service.name =~ /Service/
 
-            params = inputs.merge(current_backend_editor: ctx[:current_backend_editor],
-                                  controller:             ctx[:controller])
+            params = inputs.merge(current_editor: ctx[:current_editor],
+                                  controller:     ctx[:controller])
 
             service_instance = service.new(ActionController::Parameters.new(params))
 
