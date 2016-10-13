@@ -1,10 +1,15 @@
 concern :LimitFrequency do
 
-  def limit_frequency(key:, time:)
-    last_time = Time.zone.parse($redis_object.get(key).to_s)
-    return if last_time.present? && Time.zone.now - last_time < time
-    $redis_object.set(key, Time.zone.now.to_s)
+  def limit_frequency(key:, time: nil)
+    return if $redis_object.get(key).present?
 
+    $redis_object.set(key, 'processing')
     yield
+
+    if time.present?
+      $redis_object.expire(key, time)
+    else
+      $redis_object.del(key)
+    end
   end
 end
