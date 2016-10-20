@@ -6,6 +6,7 @@ concern :LimitFrequency do
     $redis_object.set(key, 'processing')
     yield
 
+  ensure
     if time.present?
       $redis_object.expire(key, time)
     else
