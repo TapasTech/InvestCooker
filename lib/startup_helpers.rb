@@ -50,7 +50,7 @@ def initial_job_tasks
   CMD
 
   quiet_template = '[ -f "%{pid_path}" ] && kill -USR1 `cat "%{pid_path}"`> /dev/null 2>&1'
-  stop_template  = '[ -f "#{pid_path}" ] && kill -TERM `cat "%{pid_path}"`> /dev/null 2>&1 -d',
+  stop_template  = '[ -f "#{pid_path}" ] && kill -TERM `cat "%{pid_path}"`> /dev/null 2>&1 -d'
   start_template = "bundle exec sidekiq -e #{ENV['RAILS_ENV']} -C %{yml_path} -L %{log_path} -P %{pid_path} -d"
 
   define_task = lambda do |task, command, process|
