@@ -86,10 +86,10 @@ def initial_job_tasks
   end
 
   desc "重启所有 job"
-  task restart: sidekiq_processes.map { |t| :"#{t}:restart" }
+  task restart: job_processes.map { |t| :"#{t}:restart" }
 
   desc "所有 job 停止接收新任务"
-  task quiet: sidekiq_processes.map { |t| :"#{t}:quiet" }
+  task quiet: job_processes.map { |t| :"#{t}:quiet" }
 end
 
 def start_god(config_job: nil, config_server: nil)
