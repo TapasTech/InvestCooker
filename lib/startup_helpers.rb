@@ -77,7 +77,7 @@ def initial_job_tasks
       }
 
       tasks.each do |task, command|
-        define_task task, command, process
+        define_task.call task, command, process
       end
 
       desc "[job] Restart #{process} "
