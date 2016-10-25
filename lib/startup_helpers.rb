@@ -1,6 +1,49 @@
+# 标准部署启动脚本，最好配合 invest_deploy 使用。
+# 封装了定义启动 server 和 job 脚本的 rake 任务，job 进程为 sidekiq
+# 封装了 God 启动脚本
+
 # need to define methods:
 #   current_path: the root_path of the application
 #   app_name: the identity of the application
+
+# Example
+# 0. 准备好环境变量 ENV['HUGO_PARK_PROCESS_PORTS']
+
+# 1. config/job/*.yml 这里写 job 的 yml
+
+# 2. config/god.rb 一定要用 bundle exec 启动 god，不然无法 require 'startup_helpers'
+#
+#   require 'startup_helpers'
+#
+#   def current_path
+#     File.expand_path('../..', __FILE__)
+#   end
+#
+#   def app_name
+#     'HUGO_PARK'
+#   end
+#
+#   start_god config_job: ->(w) { w.keepalive memory_max: 512.megabytes },
+#             config_server: ->(w) { w.keepalive memory_max: 256.megabytes }
+
+# 3. lib/tasks/startup.rake
+#   require 'startup_helpers'
+#
+#   def current_path
+#     File.expand_path('../../..', __FILE__)
+#   end
+#
+#   def app_name
+#     'HUGO_PARK'
+#   end
+#
+#   namespace :server do
+#     initial_server_tasks
+#   end
+#
+#   namespace :job do
+#     initial_job_tasks
+#   end
 
 def pid_path
   File.expand_path('tmp/pids/', current_path)
