@@ -3,15 +3,15 @@ task restart_application: :environment do
   invoke :info_deployment
   queue "
     # god 正在运行, terminate 后重启
-    god -p #{god_port} status  &&
+    bundle exec god -p #{god_port} status  &&
     echo 'God is active, now god.terminate.' &&
-    god -p #{god_port} terminate &&
+    bundle exec god -p #{god_port} terminate &&
     echo 'God is terminated, now god.init with config file.' &&
-    god -p #{god_port} -c #{deploy_to}/#{current_path}/config/god.rb -l /data/log/god.log ||
+    bundle exec god -p #{god_port} -c #{deploy_to}/#{current_path}/config/god.rb -l /data/log/god.log ||
 
     # god 没有运行, 启动
     echo 'God is terminated, now god.init with config file.' &&
-    god -p #{god_port} -c #{deploy_to}/#{current_path}/config/god.rb -l /data/log/god.log
+    bundle exec god -p #{god_port} -c #{deploy_to}/#{current_path}/config/god.rb -l /data/log/god.log
   "
 end
 
@@ -29,13 +29,13 @@ task fast_restart: :environment do
   invoke :info_deployment
   queue "
     # god 正在运行, 重启
-    god -p #{god_port} status &&
+    bundle exec god -p #{god_port} status &&
     echo 'God is active, now god.restart.' &&
-    god -p #{god_port} restart ||
+    bundle exec god -p #{god_port} restart ||
 
     # god 没有运行, 启动
     echo 'God is terminated, now god.init with config file.' &&
-    god -p #{god_port} -c #{deploy_to}/#{current_path}/config/god.rb -l /data/log/god.log
+    bundle exec god -p #{god_port} -c #{deploy_to}/#{current_path}/config/god.rb -l /data/log/god.log
   "
 end
 
@@ -44,9 +44,9 @@ task terminate_application: :environment do
   invoke :info_deployment
   queue "
     # god 正在运行, terminate
-    god -p #{god_port} status &&
+    bundle exec god -p #{god_port} status &&
     echo 'God is active, now god.terminate.' &&
-    god -p #{god_port} terminate ||
+    bundle exec god -p #{god_port} terminate ||
 
     # god 没有运行
     echo 'God is terminated.'
