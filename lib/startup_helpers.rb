@@ -14,7 +14,7 @@ def job_processes
 end
 
 def server_processes
-  ENV["#{app_name}:PROCESS_PORTS"].try(:split, ',').to_a
+  ENV["#{app_name}_PROCESS_PORTS"].try(:split, ',').to_a
 end
 
 def initial_server_tasks
