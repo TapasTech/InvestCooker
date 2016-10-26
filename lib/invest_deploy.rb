@@ -2,6 +2,8 @@ desc 'Restart the application.'
 task restart_application: :environment do
   invoke :info_deployment
   queue "
+    cd #{deploy_to}/#{current_path} &&
+
     # god 正在运行, terminate 后重启
     bundle exec god -p #{god_port} status  &&
     echo 'God is active, now god.terminate.' &&
@@ -28,6 +30,8 @@ desc 'Restart the application fast.'
 task fast_restart: :environment do
   invoke :info_deployment
   queue "
+    cd #{deploy_to}/#{current_path} &&
+
     # god 正在运行, 重启
     bundle exec god -p #{god_port} status &&
     echo 'God is active, now god.restart.' &&
@@ -43,6 +47,8 @@ desc 'Terminate the application.'
 task terminate_application: :environment do
   invoke :info_deployment
   queue "
+    cd #{deploy_to}/#{current_path} &&
+
     # god 正在运行, terminate
     bundle exec god -p #{god_port} status &&
     echo 'God is active, now god.terminate.' &&
@@ -72,7 +78,7 @@ end
 # all releases.
 task setup: :environment do
   invoke :setup
-  %w(config/settings tmp).each do |dir|
+  %w(config/settings tmp tmp/pids).each do |dir|
     queue! %(mkdir -p "#{deploy_to}/#{shared_path}/#{dir}")
     queue! %(chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/#{dir}")
   end
