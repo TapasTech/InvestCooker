@@ -104,10 +104,14 @@ def initial_server_tasks
 end
 
 # TODO 如果修改环境配置减少 processes 的话，不会自动停掉减少的那些 processes. 如果能够检测到正在运行的 processes 名字，就可以优化这个问题
-def initial_job_tasks
+def initial_job_tasks(require_file: nil)
   quiet_template = '[ -f "%{pid_path}" ] && kill -USR1 `cat "%{pid_path}"`> /dev/null 2>&1'
   stop_template  = '[ -f "%{pid_path}" ] && kill -TERM `cat "%{pid_path}"`> /dev/null 2>&1 -d'
   start_template = "cd #{current_path} && bundle exec sidekiq -e #{ENV['RAILS_ENV']} -C %{yml_path} -L %{log_path} -P %{pid_path} -d"
+
+  if !require_file.nil?
+    start_template = "cd #{current_path} && bundle exec sidekiq -r #{require_file} -e #{ENV['RAILS_ENV']} -C %{yml_path} -L %{log_path} -P %{pid_path} -d"
+  end
 
   initial_tasks_meta :job, quiet: true do |process|
     paths = {
