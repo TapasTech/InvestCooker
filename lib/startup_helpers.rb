@@ -51,9 +51,13 @@ end
 
 def job_processes
   path = File.expand_path("config/job/", current_path)
-  Dir.foreach(path)
-    .select { |file_name| file_name =~ /\.yml$/ }
-    .map { |file_name| file_name[0...-4] }
+  if Dir.exists?(path)
+    Dir.foreach(path)
+       .select { |file_name| file_name =~ /\.yml$/ }
+       .map { |file_name| file_name[0...-4] }
+  else
+    []
+  end
 end
 
 def server_processes
