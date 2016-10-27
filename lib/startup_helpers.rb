@@ -5,8 +5,8 @@
 # need to define methods:
 #   current_path: the root_path of the application
 #   app_name: the identity of the application
-#   sneaker_processes: the sneaker task names
-#   sneaker_tasks: the sneaker task name => worker
+#   sneaker_processes: the sneaker process names (size should equal 1)
+#   sneaker_workers: the sneaker worker classes
 
 # Example:
 
@@ -73,8 +73,8 @@ def sneaker_processes
 end
 
 # needs to override
-def sneaker_tasks
-  {}
+def sneaker_workers
+  []
 end
 
 def start_god(config_job: nil, config_server: nil, config_sneaker: nil)
@@ -134,12 +134,12 @@ end
 #   needs to define method sneaker_processes
 def initial_sneaker_tasks
   stop_template  = '[ -f "%{pid_path}" ] && kill -TERM `cat "%{pid_path}"`> /dev/null 2>&1 -d'
-  start_template = "cd #{current_path} && WORKERS=%{worker} bundle exec rake sneakers:run"
+  start_template = "cd #{current_path} && WORKERS=%{workers} bundle exec rake sneakers:run"
 
   initial_tasks_meta :sneaker do |process|
     paths = {
       pid_path: File.expand_path("sneaker.#{process}.pid", pid_path),
-      worker: sneaker_tasks[process]
+      workers: sneaker_workers.join(',')
     }
 
     {
