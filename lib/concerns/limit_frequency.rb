@@ -14,19 +14,21 @@ concern :LimitFrequency do
     end
   end
 
-  def self.limit_frequency(method_name, key:, time: nil)
-    method_with_limit_frequency = Module.new do
-                                    define_method method_name do |*args|
-                                      if key.respond_to?(:call)
-                                        key = key.call(*args)
-                                      end
+  included do 
+    def self.limit_frequency(method_name, key:, time: nil)
+      method_with_limit_frequency = Module.new do
+                                      define_method method_name do |*args|
+                                        if key.respond_to?(:call)
+                                          key = key.call(*args)
+                                        end
 
-                                      limit_frequency key: key, time: time do
-                                        super(*args)
+                                        limit_frequency key: key, time: time do
+                                          super(*args)
+                                        end
                                       end
                                     end
-                                  end
 
-    prepend method_with_limit_frequency
+      prepend method_with_limit_frequency
+    end
   end
 end
