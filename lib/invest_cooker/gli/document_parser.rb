@@ -35,7 +35,8 @@ module InvestCooker
       end
 
       attribute(:compose_org) do
-        compose_organization
+        brand = Bus::NewBrand.new(self).to_hash
+        brand[:organization].presence || self.compose_organization
       end
 
       attribute(:cbn_original) do
@@ -106,6 +107,9 @@ module InvestCooker
         if live?
           [{status: 1, origin_url: '', origin_date: '', origin_website: ''}]
         else
+          brand = Bus::NewBrand.new(self).to_hash
+          origin_website = brand[:origin].presence || self.origin_website
+
           if origin_url.present?
             [{status: 0, origin_url: origin_url.to_s, origin_date: origin_date.as_json, origin_website: origin_website.to_s}]
           else
