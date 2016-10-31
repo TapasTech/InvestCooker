@@ -114,7 +114,7 @@ def initial_job_tasks(require_file: nil, quiet_stop: false)
   end
 
   if quiet_stop
-    stop_template = quiet_template
+    stop_template = "#{quiet_template} && rm -f %{pid_path}"
   end
 
   initial_tasks_meta :job, quiet: true do |process|
