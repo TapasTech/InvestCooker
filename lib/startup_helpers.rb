@@ -8,6 +8,10 @@
 #   sneaker_processes: the sneaker process names (size should equal 1)
 #   sneaker_workers: the sneaker worker classes
 
+# initial_job_tasks
+# - require_file: nil, 填写文件路径会在启动 job 进程的时候 require 相关文件
+# - quiet_stop: false, 设为 true 会采用先 quiet job 进程，再启动新 job 进程，最后 kill -TERM 所有 quiet 的 job 进程的方式来重启
+
 # Example:
 
 # 0. 准备好环境变量 ENV['HUGO_PARK_PROCESS_PORTS']
@@ -115,6 +119,7 @@ def initial_job_tasks(require_file: nil, quiet_stop: false)
 
   if quiet_stop
     stop_template = "#{quiet_template} && rm -f %{pid_path}"
+    start_template = "#{start_template} && ps -ef | grep sidekiq | grep stopping | awk '{print $2}' | xargs kill -TERM"
   end
 
   initial_tasks_meta :job, quiet: true do |process|
