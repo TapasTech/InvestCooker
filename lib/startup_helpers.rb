@@ -171,7 +171,15 @@ def start_god_meta(type, callback)
 
       [:start, :stop, :restart].each { |command| w.send("#{command}=", "cd #{current_path} && bundle exec rake #{type}:#{process}:#{command}") }
 
-      callback.call(w) if callback.respond_to?(:call)
+      if callback.respond_to?(:call)
+        case callback.arity
+        when 1
+          callback.call(w)
+        when 2
+          callback.call(w, process)
+        else
+        end
+      end
     end
   end
 end
