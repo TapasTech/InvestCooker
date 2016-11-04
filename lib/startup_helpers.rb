@@ -119,7 +119,7 @@ def initial_job_tasks(require_file: nil, quiet_stop: false)
 
   if quiet_stop
     stop_template = "#{quiet_template} && rm -f %{pid_path}"
-    start_template = "#{start_template} && ps -ef | grep sidekiq | grep stopping | grep #{app_name}:%{process} | awk '{print $2}' | xargs kill -TERM"
+    start_template = "#{start_template} && sleep 10 && ps -ef | grep sidekiq | grep stopping | grep #{app_name}:%{process} | awk '{print $2}' | xargs kill -TERM"
   end
 
   initial_tasks_meta :job, quiet: true do |process|
