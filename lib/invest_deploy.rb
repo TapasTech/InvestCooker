@@ -6,7 +6,7 @@ task restart_application: :environment do
 
   init_god    = "bundle exec god -p #{god_port} -c #{god_config_path} -l /data/log/god.log"
   restart_god = "bundle exec god -p #{god_port} restart"
-  stop_god    = "bundle exec god -p #{god_port} stop"
+  quit_god    = "bundle exec god -p #{god_port} quit"
   status_god  = "bundle exec god -p #{god_port} status"
 
   queue "
@@ -15,8 +15,8 @@ task restart_application: :environment do
     # god 正在运行, load config 后重启
     #{status_god} &&
 
-    echo 'God is active, now god.stop.' &&
-    #{stop_god} &&
+    echo 'God is active, now god.quit.' &&
+    #{quit_god} &&
 
     echo 'God is terminated, now god.init with config file.' &&
     #{init_god} &&
