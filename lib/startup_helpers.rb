@@ -119,14 +119,15 @@ def initial_job_tasks(require_file: nil, quiet_stop: false)
 
   if quiet_stop
     stop_template = "#{quiet_template} && rm -f %{pid_path}"
-    start_template = "#{start_template} && ps -ef | grep sidekiq | grep stopping | awk '{print $2}' | xargs kill -TERM"
+    start_template = "#{start_template} && ps -ef | grep sidekiq | grep stopping | grep #{app_name}:%{process} | awk '{print $2}' | xargs kill -TERM"
   end
 
   initial_tasks_meta :job, quiet: true do |process|
     paths = {
       yml_path: File.expand_path("config/job/#{process}.yml", current_path),
       log_path: File.expand_path("log/job.#{process}.log", current_path),
-      pid_path: File.expand_path("job.#{process}.pid", pid_path)
+      pid_path: File.expand_path("job.#{process}.pid", pid_path),
+      process: process
     }
 
     {
