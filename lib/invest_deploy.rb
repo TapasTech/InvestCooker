@@ -1,19 +1,32 @@
 desc 'Restart the application.'
 task restart_application: :environment do
   invoke :info_deployment
+
+  god_config_path = "#{deploy_to}/#{current_path}/config/god.rb"
+
+  init_god    = "bundle exec god -p #{god_port} -c #{god_config_path} -l /data/log/god.log"
+  restart_god = "bundle exec god -p #{god_port} restart"
+  stop_god    = "bundle exec god -p #{god_port} stop"
+  status_god  = "bundle exec god -p #{god_port} status"
+
   queue "
     cd #{deploy_to}/#{current_path} &&
 
-    # god 正在运行, terminate 后重启
-    bundle exec god -p #{god_port} status  &&
-    echo 'God is active, now god.terminate.' &&
-    bundle exec god -p #{god_port} terminate &&
+    # god 正在运行, load config 后重启
+    #{status_god} &&
+
+    echo 'God is active, now god.stop.' &&
+    #{stop_god} &&
+
     echo 'God is terminated, now god.init with config file.' &&
-    bundle exec god -p #{god_port} -c #{deploy_to}/#{current_path}/config/god.rb -l /data/log/god.log ||
+    #{init_god} &&
+
+    echo 'God is reloaded, now god.restart' &&
+    #{restart_god} ||
 
     # god 没有运行, 启动
     echo 'God is terminated, now god.init with config file.' &&
-    bundle exec god -p #{god_port} -c #{deploy_to}/#{current_path}/config/god.rb -l /data/log/god.log
+    #{init_god}
   "
 end
 
