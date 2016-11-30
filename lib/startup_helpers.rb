@@ -91,7 +91,7 @@ end
 
 def initial_server_tasks
   stop_template  = "cd #{current_path} && bundle exec thin stop --pid %{pid_path}"
-  start_template = "cd #{current_path} && bundle exec thin -e #{ENV['RAILS_ENV']} -R %{config_path} -p %{port} --pid %{pid_path} start --threaded -d"
+  start_template = "cd #{current_path} && bundle exec thin -e #{ENV['RAILS_ENV']} -R %{config_path} -p %{port} --pid %{pid_path} start -d"
 
   initial_tasks_meta :server do |process|
     paths = {
