@@ -8,8 +8,8 @@ module Utils
 
       NAME_CODE_INDEX = Utils::SmoothCache.new('add_stock_codes_ac_index') do |stocks|
         stocks.flat_map do |stock|
-          stock.name_list.map { |name| [name, stock.code] }
-        end.to_h
+          stock.name_list.map { |name| {code: stock.code, name: name} }
+        end.group_by { |hash| hash[:name] }
       end
 
       def initialize(content)
@@ -22,10 +22,11 @@ module Utils
 
       # @return [[code, name1, name2, ...], ...]
       def stocks_name_codes_data
-        hash_map = NAME_CODE_INDEX.fetch
+        name_index = NAME_CODE_INDEX.fetch
 
         @stock_names
-          .map { |name| {name: name, code: hash_map[name]} }
+          .map { |name| name_index[name] }
+          .flatten(1)
           .group_by { |hash| hash[:code] }
           .map      { |code, list| __ordered_names__(list).unshift(code) }
       end
