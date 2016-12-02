@@ -75,11 +75,17 @@ module Utils
       # 做了新旧版平滑处理
       def stocks_name_codes_data
         @stocks_name_codes_data ||= begin
-          index = Utils::JYDBStock::Index.new(@content)
-          if index.ready?
-            index.stocks_name_codes_data
+          ac = Utils::JYDBStock::ACMachine.new(@content)
+
+          if ac.ready?
+            ac.stocks_name_codes_data
           else
-            CACHE.fetch
+            index = Utils::JYDBStock::Index.new(@content)
+            if index.ready?
+              index.stocks_name_codes_data
+            else
+              CACHE.fetch
+            end
           end
         end
       end
