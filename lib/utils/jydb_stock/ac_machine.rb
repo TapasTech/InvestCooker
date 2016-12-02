@@ -25,7 +25,7 @@ module Utils
       private
 
       def ac_search(content)
-        payload = Oj.dump({content: content}).as_json
+        payload = Oj.dump({content: content}.as_json)
         response = RestClient.post(ENV['SMAUG_SEARCH_AC_URL'], payload, content_type: :json)
         Oj.load(response.body)
       rescue
