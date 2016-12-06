@@ -13,16 +13,20 @@ module Utils
       end
 
       def initialize(content)
-        @stock_names = ac_search(content)
+        @content = content
       end
 
       def ready?
+        @stock_names ||= ac_search(@content)
+
         @stock_names.present?
       end
 
       # @return [[code, name1, name2, ...], ...]
       def stocks_name_codes_data
         name_index = NAME_CODE_INDEX.fetch
+
+        @stock_names ||= ac_search(@content)
 
         @stock_names
           .map { |name| name_index[name] }
