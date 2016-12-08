@@ -5,11 +5,12 @@ module Utils
     # Skipper 分析文章中打股码需要跳过次
     class Skipper
 
-      def initialize(content)
+      def initialize(content, name_list)
         @content = content
+        @name_list = name_list
       end
 
-      attr_accessor :content
+      attr_accessor :content, :name_list
 
       # 计算给一个股票打股码要跳过前面的多少次匹配
       def skip(name)
