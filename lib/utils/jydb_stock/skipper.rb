@@ -42,7 +42,7 @@ module Utils
         @content_index_scan_cache ||= {}
         indexes = @content_index_scan_cache[name]
 
-        if result.blank?
+        if indexes.blank?
           indexes = content.index_scan(name)
           @content_index_scan_cache[name] = indexes
         end
