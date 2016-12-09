@@ -76,9 +76,13 @@ module Utils
       def ignore_names
         stock_names = stock_info.keys
 
-        StockNameTakeover
-          .where(:encounter.in => stock_names)
-          .where(:ignore.in => stock_names)
+        stock_name_take_overs = $stock_name_take_overs&.select { |s| stock_names.include?(s.encounter) }
+                                                      &.select { |s| stock_names.include?(s.ignore) }
+
+        stock_name_take_overs ||= StockNameTakeover.where(:encounter.in => stock_names)
+                                                   .where(:ignore.in => stock_names)
+
+        stock_name_take_overs
           .map { |t| [t.ignore, t.encounter] }
           .select { |i, e| content.scan(i).count == content.scan(e).count }
           .map { |i, _| i }
