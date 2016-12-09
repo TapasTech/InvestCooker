@@ -76,22 +76,12 @@ module Utils
       def ignore_names
         stock_names = stock_info.keys
 
-        if $stock_name_take_overs.nil?
-          stock_name_take_overs = StockNameTakeover
-            .where(:encounter.in => stock_names)
-            .where(:ignore.in => stock_names)
-            .to_a.lazy
-        else
-          stock_name_take_overs = $stock_name_take_overs.lazy
-            .select { |s| stock_names.include?(s.encounter) }
-            .select { |s| stock_names.include?(s.ignore) }
-        end
-
-        stock_name_take_overs
+        StockNameTakeover
+          .where(:encounter.in => stock_names)
+          .where(:ignore.in => stock_names)
           .map { |t| [t.ignore, t.encounter] }
           .select { |i, e| content.scan(i).count == content.scan(e).count }
           .map { |i, _| i }
-          .to_a
       end
 
       remember :stock_name_map_codes, :name_list, :possible_stock_codes,
