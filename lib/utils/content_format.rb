@@ -19,6 +19,12 @@ module Utils
       format_with(:title)[HTMLFormatter, :clear_style]
     end
 
+    # 打股码专用
+    # 调试内存泄漏
+    def clear_style_of_content_2
+      self.content = HTMLFormatter.format(content) { |formatter| formatter.clear_style }
+    end
+
     def content_to_plain_text
       format_by(HTMLFormatter, :clear_content_by_dom)
       format_by(StringFormatter, *[

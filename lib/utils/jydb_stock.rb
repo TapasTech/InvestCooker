@@ -15,7 +15,7 @@ module Utils
     # 可能已经加过标签，先把标签去掉
     # 要求对象 include Utils::ContentFormat
     def format_content!
-      format_with(:content)[::Utils::ContentFormat::HTMLFormatter, :clear_style]
+      clear_style_of_content_2
       remove_stock_code_highlight
     end
 
