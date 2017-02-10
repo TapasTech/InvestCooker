@@ -38,7 +38,7 @@ module Utils
     end
 
     def self.size_of(img_url)
-      FastImage.new(img_url).content_length.try(:/, 1_000) || 0
+      FastImage.new(img_url).content_length.to_i / 1000
     end
 
     def self.type_of(img_url)
@@ -46,13 +46,23 @@ module Utils
     end
 
     # NOTE 新的接口如果图片不存在，也会返回地址
-    def self.upload_cdn(url)
+    # 上传一个图片文件到 CDN
+    # 抓取一个图片到 CDN (默认)
+    def self.upload_cdn(url, remote: true)
       Timeout.timeout 30 do
-        size = size_of(url)
+        if remote
+          block = ->(cdn) { cdn.upload }
+          size = size_of(url)
+        else
+          block = ->(cdn) { cdn.upload_file }
+          size = File.open(url).size.to_i / 1000
+        end
+
         # 4M 以上的图片不存
         return if size <= 0 || size > 4_000
+
         cdn = CDNStore.new(url, "#{UUID.new.generate}.#{type_of(url)}")
-        cdn.upload
+        block.call(cdn)
         cdn.cdn_url
       end
     rescue => error
@@ -61,14 +71,33 @@ module Utils
 
     # http://developer.qiniu.com/code/v6/sdk/ruby.html#rs-fetch
     class CDNStore
-      def initialize(target_url, key)
-        @target_url = target_url
+      def initialize(path_or_url, key)
+        @file_path  = path_or_url
+        @target_url = path_or_url
         @key = key
         @cdn_url = "#{BUCKET_URL}/#{key}"
       end
 
       def upload
         CDN::Storage.fetch BUCKET, @target_url, @key
+      end
+
+      def upload_file
+        put_policy = CDN::Auth::PutPolicy.new(
+          BUCKET, # 存储空间
+          @key,   # 指定上传的资源名，如果传入 nil，就表示不指定资源名，将使用默认的资源名
+          5       # token 过期时间，默认为 3600 秒，即 1 小时
+        )
+
+        uptoken = CDN::Auth.generate_uptoken(put_policy)
+
+        CDN::Storage.upload_with_token_2(
+           uptoken,
+           @file_path,
+           @key,
+           nil, # 可以接受一个 Hash 作为自定义变量，请参照 http://developer.qiniu.com/article/kodo/kodo-developer/up/vars.html#xvar
+           bucket: BUCKET
+        )
       end
 
       attr_reader :cdn_url
