@@ -86,7 +86,7 @@ module Utils
         put_policy = CDN::Auth::PutPolicy.new(
           BUCKET, # 存储空间
           @key,   # 指定上传的资源名，如果传入 nil，就表示不指定资源名，将使用默认的资源名
-          5       # token 过期时间，默认为 3600 秒，即 1 小时
+          300     # token 过期时间，默认为 3600 秒，即 1 小时
         )
 
         uptoken = CDN::Auth.generate_uptoken(put_policy)
