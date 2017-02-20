@@ -38,6 +38,10 @@ module Utils
       RestClient.get(img_url).body
     end
 
+    def self.hexdigest(img_url)
+      Digest::SHA1.hexdigest(download(img_url))
+    end
+
     def self.size_of(img_url)
       FastImage.new(img_url).content_length.to_i / 1000
     end
