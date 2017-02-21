@@ -38,8 +38,13 @@ module Utils
       RestClient.get(img_url).body
     end
 
-    def self.hexdigest(img_url)
-      Digest::SHA1.hexdigest(download(img_url))
+    def self.hexdigest(img_url, remote: true)
+      if remote
+        Digest::SHA1.hexdigest(download(img_url))
+      else
+        img_path = img_url
+        Digest::SHA1.file(img_path).hexdigest
+      end
     end
 
     def self.size_of(img_url)
