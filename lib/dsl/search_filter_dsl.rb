@@ -32,4 +32,8 @@ concern :SearchFilterDSL do
   def sort(&block)
     @filters[@this_filter][:sort_block] = block
   end
+
+  def description(&block)
+    @filters[@this_filter][:description_block] = block
+  end
 end
