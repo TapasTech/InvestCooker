@@ -9,5 +9,7 @@ module InvestAdmin
     field :to,   type: String
 
     validates :to, uniqueness: {scope: :from, message: '只能映射到一个撰写机构'}
+
+    belongs_to :team, index: true
   end
 end

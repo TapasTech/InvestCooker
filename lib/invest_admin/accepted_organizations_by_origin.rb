@@ -6,5 +6,7 @@ module InvestAdmin
 
     field :origin_website, type: String
     field :compose_organizations, type: Array, default: -> { [] }
+
+    belongs_to :team, index: true
   end
 end
