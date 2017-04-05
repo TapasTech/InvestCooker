@@ -9,6 +9,11 @@ concern :SearchFilterDSL do
     end
   end
 
+  def before(&block)
+    @before = block if block.present?
+    @before
+  end
+
   private
 
   def filter(name:, title:, &block)
