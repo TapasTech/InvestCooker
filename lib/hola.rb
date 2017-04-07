@@ -30,4 +30,21 @@ class Hola
   def clear!
     redis.del(key)
   end
+
+  class << self
+    def register(service)
+      set = ports.map { |port| "#{ip}:#{port}" }
+      return unless set.present?
+
+      Hola.new(service).add(set)
+    end
+
+    def ip
+      ENV['host_ip']
+    end
+
+    def ports
+      ENV['ports'].to_s.split(',')
+    end
+  end
 end
