@@ -19,11 +19,14 @@ class Hola
 
   # 获得服务内网 ip:port
   def fetch
-    member = redis.zrange(key, 0, 0).first
-    return unless member.present?
-
-    redis.zincrby(key, 1, member)
-    member
+    host = redis.zrange(key, 0, 0).first
+    return unless host.present?
+    RestClient.get(host) # health check
+    redis.zincrby(key, 1, host)
+    host
+  rescue
+    redis.zrem(key, host)
+    retry
   end
 
   # 清空服务
