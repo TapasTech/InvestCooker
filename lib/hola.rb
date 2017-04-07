@@ -3,7 +3,7 @@ class Hola
 
   class << self
 
-    def self.key_template
+    def key_template
       'hola/services/%s'
     end
 
