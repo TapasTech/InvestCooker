@@ -10,13 +10,18 @@ class Hola
 
   # 将服务注册到 Redis
   def add(ip_port_list)
-    set = ip_port_list.map { |ip_port| [0, ip_port] }
+    list = ip_port_list.select { |ip_port| ip_port.present? }
+    return unless list.present?
+
+    set = list.map { |ip_port| [0, ip_port] }
     redis.zadd(key, *set)
   end
 
   # 获得服务内网 ip:port
   def fetch
     member = redis.zrange(key, 0, 0).first
+    return unless member.present?
+
     redis.zincrby(key, 1, member)
     member
   end
