@@ -10,7 +10,8 @@ class Hola
     # 将服务注册到 Redis
     def register(service, ip_port_list)
       key = key_template % service
-      $redis_object.zadd(key % service, *ip_port_list)
+      set = ip_port_list.map { |ip_port| [0, ip_port] }
+      $redis_object.zadd(key % service, *set)
     end
 
     # 获得服务内网 ip:port
