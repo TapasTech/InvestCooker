@@ -11,7 +11,7 @@ class Hola
   # 将服务注册到 Redis
   def add(ip_port_list)
     set = ip_port_list.map { |ip_port| [0, ip_port] }
-    redis.zadd(key % service, *set)
+    redis.zadd(key, *set)
   end
 
   # 获得服务内网 ip:port
