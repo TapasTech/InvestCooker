@@ -21,17 +21,16 @@ class Hola
   #   - 每调用一次该地址入队尾
   #   - 地址连续失效多次移除该地址
   def fetch
-    while true
-      host = redis.zrange(key, 0, 0).first
-      break host if host.blank?
+    host = redis.zrange(key, 0, 0).first
+    return host if host.blank?
 
-      redis.zincrby(key, 1, host)
+    redis.zincrby(key, 1, host)
 
-      pod = Pod.new(key, host, redis)
-      break host if pod.healthy?
+    pod = Pod.new(key, host, redis)
+    return host if pod.healthy?
 
-      redis.zrem(key, host) if pod.dead?
-    end
+    redis.zrem(key, host) if pod.dead?
+    nil
   end
 
   # 获得当前全部可用服务
