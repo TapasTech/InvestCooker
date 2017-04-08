@@ -59,7 +59,7 @@ class Hola
       redis.del(key)
       true
     rescue
-      redis.incr(key, 1)
+      redis.incr(key)
       false
     end
 
