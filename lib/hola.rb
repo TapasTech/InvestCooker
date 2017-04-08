@@ -84,9 +84,13 @@ class Hola
 
       $__hola_sync__[service] ||= Thread.new do
         while true
-          $__hola_host__[service] = Hola.new(service).fetch
-
           sleep 10.seconds
+
+          begin
+            $__hola_host__[service] = Hola.new(service).fetch
+          rescue
+            next
+          end
         end
       end
     end
