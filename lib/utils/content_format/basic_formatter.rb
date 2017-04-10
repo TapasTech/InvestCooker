@@ -4,12 +4,13 @@ module Utils
     class BasicFormatter
       attr_accessor :content
 
-      def initialize(content)
-        @content = content
+      def initialize(content, options={})
+        self.content = content
+        self.valid_tags = options[:valid_tags]
       end
 
-      def self.format(content, &block)
-        formatter = new(content)
+      def self.format(content, options={}, &block)
+        formatter = new(content, options)
         block.call(formatter)
         formatter.formatted_content
       end

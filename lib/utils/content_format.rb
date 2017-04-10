@@ -2,27 +2,33 @@
 module Utils
   module ContentFormat
     def clear_style_of_content_summary_title
-      [:content, :summary, :title].each do |field|
-        format_with(field)[HTMLFormatter, :clear_style]
-      end
+      [:content, :summary, :title].each { |field| send(:"clear_style_of_#{field}") }
     end
 
     def clear_style_of_content
-      format_with(:content)[HTMLFormatter, :clear_style]
+      format_with(:content, valid_tags: valid_tags)[HTMLFormatter, :clear_style]
     end
 
     def clear_style_of_summary
-      format_with(:summary)[HTMLFormatter, :clear_style]
+      format_with(:summary, valid_tags: valid_tags)[HTMLFormatter, :clear_style]
     end
 
     def clear_style_of_title
-      format_with(:title)[HTMLFormatter, :clear_style]
+      format_with(:title, valid_tags: valid_tags)[HTMLFormatter, :clear_style]
+    end
+
+    def valid_tags
+      if try(:quiz?)
+        HTMLFormatter::QUIZ_VALID_TAGS
+      else
+        HTMLFormatter::VALID_TAGS
+      end
     end
 
     # 打股码专用
     # 调试内存泄漏
     def clear_style_of_content_2
-      self.content = HTMLFormatter.format(content) { |formatter| formatter.clear_style }
+      self.content = HTMLFormatter.format(content, valid_tags: valid_tags) { |formatter| formatter.clear_style }
     end
 
     def content_to_plain_text
@@ -65,11 +71,11 @@ module Utils
       format_with(:content)[formatter_klass, *methods]
     end
 
-    def format_with(field_name)
+    def format_with(field_name, options={})
       lambda do |formatter_klass, *methods|
         # 为了兼容 attr_reader, Hash like and ActiveRecord like Object.
         origin_field_value = self.try(field_name) || self.try(:[], field_name)
-        field_value = formatter_klass.format(origin_field_value) { |formatter| methods.each(&formatter.method(:send)) }
+        field_value = formatter_klass.format(origin_field_value, options) { |formatter| methods.each(&formatter.method(:send)) }
         send :"#{field_name}=", field_value
       end
     end

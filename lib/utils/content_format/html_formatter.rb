@@ -2,9 +2,16 @@
 module Utils
   module ContentFormat
     class HTMLFormatter < BasicFormatter
+      attr_accessor :valid_tags
+
+      def initialize(content, options={})
+        self.content = content
+        self.valid_tags = options[:valid_tags] || VALID_TAGS
+      end
+
       def clear_style
         doc.css('style').unlink
-        @doc = Nokogiri::HTML.fragment(Sanitize.fragment(formatted_content, VALID_TAGS))
+        @doc = Nokogiri::HTML.fragment(Sanitize.fragment(formatted_content, valid_tags))
       end
 
       # 清除股码高亮
@@ -40,6 +47,13 @@ module Utils
       end
 
       private
+
+      QUIZ_VALID_TAGS = {
+        elements: %w(p),
+        attributes: {
+          'p' => %w(style),
+        }
+      }
 
       VALID_TAGS = {
         elements: %w(a img span p strong table thead tbody tr td),
