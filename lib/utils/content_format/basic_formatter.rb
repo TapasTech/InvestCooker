@@ -6,7 +6,6 @@ module Utils
 
       def initialize(content, options={})
         self.content = content
-        self.valid_tags = options[:valid_tags]
       end
 
       def self.format(content, options={}, &block)
