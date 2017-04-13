@@ -1,3 +1,5 @@
+require 'docker'
+
 # 基于 Redis 的服务注册与发现
 class Hola
   attr_accessor :key, :redis, :service
@@ -70,12 +72,61 @@ class Hola
     end
   end
 
+  class HostInfo
+    attr_accessor :service, :api_url
+
+    def initialize(service)
+      self.service = service
+      self.api_url = "http://#{ip}/docker_ports"
+    end
+
+    def ip
+      ENV['host_ip']
+    end
+
+    def ports
+      fetch_ports_from_api ||
+      ENV['ports'].to_s.split(',')
+    end
+
+    def to_set
+      ports.map { |port| "#{ip}:#{port}"}
+    end
+
+    def fetch_ports_from_api
+      Docker::Container.all(filters: {name: [service]}.to_json)
+        .map { |d| d.info['Ports'].map { |pt| pt['PublicPort'] } }
+        .flatten
+    rescue
+      nil
+    end
+  end
+
   class << self
     def register(service)
-      set = ports.map { |port| "#{ip}:#{port}" }
+      set = HostInfo.new(service).to_set
       return unless set.present?
 
       Hola.new(service).add(set)
+    end
+
+    # 持续注册
+    def continuing_register(service)
+      Thread.new do
+        while true
+          begin
+            set = HostInfo.new(service).to_set
+            return unless set.present?
+
+            Hola.new(service).add(set)
+          rescue
+            sleep 10.seconds
+            next
+          end
+
+          sleep 10.seconds
+        end
+      end
     end
 
     # 初始化可用连接到内存
@@ -100,14 +151,6 @@ class Hola
 
     def fetch(service)
       $__hola_host__[service]
-    end
-
-    def ip
-      ENV['host_ip']
-    end
-
-    def ports
-      ENV['ports'].to_s.split(',')
     end
   end
 end
