@@ -118,7 +118,7 @@ class Hola
             set = HostInfo.new(service).to_set
             yield set if block_given?
 
-            return unless set.present?
+            next unless set.present?
 
             Hola.new(service).add(set)
           rescue
