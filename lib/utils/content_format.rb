@@ -41,6 +41,11 @@ module Utils
       content.utf8_strip!
     end
 
+    # 清除正文中股码信息
+    def remove_stock_code_suffix
+      format_by HTMLFormatter, :remove_stock_code_suffix
+    end
+
     # 清除股码高亮
     def remove_stock_code_highlight
       format_by HTMLFormatter, :remove_stock_code_highlight

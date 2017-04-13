@@ -14,6 +14,11 @@ module Utils
         @doc = Nokogiri::HTML.fragment(Sanitize.fragment(formatted_content, valid_tags))
       end
 
+      # 清除正文中股码信息
+      def remove_stock_code_suffix
+        stock_code_highlights.each { |node| node.replace node.content.gsub(/（.*）/, '') }
+      end
+
       # 清除股码高亮
       def remove_stock_code_highlight
         stock_code_highlights.each(&ClassMethods.method(:replace_node_with_content))
