@@ -1,4 +1,4 @@
-require 'docker'
+require 'docker' rescue puts 'INFO: docker-api not loaded.'
 
 # 基于 Redis 的服务注册与发现
 class Hola
