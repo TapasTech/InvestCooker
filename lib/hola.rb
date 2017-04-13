@@ -121,7 +121,9 @@ class Hola
             next unless set.present?
 
             Hola.new(service).add(set)
-          rescue
+          rescue => e
+            yield e.message if block_given?
+
             sleep 10.seconds
             next
           end
