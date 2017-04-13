@@ -29,7 +29,10 @@ class Hola
     pod = Pod.new(key, host, redis)
     return host if pod.healthy?
 
-    redis.zrem(key, host) if pod.dead?
+    if pod.dead? && list.size < 2
+      redis.zrem(key, host)
+    end
+    
     nil
   end
 
@@ -83,13 +86,14 @@ class Hola
 
       $__hola_sync__[service] ||= Thread.new do
         while true
-          sleep 10.seconds
-
           begin
             $__hola_host__[service] = Hola.new(service).fetch
           rescue
+            sleep 10.seconds
             next
           end
+
+          sleep 1.minute
         end
       end
     end
