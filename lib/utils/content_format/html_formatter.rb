@@ -54,9 +54,10 @@ module Utils
       private
 
       QUIZ_VALID_TAGS = {
-        elements: %w(p),
+        elements: %w(p span),
         attributes: {
-          'p' => %w(style),
+          'span' => %w(style class),
+          'p'    => %w(style)
         }
       }
 
