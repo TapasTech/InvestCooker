@@ -31,7 +31,7 @@ class Hola
     pod = Pod.new(key, host, redis)
     return host if pod.healthy?
 
-    if pod.dead? && list.size >= 2
+    if pod.dead?
       redis.zrem(key, host)
     end
 
@@ -55,7 +55,7 @@ class Hola
       self.key = "#{service}/#{host}/fail"
       self.host = host
       self.redis = redis
-      self.max_fail = 10
+      self.max_fail = 3
     end
 
     def healthy?
@@ -103,16 +103,10 @@ class Hola
   end
 
   class << self
-    def register(service)
-      set = HostInfo.new(service).to_set
-      return unless set.present?
 
-      Hola.new(service).add(set)
-    end
-
-    # 持续注册
-    def continuing_register(service)
-      return unless ENV['hola_service']
+    # 注册服务
+    def continuing_register(service=ENV['hola_service'])
+      return unless service
 
       Thread.new do
         while true
@@ -130,7 +124,7 @@ class Hola
             next
           end
 
-          sleep 10.seconds
+          sleep 1.minute
         end
       end
     end
@@ -150,7 +144,7 @@ class Hola
             next
           end
 
-          sleep 1.minute
+          sleep 10.seconds
         end
       end
     end
