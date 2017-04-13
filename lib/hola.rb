@@ -29,10 +29,10 @@ class Hola
     pod = Pod.new(key, host, redis)
     return host if pod.healthy?
 
-    if pod.dead? && list.size < 2
+    if pod.dead? && list.size >= 2
       redis.zrem(key, host)
     end
-    
+
     nil
   end
 
