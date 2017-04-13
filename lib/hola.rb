@@ -112,6 +112,8 @@ class Hola
 
     # 持续注册
     def continuing_register(service)
+      return unless ENV['hola_service']
+
       Thread.new do
         while true
           begin
