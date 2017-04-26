@@ -66,7 +66,7 @@ task :batch_deploy do
       stage_name, health_check_url = stage_info.split(',')
 
       if stage_name.nil? || health_check_url.nil?
-        print_error "Invalid stage #{stage}."
+        print_error "Invalid stage #{stage_name}."
         next
       end
 
