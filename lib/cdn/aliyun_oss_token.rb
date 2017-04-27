@@ -17,7 +17,7 @@ module CDN
 
     def generate_token
       session_name = "invest-aliyun-oss-#{Time.zone.now.to_i}"
-      @client.assume_role(ROLE, session_name).to_s
+      @client.assume_role(ROLE, session_name)
     end
   end
 end
