@@ -11,8 +11,8 @@ module CDN
                                   secret_key: SECRET_KEY
     end
 
-    def generate_token(return_body: nil)
-      policy = Qiniu::Auth::PutPolicy.new(BUCKET)
+    def generate_token(return_body: nil, save_key: nil)
+      policy = Qiniu::Auth::PutPolicy.new(BUCKET, save_key)
       policy.return_body = return_body
 
       Qiniu::Auth.generate_uptoken(policy)
