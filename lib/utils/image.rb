@@ -58,7 +58,7 @@ module Utils
     # NOTE 新的接口如果图片不存在，也会返回地址
     # 上传一个图片文件到 CDN
     # 抓取一个图片到 CDN (默认)
-    def self.upload_cdn(url, remote: true)
+    def self.upload_cdn(url, remote: true, key: nil)
       Timeout.timeout 30 do
         if remote
           block = ->(cdn) { cdn.upload }
@@ -71,7 +71,8 @@ module Utils
         # 4M 以上的图片不存
         return if size <= 0 || size > 4_000
 
-        cdn = CDNStore.new(url, "#{UUID.new.generate}.#{type_of(url)}")
+        key ||= "#{UUID.new.generate}.#{type_of(url)}"
+        cdn = CDNStore.new(url, key)
         block.call(cdn)
         cdn.cdn_url
       end
