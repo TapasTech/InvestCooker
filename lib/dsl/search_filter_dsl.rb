@@ -16,9 +16,10 @@ concern :SearchFilterDSL do
 
   private
 
-  def filter(name:, title:, &block)
-    @filters[name] = {title: title}
-    @this_filter = name
+  def filter(key: nil, name:, title:, &block)
+    key ||= name
+    @filters[key] = {name: name, title: title}
+    @this_filter = key
     class_exec(&block)
   end
 
