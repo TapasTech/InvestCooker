@@ -33,7 +33,9 @@ task :deploy do
     on :launch do
       command "touch #{fetch(:deploy_to)}/last_version"
       invoke :'application:build'
+      invoke :'application:before_restart'
       invoke :'application:restart'
+      invoke :'application:after_restart'
     end
   end
 end
@@ -97,6 +99,10 @@ namespace :application do
     end
   end
 
+  desc 'Do things like db:migrate before restart. (should overridden)'
+  task :before_restart do
+  end
+
   desc 'Restart the application.'
   task :restart do
     comment 'restart with docker'
@@ -106,6 +112,10 @@ namespace :application do
         docker-compose --project-name #{fetch(:application_name)} \\
         up --force-recreate --build -d"
     end
+  end
+
+  desc 'Do things after restart. (should overridden)'
+  task :after_restart do
   end
 
   desc 'Scale the application.'
