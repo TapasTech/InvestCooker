@@ -38,21 +38,27 @@ task :deploy do
   end
 end
 
-desc "Depoy to current version to multiple servers"
+
 task :batch_deploy do
   run :local do
-    wait = -> (message, health_check_url, &block) {
+    wait = -> (message, health_check_url, retry_time=0, response_code='not check.', &block) {
+      status = -> { print_status "wait #{message} ... (#{retry_time})... #{response_code}" }
       check_code = -> { `curl -s -o /dev/null -w "%{http_code}" #{health_check_url}` }
-      retry_time = 0
+
+      if health_check_url.nil?
+        status.call
+        sleep 5
+        return
+      end
 
       while !block.(response_code = check_code.call.to_s) && retry_time < 60
         retry_time += 1
 
         sleep 5
-        print_status "wait #{message} ... (#{retry_time})... #{response_code}"
+        status.call
       end
 
-      print_status "wait #{message} ... (#{retry_time})... #{response_code}"
+      status.call
     }
 
     deploy = -> (stage) {
@@ -65,7 +71,7 @@ task :batch_deploy do
     deploy_stages.each do |stage_info|
       stage_name, health_check_url = stage_info.split(',')
 
-      if stage_name.nil? || health_check_url.nil?
+      if stage_name.nil?
         print_error "Invalid stage #{stage_name}."
         next
       end
