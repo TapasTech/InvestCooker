@@ -8,10 +8,10 @@ end
 class Hola
   attr_accessor :key, :redis, :service
 
-  def initialize(service, redis: $redis_object)
+  def initialize(service, redis: nil)
     self.service = service
     self.key = "hola/services/#{service}"
-    self.redis = redis
+    self.redis = redis || $redis_object
   end
 
   # 将服务注册到 Redis
@@ -109,7 +109,7 @@ class Hola
   class << self
 
     # 注册服务
-    def continuing_register(service=ENV['hola_service'], redis: $redis_object)
+    def continuing_register(service=ENV['hola_service'], redis: nil)
       return unless service
 
       Thread.new do
@@ -135,7 +135,7 @@ class Hola
 
     # 初始化可用连接到内存
     # 开新线程定时更新可用连接
-    def init(service, redis: $redis_object)
+    def init(service, redis: nil)
       $__hola_sync__ ||= {}
       $__hola_host__ ||= {}
 
