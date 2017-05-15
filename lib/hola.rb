@@ -11,7 +11,7 @@ class Hola
   def initialize(service)
     self.service = service
     self.key = "hola/services/#{service}"
-    self.redis = $redis_object
+    self.redis = Hola.redis
   end
 
   # 将服务注册到 Redis
@@ -107,6 +107,10 @@ class Hola
   end
 
   class << self
+
+    attr_accessor :redis
+
+    redis = $redis_object
 
     # 注册服务
     def continuing_register(service=ENV['hola_service'])
