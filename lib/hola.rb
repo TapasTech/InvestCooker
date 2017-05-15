@@ -8,10 +8,10 @@ end
 class Hola
   attr_accessor :key, :redis, :service
 
-  def initialize(service)
+  def initialize(service, redis: $redis_object)
     self.service = service
     self.key = "hola/services/#{service}"
-    self.redis = Hola.redis
+    self.redis = redis
   end
 
   # 将服务注册到 Redis
@@ -108,12 +108,8 @@ class Hola
 
   class << self
 
-    attr_accessor :redis
-
-    redis = $redis_object
-
     # 注册服务
-    def continuing_register(service=ENV['hola_service'])
+    def continuing_register(service=ENV['hola_service'], redis: $redis_object)
       return unless service
 
       Thread.new do
@@ -124,7 +120,7 @@ class Hola
 
             next unless set.present?
 
-            Hola.new(service).add(set)
+            Hola.new(service, redis: redis).add(set)
           rescue => e
             yield e.message if block_given?
 
@@ -139,14 +135,14 @@ class Hola
 
     # 初始化可用连接到内存
     # 开新线程定时更新可用连接
-    def init(service)
+    def init(service, redis: $redis_object)
       $__hola_sync__ ||= {}
       $__hola_host__ ||= {}
 
       $__hola_sync__[service] ||= Thread.new do
         while true
           begin
-            $__hola_host__[service] = Hola.new(service).fetch
+            $__hola_host__[service] = Hola.new(service, redis: redis).fetch
           rescue
             sleep 10.seconds
             next
