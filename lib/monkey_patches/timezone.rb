@@ -21,7 +21,7 @@ class ActiveSupport::TimeZone
 
       if str =~ /[年月日时分秒]/
         str.gsub!(/[\s\u00a0]*(\d+)[\s\u00a0]*[年月]/, '\1/')
-        str.gsub!(/[\s\u00a0]*(\d+)[\s\u00a0]*[时分]/, '\1:')
+        str.gsub!(/[\s\u00a0]*(\d+)[\s\u00a0]*[时点分]/, '\1:')
         str.gsub!(/[\s\u00a0]*(\d+)[\s\u00a0]*[日秒]([\s\u00a0]*)/, '\1 \2')
       end
 
