@@ -18,5 +18,9 @@ concern :InformationTagsDSL do
       end
       tags
     end
+
+    def information_tags_include?(name)
+      self.class.information_tags[name]&.call(self)
+    end
   end
 end
