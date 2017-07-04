@@ -29,7 +29,7 @@ module Utils
       end
 
       def self.remove_space_from_line(line)
-        rexp = /(?<![a-zA-Z\p{Punct}\d])[\ \t\u00A0\u3000]+(?![a-zA-Z\p{Punct}\d])/
+        rexp = /(?<![a-zA-Z\p{Punct}])[\ \t\u00A0\u3000]+(?![a-zA-Z\p{Punct}])/
         line.gsub(rexp, '').utf8_strip
       end
     end
