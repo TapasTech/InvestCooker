@@ -53,7 +53,13 @@ module Utils
     end
 
     def self.size_of(img_url)
-      FastImage.new(img_url).content_length.to_i / 1000
+      size = FastImage.new(img_url).content_length.to_i
+
+      if size == 0
+        size = download(img_url).size
+      end
+
+      size / 1000
     end
 
     def self.type_of(img_url)
@@ -73,7 +79,7 @@ module Utils
           size = File.open(url).size.to_i / 1000
         end
 
-        # 4M 以上的图片不存
+        # 4M 以上的图片不存, 1KB 以下图片不存
         return if size <= 0 || size > 4_000
 
         key ||= "#{UUID.new.generate}.#{type_of(url)}"
