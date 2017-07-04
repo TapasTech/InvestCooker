@@ -24,13 +24,18 @@ module Utils
       editor_id
     end
 
-    def self.upload_nokogiri(img_node)
+    def self.upload_nokogiri(img_node, placeholder: nil)
       cdn_src = Utils::Image.upload_cdn(img_node['src'])
       if cdn_src.present? && size_of(cdn_src).to_i > 0
         img_node['src'] = cdn_src
       else
         yield "upload_nokogiri fail: #{img_node['src']}" if block_given?
-        img_node.unlink
+
+        if placeholder.present?
+          img_node['src'] = placeholder
+        else
+          img_node.unlink
+        end
       end
     end
 
