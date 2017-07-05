@@ -14,7 +14,7 @@ concern :InformationTagsDSL do
       # 提供一个方法加入一组 informantion_tags
       def information_tag_merge(&block)
         @information_tag_merge ||= []
-        @information_tag_merge << block
+        @information_tag_merge << block unless block.nil?
         @information_tag_merge
       end
     end
