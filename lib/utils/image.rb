@@ -79,8 +79,8 @@ module Utils
           size = File.open(url).size.to_i / 1000
         end
 
-        # 4M 以上的图片不存, 1KB 以下图片不存
-        return if size <= 0 || size > 4_000
+        # 4M 以上的图片不存, 2KB 以下图片不存
+        return if size <= 1 || size > 4_000
 
         key ||= "#{UUID.new.generate}.#{type_of(url)}"
         cdn = CDNStore.new(url, key)
