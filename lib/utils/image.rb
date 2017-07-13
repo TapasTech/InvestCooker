@@ -26,6 +26,7 @@ module Utils
 
     def self.upload_nokogiri(img_node, placeholder: nil)
       cdn_src = Utils::Image.upload_cdn(img_node['src'])
+
       if cdn_src.present? && size_of(cdn_src).to_i > 0
         img_node['src'] = cdn_src
       else
@@ -82,7 +83,7 @@ module Utils
         # 4M 以上的图片不存, 2KB 以下图片不存
         return if size <= 1 || size > 4_000
 
-        key ||= "#{UUID.new.generate}.#{type_of(url)}"
+        key ||= "#{hexdigest(url)}.#{type_of(url)}"
         cdn = CDNStore.new(url, key)
         block.call(cdn)
         cdn.cdn_url
