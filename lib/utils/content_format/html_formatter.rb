@@ -11,11 +11,7 @@ module Utils
 
       def clear_style
         doc.css('style').unlink
-        @doc = Nokogiri::HTML.fragment(
-          remove_markup(
-            Sanitize.fragment(formatted_content, valid_tags)
-          )
-        )
+        @doc = Nokogiri::HTML.fragment(Sanitize.fragment(formatted_content, valid_tags))
       end
 
       ESCAPE_SEQUENCES = {
@@ -23,10 +19,12 @@ module Utils
         '&lt;' => '<',
         '&gt;' => '>',
         '&quot;' => '"',
-        '&apos;' => "'"
+        '&apos;' => "'",
+        "\n" => ""
       }
 
       # 替换被 Sanitize 转换的 character entity
+      # 删除换行符
       def remove_markup(html_str)
         ESCAPE_SEQUENCES.each do |esc_seq, ascii_seq|
           html_str = html_str.gsub(esc_seq, ascii_seq.chr)
@@ -65,7 +63,7 @@ module Utils
       end
 
       def formatted_content
-        doc.inner_html.gsub(/\n/, '').presence || ''
+        remove_markup(doc.inner_html).presence || ''
       end
 
       def remove_blank_before_p_tags
