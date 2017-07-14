@@ -11,7 +11,28 @@ module Utils
 
       def clear_style
         doc.css('style').unlink
-        @doc = Nokogiri::HTML.fragment(Sanitize.fragment(formatted_content, valid_tags))
+        @doc = Nokogiri::HTML.fragment(
+          remove_markup(
+            Sanitize.fragment(formatted_content, valid_tags)
+          )
+        )
+      end
+
+      ESCAPE_SEQUENCES = {
+        '&amp;' => '&',
+        '&lt;' => '<',
+        '&gt;' => '>',
+        '&quot;' => '"',
+        '&apos;' => "'"
+      }
+
+      # 替换被 Sanitize 转换的 character entity
+      def remove_markup(html_str)
+        ESCAPE_SEQUENCES.each do |esc_seq, ascii_seq|
+          html_str = html_str.gsub(esc_seq, ascii_seq.chr)
+        end
+
+        html_str
       end
 
       # 清除正文中股码信息
