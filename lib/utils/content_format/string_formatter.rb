@@ -30,7 +30,13 @@ module Utils
 
       def self.remove_space_from_line(line)
         rexp = /(?<![a-zA-Z\p{Punct}])[\ \t\u00A0\u3000]+(?![a-zA-Z\p{Punct}])/
-        line.gsub(rexp, '').utf8_strip
+
+        # 移除部分中文标点后空格 。 ；  ， ： “ ”（ ） 、 ？ 《 》
+        rexp_2 = /(?<=[\u3002\uff1b\uff0c\uff1a\u201c\u201d\uff08\uff09\u3001\uff1f\u300a\u300b])[\ \t\u00A0\u3000]+/
+
+        line.gsub(rexp, '')
+            .gsub(rexp_2, '')
+            .utf8_strip
       end
     end
   end
