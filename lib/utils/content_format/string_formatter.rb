@@ -34,8 +34,12 @@ module Utils
         # 移除部分中文标点后空格 。 ；  ， ： “ ”（ ） 、 ？ 《 》
         rexp_2 = /(?<=[\u3002\uff1b\uff0c\uff1a\u201c\u201d\uff08\uff09\u3001\uff1f\u300a\u300b])[\ \t\u00A0\u3000]+/
 
+        # 移除数字和 % ％ 之间的空格
+        rexp_3 = /(?<=[\d])[\ \t\u00A0\u3000]+(?=[％%])/
+
         line.gsub(rexp, '')
             .gsub(rexp_2, '')
+            .gsub(rexp_3, '')
             .utf8_strip
       end
     end
