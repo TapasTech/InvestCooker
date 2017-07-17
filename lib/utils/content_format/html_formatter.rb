@@ -2,11 +2,24 @@
 module Utils
   module ContentFormat
     class HTMLFormatter < BasicFormatter
-      attr_accessor :valid_tags
+      attr_accessor :valid_tags, :options
 
       def initialize(content, options={})
         self.content = content
         self.valid_tags = options[:valid_tags] || VALID_TAGS
+        self.options = options
+      end
+
+      def replace_tags
+        from, to = options[:from], options[:to]
+        return if from.nil? || to.nil?
+
+        wrap = options[:wrap]
+
+        doc.css(from).each do |node|
+          node.name = to
+          node.wrap(wrap) unless wrap.nil?
+        end
       end
 
       def clear_style
