@@ -14,11 +14,12 @@ module Utils
         from, to = options[:from], options[:to]
         return if from.nil? || to.nil?
 
-        wrap = options[:wrap]
-
+        wrap, unwrap = options[:wrap], options[:unwrap]
+        
         doc.css(from).each do |node|
           node.name = to
           node.wrap(wrap) unless wrap.nil?
+          node.replace(node.children) unless unwrap.nil?
         end
       end
 
