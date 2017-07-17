@@ -81,13 +81,15 @@ module Utils
       }
 
       VALID_TAGS = {
-        elements: %w(a img span p strong table thead tbody tr td),
+        elements: %w(a img span p strong table thead tbody tr td h4 blockquote),
         attributes: {
           'a'      => %w(style href-id target title),
           'img'    => %w(style src alt),
           'span'   => %w(style class),
           'p'      => %w(style),
-          'strong' => %w(style)
+          'strong' => %w(style),
+          'h4'     => %w(style),
+          'blockquote' => %w(style)
         }
       }
 
@@ -192,7 +194,8 @@ module Utils
           block.call(node)
         end
 
-        NEW_LINE_WRAP_TAGS = %w(div pre) + (1..6).map { |num| "h#{num}" }
+        # h4 作为段落小标题存在不要替换
+        NEW_LINE_WRAP_TAGS = %w(div pre h1 h2 h3 h5 h6)
         def self.replace_all_new_line_wrap_tag_with_p_tag(node)
           node.name = 'p' if NEW_LINE_WRAP_TAGS.include? node.name
         end
