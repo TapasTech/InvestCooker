@@ -1,4 +1,9 @@
 require 'concerns/remember'
+require 'utils/jydb_stock/adder'
+require 'utils/jydb_stock/extractor'
+require 'utils/jydb_stock/skipper'
+require 'utils/jydb_stock/index'
+require 'utils/jydb_stock/ac_machine'
 
 # 直接通过 JYDB 数据库来打股码
 module Utils

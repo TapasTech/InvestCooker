@@ -12,8 +12,6 @@ module Utils
 
       POSSIBLE_STOCK_CODES_REGEXP = Regexp.new(MARKET_ORDER.keys.map { |market_code| "[#{CODES_CHARS}]+\\.#{market_code}" }.join('|'))
 
-      include Remember
-
       def initialize(content)
         @content = content
       end
@@ -59,10 +57,19 @@ module Utils
            .to_h
       end
 
+      # Ahocorasick 找到的不需要再 scan 一次了
+      def stock_info
+        stocks_name_codes_data
+          .map { |code, *name_list| {name: name_list.first, code: code} }
+          .group_by { |info| info[:name] }
+          .map { |name, infos| [name, extract_stock_codes_from_info(infos)] }
+          .to_h
+      end
+
       # 这里利用 index 快速筛掉大部分股票
       # 做了新旧版平滑处理
       def stocks_name_codes_data
-        Index.new(@content).stocks_name_codes_data
+        ACMachine.new(@content).stocks_name_codes_data
       end
 
       # 相关股票代码表
@@ -83,6 +90,8 @@ module Utils
           .select { |i, e| content.scan(i).count == content.scan(e).count }
           .map { |i, _| i }
       end
+
+      include Remember
 
       remember :stock_name_map_codes, :name_list, :possible_stock_codes,
         :stock_info, :stocks_name_codes_data,
