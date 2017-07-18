@@ -21,7 +21,7 @@ module Utils
     # 要求对象 include Utils::ContentFormat
     def format_content!
       clear_style_of_content_2
-      remove_stock_code_highlight
+      remove_stock_code_suffix
     end
 
     def possible_stock_codes
