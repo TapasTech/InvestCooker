@@ -3,7 +3,7 @@ module Utils
   module JYDBStock
 
     # ACMachine 初步快速筛选出文章中可能出现的股票名
-    class ACMachine
+    class ACMachine < Index
       NAME_CODE_INDEX = Utils::SmoothCache.new('add_stock_codes_ac_index') do |stocks|
         stocks.flat_map do |stock|
           stock.name_list.map { |name| {code: stock.code, name: name} }
