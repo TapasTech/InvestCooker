@@ -1,3 +1,7 @@
+require 'utils/content_format/basic_formatter'
+require 'utils/content_format/html_formatter'
+require 'utils/content_format/string_formatter'
+
 # Utils::ContentFormat 清理文章内容格式的工具模块
 module Utils
   module ContentFormat
