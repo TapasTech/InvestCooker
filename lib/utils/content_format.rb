@@ -41,8 +41,8 @@ module Utils
       content.utf8_strip!
     end
 
-    def replace_tags(field:, from:, to:, wrap: nil)
-      format_with(field, from: from, to: to, wrap: wrap)[HTMLFormatter, :replace_tags]
+    def replace_tags(field:, from:, to:, wrap: nil, unwrap: nil)
+      format_with(field, from: from, to: to, wrap: wrap, unwrap: unwrap)[HTMLFormatter, :replace_tags]
     end
 
     # 清除正文中股码信息
