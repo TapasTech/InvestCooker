@@ -15,10 +15,11 @@ module Utils
         return if from.nil? || to.nil?
 
         wrap, unwrap = options[:wrap], options[:unwrap]
-        
+
+        doc.css(from).wrap(wrap) unless wrap.nil?
+
         doc.css(from).each do |node|
           node.name = to
-          node.wrap(wrap) unless wrap.nil?
           node.replace(node.children) unless unwrap.nil?
         end
       end
