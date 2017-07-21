@@ -77,7 +77,10 @@ module Utils
           from user_name
           to receiver
           subject subject
-          mail.add_file = attach_path if attach_path.present?
+
+          if attach_path.present?
+            add_file attach_path
+          end
         end
 
         if text_body.present?
