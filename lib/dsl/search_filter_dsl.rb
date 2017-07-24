@@ -16,9 +16,9 @@ concern :SearchFilterDSL do
 
   private
 
-  def filter(key: nil, name:, title:, &block)
+  def filter(key: nil, name:, title:, type: :multi, &block)
     key ||= name
-    @filters[key] = {name: name, title: title}
+    @filters[key] = {name: name, title: title, type: type}
     @this_filter = key
     class_exec(&block)
   end
@@ -43,7 +43,7 @@ concern :SearchFilterDSL do
     @filters[@this_filter][:sort_block] = block
   end
 
-  # 筛选框的类型
+  # 筛选项的类型
   def type(&block)
     @filters[@this_filter][:type_block] = block
   end
