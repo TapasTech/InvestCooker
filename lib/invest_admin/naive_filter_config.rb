@@ -6,6 +6,7 @@ module InvestAdmin
 
     field :title, type: String
     field :value, type: String
+    field :name,  type: String
 
     belongs_to :team, index: true
     scope :team_scope, ->(team) { where(team: team) }
