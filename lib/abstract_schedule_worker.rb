@@ -64,6 +64,6 @@ class AbstractScheduleWorker
   # --- global helpers ---
 
   def self.inherited(child_class)
-    child_class.perform_async if w.duplicate_schedules.blank?
+    child_class.perform_async if child_class.duplicate_schedules.blank?
   end
 end
