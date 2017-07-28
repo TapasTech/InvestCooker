@@ -63,13 +63,7 @@ class AbstractScheduleWorker
 
   # --- global helpers ---
 
-  #  初始化项目中的 schedule worker
-  def self.init_schedule!
-    return unless ENV['init_schedule'].present?
-
-    ObjectSpace.each_object(Class)
-               .select { |w| w < AbstractScheduleWorker }
-               .select { |w| w.duplicate_schedules.blank? }
-               .each(&:perform_async)
+  def self.inherited(child_class)
+    child_class.perform_async if w.duplicate_schedules.blank?
   end
 end
