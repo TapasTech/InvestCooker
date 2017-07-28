@@ -60,4 +60,16 @@ class AbstractScheduleWorker
   def self.duplicate_schedules
     Sidekiq::ScheduledSet.new.select { |job| job.klass == self.name && job.queue =~ /^#{QUEUE_NAME}/ }
   end
+
+  # --- global helpers ---
+
+  #  初始化项目中的 schedule worker
+  def self.init_schedule!
+    return unless ENV['init_schedule'].present?
+
+    ObjectSpace.each_object(Class)
+               .select { |w| w < AbstractScheduleWorker }
+               .select { |w| w.duplicate_schedules.present? }
+               .each(&:perform_async)
+  end
 end
