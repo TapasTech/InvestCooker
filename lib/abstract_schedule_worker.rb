@@ -61,9 +61,9 @@ class AbstractScheduleWorker
     Sidekiq::ScheduledSet.new.select { |job| job.klass == self.name && job.queue =~ /^#{QUEUE_NAME}/ }
   end
 
-  # --- global helpers ---
-
-  def self.inherited(child_class)
-    child_class.perform_async if child_class.duplicate_schedules.blank?
+  if ENV['init_schedule'].present?
+    def self.inherited(child_class)
+      child_class.perform_async if child_class.duplicate_schedules.blank?
+    end
   end
 end
