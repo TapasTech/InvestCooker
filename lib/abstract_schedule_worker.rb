@@ -69,7 +69,7 @@ class AbstractScheduleWorker
 
     ObjectSpace.each_object(Class)
                .select { |w| w < AbstractScheduleWorker }
-               .select { |w| w.duplicate_schedules.present? }
+               .select { |w| w.duplicate_schedules.blank? }
                .each(&:perform_async)
   end
 end
