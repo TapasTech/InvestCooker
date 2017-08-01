@@ -29,12 +29,12 @@ concern :SearchFilterDSL do
   end
 
   [
-    :title,       # 展示的值
-    :value,       # 回传的值
-    :sort,        # 排序
-    :type,        # 筛选项的类型
-    :parent,      # 展示的值
-    :description  # 附带描述信息
+    :title,        # 展示的值
+    :value,        # 回传的值
+    :sort,         # 排序
+    :type,         # 筛选项的类型
+    :parent_value, # 指向父节点的值
+    :description   # 附带描述信息
   ].each do |key|
     define_method(key) do |&block|
       @filters[@this_filter][:"#{key}_block"] = block
