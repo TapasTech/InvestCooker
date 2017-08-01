@@ -28,28 +28,16 @@ concern :SearchFilterDSL do
     @filters[@this_filter][:collection] = block
   end
 
-  # 展示的值
-  def title(&block)
-    @filters[@this_filter][:title_block] = block
-  end
-
-  # 回调的值
-  def value(&block)
-    @filters[@this_filter][:value_block] = block
-  end
-
-  # 排序
-  def sort(&block)
-    @filters[@this_filter][:sort_block] = block
-  end
-
-  # 筛选项的类型
-  def type(&block)
-    @filters[@this_filter][:type_block] = block
-  end
-
-  # 附带描述信息
-  def description(&block)
-    @filters[@this_filter][:description_block] = block
+  [
+    :title,       # 展示的值
+    :value,       # 回传的值
+    :sort,        # 排序
+    :type,        # 筛选项的类型
+    :parent,      # 展示的值
+    :description  # 附带描述信息
+  ].each do |key|
+    define_method(key) do |&block|
+      @filters[@this_filter][:"#{key}_block"] = block
+    end
   end
 end
