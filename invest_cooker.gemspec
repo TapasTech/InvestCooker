@@ -1,11 +1,11 @@
 Gem::Specification.new do |s|
   s.name      = 'invest_cooker'
-  s.version  = '1.7.2'
+  s.version  = '1.7.3'
   s.date     = '2016-04-12'
   s.summary  = 'Invest cooker cooks hugo invest system.'
   s.homepage = 'https://github.com/TapasTech/InvestCooker'
-  s.authors  = ['li-thy-um']
-  s.email    = 'lithium4010@163.com'
+  s.authors  = ['lifeng']
+  s.email    = 'lifeng@dtcj.com'
   s.licenses = ['Nonstandard']
   s.files    = Dir[File.join("**", "lib", "**", "*.rb")]
 end

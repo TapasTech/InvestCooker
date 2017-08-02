@@ -19,5 +19,9 @@ module CDN
     def upload(file_name, file_path)
       @client.get_bucket('invest-images').put_object(file_name, file: file_path)
     end
+
+    def destroy(file_name)
+      @client.get_bucket('invest-images').delete_object(file_name)
+    end
   end
 end
