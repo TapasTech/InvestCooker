@@ -4,5 +4,7 @@ module InvestAdmin
     include Mongoid::Timestamps
 
     field :name, type: String
+
+    belongs_to :team
   end
 end
