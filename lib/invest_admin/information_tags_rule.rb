@@ -9,7 +9,7 @@ module InvestAdmin
     field :target, type: String
 
     def self.to_rule
-      self.map { |r| [r.name, r.value].join(':') }.join("\n")
+      self.to_a.map { |r| [r.name, r.value].join(':') }.join("\n")
     end
   end
 end
