@@ -10,6 +10,18 @@ module Utils
         self.options = options
       end
 
+      def as_html?
+        options[:html] == true
+      end
+
+      def formatted_content
+        if as_html?
+          doc.inner_html
+        else
+          remove_markup(doc.inner_html)
+        end.presence || ''
+      end
+
       def replace_tags
         from, to = options[:from], options[:to]
         return if from.nil? || to.nil?
@@ -75,10 +87,6 @@ module Utils
         p_tags.search('br').unlink
         p_tags.search('strong').each(&ClassMethods.method(:remove_blank_node))
         p_tags.each(&ClassMethods.method(:remove_blank_node))
-      end
-
-      def formatted_content
-        remove_markup(doc.inner_html).presence || ''
       end
 
       def remove_blank_before_p_tags

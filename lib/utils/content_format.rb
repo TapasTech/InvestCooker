@@ -10,7 +10,7 @@ module Utils
     end
 
     def clear_style_of_content
-      format_with(:content, valid_tags: valid_tags)[HTMLFormatter, :clear_style]
+      format_by HTMLFormatter, :clear_style
     end
 
     def clear_style_of_summary
@@ -32,7 +32,7 @@ module Utils
     # 打股码专用
     # 调试内存泄漏
     def clear_style_of_content_2
-      self.content = HTMLFormatter.format(content, valid_tags: valid_tags) { |formatter| formatter.clear_style }
+      self.content = HTMLFormatter.format(content, valid_tags: valid_tags, html: true) { |formatter| formatter.clear_style }
     end
 
     def content_to_plain_text
@@ -46,7 +46,7 @@ module Utils
     end
 
     def replace_tags(field:, from:, to:, wrap: nil, unwrap: nil)
-      format_with(field, from: from, to: to, wrap: wrap, unwrap: unwrap)[HTMLFormatter, :replace_tags]
+      format_with(field, from: from, to: to, wrap: wrap, unwrap: unwrap, html: (field == 'content'))[HTMLFormatter, :replace_tags]
     end
 
     # 清除正文中股码信息
@@ -81,7 +81,7 @@ module Utils
     end
 
     def format_by(formatter_klass, *methods)
-      format_with(:content)[formatter_klass, *methods]
+      format_with(:content, valid_tags: valid_tags, html: true)[formatter_klass, *methods]
     end
 
     def format_with(field_name, options={})
