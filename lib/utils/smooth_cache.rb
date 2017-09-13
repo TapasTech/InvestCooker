@@ -32,7 +32,7 @@ module Utils
       new_data_key = "#{pointer_key}/#{time.to_i}"
 
       parsed_data = parse_block.(data)
-      write(data_key, parsed_data)
+      write(new_data_key, parsed_data)
 
       old_data_key = get(pointer_key)
       set(pointer_key, new_data_key)
