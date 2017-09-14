@@ -35,7 +35,8 @@ class Hola
     pod = Pod.new(key, host, redis)
     return host if pod.healthy?
 
-    if pod.dead?
+    # NOTE 这里要保留至少一个服务地址
+    if pod.dead? && redis.zcard(key) > 1
       redis.zrem(key, host)
     end
 
