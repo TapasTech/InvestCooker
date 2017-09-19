@@ -43,22 +43,6 @@ module Utils
       # 1. 根据优先级找到文章中所有可能的股票名
       # 2. 找到文中可能的相关股票
       def stock_info
-        # Ahocorasick 找到的不需要再 scan 一次了
-        if ENV['Ahocorasick']
-          stocks_name_codes_data
-
-        else
-          stocks_name_codes_data
-            .map { |code, *name_list| {name: name_list.find_obj(&content.method(:index)), code: code} }
-            .select { |info| info[:name].present? }
-
-        end.group_by { |info| info[:name] }
-           .map { |name, infos| [name, extract_stock_codes_from_info(infos)] }
-           .to_h
-      end
-
-      # Ahocorasick 找到的不需要再 scan 一次了
-      def stock_info
         stocks_name_codes_data
           .map { |code, *name_list| {name: name_list.first, code: code} }
           .group_by { |info| info[:name] }
