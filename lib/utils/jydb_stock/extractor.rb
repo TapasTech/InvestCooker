@@ -13,26 +13,25 @@ module Utils
       POSSIBLE_STOCK_CODES_REGEXP = Regexp.new(MARKET_ORDER.keys.map { |market_code| "[#{CODES_CHARS}]+\\.#{market_code}" }.join('|'))
 
       def initialize(content)
-        @content = content
+        self.content = content
+        self.ac_machine = ACMachine.new(content)
       end
 
-      attr_accessor :content
+      attr_accessor :content, :ac_machine
+
+      extend Forwardable
+      def_delegators :ac_machine, :stock_name_infos_data
 
       # 文章中的股票名 => 股票代码列表
       def stock_name_map_codes
         return {} if content.blank?
-        ignore_names.each { |ignore, _encounter| stock_info.delete(ignore) }
+        ignore_names.each { |ignore, _| stock_info.delete(ignore) }
         stock_info
       end
 
       # 文章中出现的需要打股码的所有股票的中文
       def name_list
-        stock_codes = stock_name_map_codes.values.flatten.uniq
-
-        stocks_name_codes_data
-          .select { |code, *names| stock_codes.include?(code) }
-          .flat_map { |code, *names| names }
-          .uniq
+        stock_name_infos_data.keys
       end
 
       # 文章中打上的股码
@@ -43,17 +42,9 @@ module Utils
       # 1. 根据优先级找到文章中所有可能的股票名
       # 2. 找到文中可能的相关股票
       def stock_info
-        stocks_name_codes_data
-          .map { |code, *name_list| {name: name_list.first, code: code} }
-          .group_by { |info| info[:name] }
+        stock_name_infos_data
           .map { |name, infos| [name, extract_stock_codes_from_info(infos)] }
           .to_h
-      end
-
-      # 这里利用 index 快速筛掉大部分股票
-      # 做了新旧版平滑处理
-      def stocks_name_codes_data
-        ACMachine.new(@content).stocks_name_codes_data
       end
 
       # 相关股票代码表
@@ -78,8 +69,7 @@ module Utils
       include Remember
 
       remember :stock_name_map_codes, :name_list, :possible_stock_codes,
-        :stock_info, :stocks_name_codes_data,
-        :relative_codes, :ignore_names
+        :stock_info, :relative_codes, :ignore_names
 
       # 1. info 中的 code
       # 2. 找到 code 关联的 codes

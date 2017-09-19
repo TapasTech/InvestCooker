@@ -10,22 +10,19 @@ module Utils
         end.group_by { |hash| hash[:name] }
       end
 
-      attr_accessor :content, :name_index
+      attr_accessor :content
 
       def initialize(content)
         self.content = content
-        self.name_index  = $ac_name_index
       end
 
-      # @return [[code, name1, name2, ...], ...]
-      def stocks_name_codes_data
-        stock_names = $ahocorasick.lookup(content)
-
-        stock_names
-          .map { |name| name_index[name] }
-          .flatten(1)
-          .group_by { |hash| hash[:code] }
-          .map      { |code, list| __ordered_names__(list).unshift(code) }
+      def stock_name_infos_data
+        $ahocorasick.lookup(content)
+                    .map { |name| $ac_name_index[name] }
+                    .flatten(1)
+                    .group_by { |hash| hash[:code] }
+                    .map      { |code, list| {code: code, name: __ordered_names__(list).first} }
+                    .group_by { |info| info[:name] }
       end
 
       def __ordered_names__(list)
