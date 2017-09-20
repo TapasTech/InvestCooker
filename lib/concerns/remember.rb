@@ -7,7 +7,7 @@ concern :Remember do
             define_method method_name do |*args|
               value = instance_variable_get("@#{method_name}")
 
-              if value.blank?
+              if value.nil?
                 value = super(*args)
                 instance_variable_set("@#{method_name}", value)
               end
