@@ -59,8 +59,8 @@ module Utils
         stock_names = stock_info.keys
 
         StockNameTakeover
-          .where(:encounter.in => stock_names)
-          .where(:ignore.in => stock_names)
+          .or(:encounter.in => stock_names)
+          .or(:ignore.in => stock_names)
           .map { |t| [t.ignore, t.encounter] }
           .select { |i, e| content.scan(i).count == content.scan(e).count }
           .map { |i, _| i }
