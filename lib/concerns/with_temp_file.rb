@@ -2,7 +2,7 @@ module WithTempFile
   extend ActiveSupport::Concern
 
   def with_temp_file(data)
-    __file_path__ = File.expand_path("tmp/#{Digest::SHA1.hexdigest(data)}", Rails.root)
+    __file_path__ = "/tmp/#{Digest::SHA1.hexdigest(data)}"
 
     File.open(__file_path__, 'w+') { |f| f.puts data }
 
