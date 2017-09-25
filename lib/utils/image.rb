@@ -1,3 +1,4 @@
+require 'concerns/with_temp_file'
 # Utils::Image
 # 图片处理工具类
 module Utils
@@ -92,47 +93,30 @@ module Utils
       puts error
     end
 
-    # http://developer.qiniu.com/code/v6/sdk/ruby.html#rs-fetch
     class CDNStore
+      include WithTempFile
+      attr_accessor :file_path, :target_url, :key, :cdn_url
+
       def initialize(path_or_url, key)
-        @file_path  = path_or_url
-        @target_url = path_or_url
-        @key = key
-        @cdn_url = "#{BUCKET_URL}/#{key}"
+        self.file_path  = path_or_url
+        self.target_url = path_or_url
+        self.key = key
+        self.cdn_url = "#{CDN::AliyunOSS::ENDPOINT}/#{key}"
       end
 
+      # fetch and upload
       def upload
-        CDN::Storage.fetch BUCKET, @target_url, @key
+        data = Utils::Image.download(target_url)
+
+        with_temp_file(data) do |path|
+          CDN::AliyunOSS.instance.upload(key, path)
+        end
       end
 
+      # upload local file
       def upload_file
-        put_policy = CDN::Auth::PutPolicy.new(
-          BUCKET, # 存储空间
-          @key,   # 指定上传的资源名，如果传入 nil，就表示不指定资源名，将使用默认的资源名
-          300     # token 过期时间，默认为 3600 秒，即 1 小时
-        )
-
-        uptoken = CDN::Auth.generate_uptoken(put_policy)
-
-        CDN::Storage.upload_with_token_2(
-           uptoken,
-           @file_path,
-           @key,
-           nil, # 可以接受一个 Hash 作为自定义变量，请参照 http://developer.qiniu.com/article/kodo/kodo-developer/up/vars.html#xvar
-           bucket: BUCKET
-        )
+        CDN::AliyunOSS.instance.upload(key, file_path)
       end
-
-      attr_reader :cdn_url
-
-      CDN        = Object::Qiniu
-      URL        = ENV['QINIU_UPLOAD_URL'].freeze
-      ACCESS_KEY = ENV['HUGO_INVEST_SERVER_QINIU_ACCESS_KEY'].freeze
-      SECRET_KEY = ENV['HUGO_INVEST_SERVER_QINIU_SECRET_KEY'].freeze
-      BUCKET     = ENV['QINIU_BUCKET_INVEST_IMAGE_NAME'].freeze
-      BUCKET_URL = ENV['QINIU_BUCKET_INVEST_IMAGE_URL'].freeze
-
-      CDN.establish_connection! access_key: ACCESS_KEY, secret_key: SECRET_KEY
     end
   end
 end
