@@ -62,7 +62,7 @@ module Utils
 
       # 清除正文中股码信息
       def remove_stock_code_suffix
-        stock_code_highlights.each { |node| node.replace node.content.gsub(/（.*）/, '') }
+        stock_code_highlights.each { |node| node.replace node.content.gsub(/（(\w+\.[FHKOSUZ]{2}；?)+）/, '') }
       end
 
       # 清除股码高亮
