@@ -108,7 +108,7 @@ module Utils
       def upload
         data = Utils::Image.download(target_url)
 
-        with_temp_file(data) do |path|
+        with_temp_file(data, mode: 'wb') do |path|
           CDN::AliyunOSS.instance.upload(key, path)
         end
       end
