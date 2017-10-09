@@ -1,6 +1,7 @@
 class ActiveSupport::TimeZone
   parse_with_process_chinese = Module.new do
     def parse(str, now = self.now)
+
       if str =~ /前|ago/
         d = str.to_i
         if str =~ /秒|second/
@@ -20,6 +21,8 @@ class ActiveSupport::TimeZone
       end
 
       if str =~ /[年月日时分秒-]/
+        str = String.new(str) # 避免 frozen string error
+
         str.gsub!(/[\s\u00a0]*(\d+)[\s\u00a0]*[年月-]/, '\1/')
         str.gsub!(/[\s\u00a0]*(\d+)[\s\u00a0]*[时点分]/, '\1:')
         str.gsub!(/[\s\u00a0]*(\d+)[\s\u00a0]*[日秒]([\s\u00a0]*)/, '\1 \2')
