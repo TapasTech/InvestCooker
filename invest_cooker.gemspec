@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name      = 'invest_cooker'
-  s.version  = '1.10.4'
+  s.version  = '1.10.5'
   s.date     = '2016-04-12'
   s.summary  = 'Invest cooker cooks hugo invest system.'
   s.homepage = 'https://github.com/TapasTech/InvestCooker'

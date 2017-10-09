@@ -62,6 +62,9 @@ module Utils
       end
 
       size / 1000
+
+    rescue SocketError => e
+      0
     end
 
     def self.type_of(img_url)
