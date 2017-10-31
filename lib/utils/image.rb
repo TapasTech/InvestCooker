@@ -87,6 +87,7 @@ module Utils
         # 4M 以上的图片不存, 2KB 以下图片不存
         return if size <= 1 || size > 4_000
 
+        # BUG should handle case remote == false
         key ||= "#{hexdigest(url)}.#{type_of(url)}"
         cdn = CDNStore.new(url, key)
         block.call(cdn)
