@@ -63,7 +63,7 @@ module Utils
 
       size / 1000
 
-    rescue SocketError => e
+    rescue => e
       0
     end
 
@@ -71,30 +71,79 @@ module Utils
       FastImage.type(img_url)
     end
 
+    class UrlHolder
+      include ValidImageSize
+      attr_accessor :url, :key, :cdn
+
+      def initialize(url:, key:)
+        self.url = url
+        self.key = key
+      end
+
+      def size
+        @size ||= Utils::Image.size_of(url)
+      end
+
+      def key
+        @key ||= "#{Utils::Image.hexdigest(url)}.#{Utils::Image.type_of(url)}"
+      end
+
+      def upload
+        cdn.upload
+        cdn.cdn_url
+      end
+    end
+
+    class FileHolder
+      include ValidImageSize
+      attr_accessor :path, :key, :cdn
+
+      def initialize(path:, key:)
+        self.path = path
+        self.key = key
+      end
+
+      def size
+        @size ||= File.open(path).size.to_i / 1000
+      end
+
+      def upload
+        cdn.upload_file
+        cdn.cdn_url
+      end
+    end
+
+    module ValidImageSize
+      # 4M 以上的图片不存, 1KB 以下图片不存
+      def valid_size?
+        !(size <= 1 || size > 4_000)
+      end
+    end
+
     # NOTE 新的接口如果图片不存在，也会返回地址
     # 上传一个图片文件到 CDN
     # 抓取一个图片到 CDN (默认)
     def self.upload_cdn(url, remote: true, key: nil)
-      Timeout.timeout 30 do
-        if remote
-          block = ->(cdn) { cdn.upload }
-          size = size_of(url)
-        else
-          block = ->(cdn) { cdn.upload_file }
-          size = File.open(url).size.to_i / 1000
+      if remote
+        holder = UrlHolder.new(url: url, key: key)
+      else
+        # 本地文件上传必须传入 key
+        if key.nil?
+          fail 'must provide a key when upload a local file.'
         end
 
-        # 4M 以上的图片不存, 2KB 以下图片不存
-        return if size <= 1 || size > 4_000
-
-        # BUG should handle case remote == false
-        key ||= "#{hexdigest(url)}.#{type_of(url)}"
-        cdn = CDNStore.new(url, key)
-        block.call(cdn)
-        cdn.cdn_url
+        holder = FileHolder.new(path: url, key: key)
       end
-    rescue => error
-      puts error
+
+      begin
+        Timeout.timeout(10) do
+          return unless holder.valid_size?
+          holder.cdn = CDNStore.new(url, holder.key)
+          return holder.upload
+        end
+      rescue
+        nil
+      end
     end
 
     class CDNStore
