@@ -71,6 +71,13 @@ module Utils
       FastImage.type(img_url)
     end
 
+    module ValidImageSize
+      # 4M 以上的图片不存, 1KB 以下图片不存
+      def valid_size?
+        !(size <= 1 || size > 4_000)
+      end
+    end
+
     class UrlHolder
       include ValidImageSize
       attr_accessor :url, :key, :cdn
@@ -110,13 +117,6 @@ module Utils
       def upload
         cdn.upload_file
         cdn.cdn_url
-      end
-    end
-
-    module ValidImageSize
-      # 4M 以上的图片不存, 1KB 以下图片不存
-      def valid_size?
-        !(size <= 1 || size > 4_000)
       end
     end
 
