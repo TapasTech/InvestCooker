@@ -12,11 +12,21 @@
 # Quantum.mail(from: :invest, to: :bus, event: :publish, message: Oj.dump(data.as_json))
 
 module Quantum
-  def self.mail(from:, to:, event:, message:)
+  # 支持动态定义
+  def self.mail(from:, to:, event:, message:, queue: nil, job: nil)
     key = job_key(from, to, event)
-    job = @job_define[key]
-    fail "Quantum #{key} does not registered." if job.nil?
-    job.perform_later(*message)
+
+    @job_define.fetch(key) do
+      if queue.nil? || job.nil?
+        fail "Quantum #{key} does not registered."
+      else
+        self.tunnel(from: from, to: to) do
+          self.event(event, queue: queue, job: job)
+        end
+
+        @job_define.fetch(key) { fail "Quantum #{key} does not registered." }
+      end
+    end.perform_later(*message)
   end
 
   def self.config(&block)

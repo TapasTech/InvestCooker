@@ -167,4 +167,4 @@ ENV['HUGO_INVEST_SERVER_YCWB_KEY'] # 秘钥
 
 - InvestCooker::InvestAdmin::StockChineseNameAbbr
 
-- InvestCooker::InvestAdmin::StatisticsMonthlyGoal
+- InvestCooker::Statistics::MonthlyGoal
