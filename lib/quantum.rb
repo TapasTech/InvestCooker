@@ -12,6 +12,21 @@
 # Quantum.mail(from: :invest, to: :bus, event: :publish, message: Oj.dump(data.as_json))
 
 module Quantum
+  module Callback
+    def extract_callback(message)
+      data = Oj.load(message)
+      callback = data['callback']
+
+      {
+        from:  callback['from'],
+        to:    callback['to'],
+        event: callback['event'],
+        queue: callback['queue'],
+        job:   callback['job'],
+      }
+    end
+  end
+
   # 支持动态定义
   def self.mail(from:, to:, event:, message:, queue: nil, job: nil)
     key = job_key(from, to, event)
