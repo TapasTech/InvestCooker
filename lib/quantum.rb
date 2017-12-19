@@ -31,6 +31,7 @@ module Quantum
   def self.mail(from:, to:, event:, message:, queue: nil, job: nil)
     key = job_key(from, to, event)
 
+    @job_define ||= {}
     @job_define.fetch(key) do
       if queue.nil? || job.nil?
         fail "Quantum #{key} does not registered."
