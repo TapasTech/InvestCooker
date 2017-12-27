@@ -2,7 +2,7 @@ module Utils
   class DingTalk
 
     def self.send_markdown_message(url:, title:, text:)
-      Service.new(url).send_markdown_message(title:, text:)
+      Service.new(url).send_markdown_message(title: title, text: text)
     end
 
     class Service
