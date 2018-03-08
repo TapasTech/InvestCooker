@@ -1,17 +1,25 @@
 module Elasticsearch::Model::Adapter::Mongoid
   module Callbacks
     def self.included(base)
-      # Add validation callback.
-      # Target may decide if it should be indexed.
-      base.send(:define_method, :elasticsearch_index_validation) { true }
-
       {
         :create  => :index,
         :update  => :index,
         :destroy => :delete
-      }.each_pair do |after_action, es_action|
-        base.send("after_#{after_action}") do |document|
-          document.__elasticsearch__.send("#{es_action}_document") if document.elasticsearch_index_validation
+      }.each_pair do |action, es_action|
+        base.send(:"after_#{action}") do |doc|
+          # target may decide if it should be indexed.
+          if doc.respond_to?(:elasticsearch_index_validation)
+            next unless elasticsearch_index_validation
+          end
+
+          # custom index action
+          if doc.respond_to?(:elasticsearch_index_action)
+            elasticsearch_index_action(es_action)
+
+          # default index action
+          else
+            doc.__elasticsearch__.send(:"#{es_action}_document")
+          end
         end
       end
     end
