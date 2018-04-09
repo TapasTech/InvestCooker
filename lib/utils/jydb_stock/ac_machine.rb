@@ -4,7 +4,7 @@ module Utils
 
     # ACMachine 初步快速筛选出文章中可能出现的股票名
     class ACMachine
-      NAME_CODE_INDEX = Utils::SmoothCache.new('add_stock_codes_ac_index') do |stocks|
+      NAME_CODE_INDEX = Utils::SmoothCache.new('add_stock_codes_ac_index_v2') do |stocks|
         stocks.flat_map do |stock|
           stock.name_list.each_with_index.map { |name, i| {code: stock.code, name: name, o: i} }
         end.group_by { |hash| hash[:name] }
