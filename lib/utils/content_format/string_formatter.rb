@@ -29,13 +29,13 @@ module Utils
       end
 
       def self.remove_space_from_line(line)
-        rexp = /(?<![a-zA-Z\p{Punct}])[\ \t\u00A0\u3000]+(?![a-zA-Z\p{Punct}])/
+        rexp = /(?<![a-zA-Z\p{Punct}])[\ \t\u00A0\u3000\u2002]+(?![a-zA-Z\p{Punct}])/
 
         # 移除部分中文标点后空格 。 ；  ， ： “ ”（ ） 、 ？ 《 》
-        rexp_2 = /(?<=[\u3002\uff1b\uff0c\uff1a\u201c\u201d\uff08\uff09\u3001\uff1f\u300a\u300b])[\ \t\u00A0\u3000]+/
+        rexp_2 = /(?<=[\u3002\uff1b\uff0c\uff1a\u201c\u201d\uff08\uff09\u3001\uff1f\u300a\u300b])[\ \t\u00A0\u3000\u2002]+/
 
         # 移除数字和 % ％ 之间的空格
-        rexp_3 = /(?<=[\d])[\ \t\u00A0\u3000]+(?=[％%])/
+        rexp_3 = /(?<=[\d])[\ \t\u00A0\u3000\u2002]+(?=[％%])/
 
         line.gsub(rexp, '')
             .gsub(rexp_2, '')
