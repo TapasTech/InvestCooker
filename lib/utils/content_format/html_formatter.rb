@@ -108,7 +108,7 @@ module Utils
         attributes: {
           'a'      => %w(style href-id target title),
           'img'    => %w(style src alt),
-          'span'   => %w(style class url),
+          'span'   => %w(style class url title),
           'p'      => %w(style),
           'strong' => %w(style),
           'h4'     => %w(style),
