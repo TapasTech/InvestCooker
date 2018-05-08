@@ -43,10 +43,10 @@ concern :MarketPeriodDSL do
       methods = @informations[name]
 
       define_method(name) do
-        start     = now.change(hour: 9,  minute: 30)
-        ending    = now.change(hour: 15, minute: 0)
-        mid_start = now.change(hour: 11, minute: 30)
-        mid_end   = now.change(hour: 13, minute: 0)
+        start     = now.change(hour: 9,  min: 30)
+        ending    = now.change(hour: 15, min: 0)
+        mid_start = now.change(hour: 11, min: 30)
+        mid_end   = now.change(hour: 13, min: 0)
 
         if !now.between?(start, ending)
           instance_exec(&methods[:market_close])
