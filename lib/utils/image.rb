@@ -26,7 +26,7 @@ module Utils
     end
 
     def self.upload_nokogiri(img_node, placeholder: nil)
-      cdn_src = Utils::Image.upload_cdn(img_node['src'])
+      cdn_src = Utils::Image.upload_cdn(img_node['src']) rescue nil
 
       if cdn_src.present? && size_of(cdn_src).to_i > 0
         img_node['src'] = cdn_src
@@ -42,7 +42,11 @@ module Utils
     end
 
     def self.download(img_url)
-      RestClient.get(img_url).body
+      RestClient::Request.execute(
+        method: :get,
+        url: img_url,
+        timeout: 3
+      ).body
     end
 
     def self.hexdigest(img_url, remote: true)
@@ -135,14 +139,15 @@ module Utils
         holder = FileHolder.new(path: url, key: key)
       end
 
-      begin
-        Timeout.timeout(10) do
-          return unless holder.valid_size?
-          holder.cdn = CDNStore.new(url, holder.key)
-          return holder.upload
-        end
-      rescue
-        nil
+      # 检查图片大小
+      return unless holder.valid_size?
+      holder.cdn = CDNStore.new(url, holder.key)
+
+      # 检查图片是否已存在，存在的图片不进行上传
+      if holder.cdn.exists?
+        return holder.cdn.cdn_url
+      else
+        return holder.upload
       end
     end
 
@@ -155,6 +160,10 @@ module Utils
         self.target_url = path_or_url
         self.key = key
         self.cdn_url = "#{CDN::AliyunOSS::ENDPOINT}/#{key}"
+      end
+
+      def exists?
+        CDN::AliyunOSS.instance.exists?(key)
       end
 
       # fetch and upload
