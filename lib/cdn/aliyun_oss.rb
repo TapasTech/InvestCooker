@@ -9,7 +9,7 @@ module CDN
     SECRET_KEY = ENV['HUGO_INVEST_SERVER_ALIYUN_OSS_SECRET_KEY'].freeze
     ENDPOINT   = ENV['ALIYUN_OSS_BUCKET_INVEST_IMAGE_URL'].freeze
 
-    PRIVATE_ENDPOINT = ENDPOINT.sub('http://invest-images', 'https://invest-private')
+    PRIVATE_ENDPOINT = ENDPOINT&.sub('http://invest-images', 'https://invest-private')
     CLIENT_CONFIG = {
       access_key_id: ACCESS_KEY,
       access_key_secret: SECRET_KEY,
