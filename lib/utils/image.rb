@@ -141,7 +141,13 @@ module Utils
 
       # 检查图片大小
       return unless holder.valid_size?
-      holder.cdn = CDNStore.new(url, holder.key)
+
+      holder.cdn =
+        if OSSVolumeStore::PATH.present?
+          OSSVolumeStore.new(url, holder.key)
+        else
+          CDNStore.new(url, holder.key)
+        end
 
       # 检查图片是否已存在，存在的图片不进行上传
       if holder.cdn.exists?
@@ -151,6 +157,40 @@ module Utils
       end
     end
 
+    # 通过挂载 OSS volume 上传
+    class OSSVolumeStore
+      PATH = ENV['OSS_VOLUME_PATH']
+      require 'fileutils' if PATH.present?
+
+      attr_accessor :file_path, :target_url, :key, :cdn_url
+
+      def initialize(path_or_url, key)
+        self.file_path  = path_or_url
+        self.target_url = path_or_url
+        self.key = key
+        self.cdn_url = "#{CDN::AliyunOSS::ENDPOINT}/#{key}"
+      end
+
+      def exists?
+        File.exist?(File.expand_path(key, PATH))
+      end
+
+      # fetch and upload
+      def upload
+        File.open(File.expand_path(key, PATH), 'wb') do |f|
+          f.puts << Utils::Image.download(target_url)
+        end
+      end
+
+      # upload local file
+      def upload_file
+        src  = file_path
+        dest = File.expand_path(key, PATH)
+        FileUtils.cp(src, dest, force: true)
+      end
+    end
+
+    # 通过 OSS sdk 上传
     class CDNStore
       include WithTempFile
       attr_accessor :file_path, :target_url, :key, :cdn_url
