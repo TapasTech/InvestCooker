@@ -159,7 +159,9 @@ module Utils
 
     # 通过挂载 OSS volume 上传
     class OSSVolumeStore
-      PATH = ENV['OSS_VOLUME_PATH']
+      PATH     = ENV['OSS_VOLUME_PATH']
+      BASE_URL = ENV['OSS_BASE_URL']
+
       require 'fileutils' if PATH.present?
 
       attr_accessor :file_path, :target_url, :key, :cdn_url
@@ -168,7 +170,7 @@ module Utils
         self.file_path  = path_or_url
         self.target_url = path_or_url
         self.key = key
-        self.cdn_url = "#{CDN::AliyunOSS::ENDPOINT}/#{key}"
+        self.cdn_url = "#{BASE_URL}/#{key}"
       end
 
       def exists?
