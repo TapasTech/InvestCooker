@@ -1,5 +1,6 @@
 require 'concerns/remember'
 require 'utils/jydb_stock/adder'
+require 'utils/jydb_stock/each_text_adder'
 require 'utils/jydb_stock/extractor'
 require 'utils/jydb_stock/skipper'
 require 'utils/jydb_stock/ac_machine'
