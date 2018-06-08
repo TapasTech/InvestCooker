@@ -28,28 +28,14 @@ module Utils
     end
 
     def add_stock_codes!
-      mapping = extractor.stock_name_map_codes
-      added = []
-      doc = Nokogiri::HTML(@content)
+      adder = EachTextAdder.new(@content)
 
-      doc.search('//text()').to_a.each do |t|
-        mapping.each do |name, codes|
-          next if added.include?(name)
-          content_before    = t.content.clone
-          content_processed = t.content.clone
-
-          skip = skipper.skip(name)
-          adder = Adder.new(content_processed, name, codes, skip)
-          adder.add_one_stock_code
-
-          unless content_before == content_processed
-            added << name
-            t.replace(content_processed)
-          end
-        end
+      extractor.stock_name_map_codes.each do |name, codes|
+        skip = skipper.skip(name)
+        adder.add_one_stock_code(name, codes, skip)
       end
 
-      @content = doc.css('body').inner_html.gsub("\n", '')
+      @content = adder.content
     end
 
     def extractor
