@@ -11,6 +11,7 @@ module Utils
         $debug_logger.warn 'deprecated method'
       end
 
+      # @deprecated
       def send_welcome_email!(data)
         data = to_hash(data)
         subject = 'DT财经-投研资讯系统-欢迎'
@@ -34,6 +35,7 @@ module Utils
         Rails.configuration.host
       end
 
+      # @deprecated
       def send_reset_password_email!(data)
         data = to_hash(data)
         token = data[:token]

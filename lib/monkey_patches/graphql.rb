@@ -42,9 +42,9 @@ GraphQL::Relay::Mutation.class_exec do
 
             service_instance.serve(action)
 
-            service_instance.instance_variable_names.select { |name| name != '@action_name' }.mash do |name|
+            service_instance.instance_variable_names.select { |name| name != '@action_name' }.map do |name|
               [name[1..-1].to_sym, service_instance.instance_variable_get(:"#{name}")]
-            end
+            end.to_h
 
           end
         rescue => e

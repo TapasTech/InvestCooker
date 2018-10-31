@@ -1,6 +1,7 @@
 require 'invest_cooker/base_document_parser'
 require 'invest_cooker/do_not_change_gli_fields'
 
+# @deprecated
 module InvestCooker
   module MAYI
     class DocumentParser < BaseDocumentParser
