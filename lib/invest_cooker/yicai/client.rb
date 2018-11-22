@@ -1,3 +1,4 @@
+# @deprecated
 module InvestCooker
   module YICAI
     class Client

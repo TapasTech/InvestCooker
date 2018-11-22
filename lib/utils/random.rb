@@ -9,7 +9,19 @@ module Utils
     def self.weak_password(length)
       # SecureRandom.urlsafe_base64生成的字串长度 >= length
       # 所以这里取 [0...length]
-      SecureRandom.urlsafe_base64(length)[0...length]
+
+      head_length = length - 4
+      head = SecureRandom.urlsafe_base64(head_length)[0...head_length]
+      tail = [
+        (0..9).to_a,
+        ('a'..'z').to_a,
+        ('A'..'Z').to_a,
+        ['#', '?', '!', '@', '$', '%', '^', '&', '*', '-']
+      ].map(&:sample)
+       .map(&:to_s)
+       .join
+
+      "#{head}#{tail}"
     end
   end
 end
