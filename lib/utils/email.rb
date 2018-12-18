@@ -65,7 +65,7 @@ module Utils
         port = ENV.fetch('HUGO_INVEST_SERVER_MAILER_PORT') { 25 }
 
         smtp = { address: 'smtp.dtcj.com',
-          port: port,
+          port: port.to_i,
           domain: 'dtcj.com',
           user_name: user_name,
           password: password,
