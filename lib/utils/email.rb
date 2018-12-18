@@ -62,9 +62,10 @@ module Utils
       def send_email(email:, subject:, text_body: '', html_body: '', attach_path: nil)
         user_name = ENV['HUGO_INVEST_SERVER_MAILER_USERNAME']
         password = ENV['HUGO_INVEST_SERVER_MAILER_PASSWORD']
+        port = ENV.fetch('HUGO_INVEST_SERVER_MAILER_PORT') { 25 }
 
         smtp = { address: 'smtp.dtcj.com',
-          port: 25,
+          port: port,
           domain: 'dtcj.com',
           user_name: user_name,
           password: password,
