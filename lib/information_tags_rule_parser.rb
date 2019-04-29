@@ -51,6 +51,7 @@ class InformationTagsRuleParser
   FS = ->(f) {
     vs = F.keys.select { |k| f.index(k) }
     fail "invalid rule: #{f}" unless vs.present? && vs.size == 1
+    fail "invalid rule: #{f}" if f.scan(vs.first).size > 1
     VS.(f, vs.first)
   }
 
