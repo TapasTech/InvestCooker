@@ -169,6 +169,7 @@ module Utils
             remove_blank_node
             replace_all_hyper_link_with_span_tag
             replace_all_new_line_wrap_tag_with_p_tag
+            replace_useless_tags_in_p_tag_with_content
           ).each do |method|
             ClassMethods.send method, node
           end
@@ -230,7 +231,7 @@ module Utils
 
         USELESS_TAGS = %w(script input style textarea iframe)
         def self.remove_useless_tags(node)
-          node.xpath('//comment()').each(&:unlink)
+          node.xpath('.//comment()').each(&:unlink)
           USELESS_TAGS.each do |tag_name|
             node.css(tag_name).unlink
           end
@@ -241,6 +242,12 @@ module Utils
           node.attributes.keys.each do |attribute|
             node.remove_attribute attribute unless
               node.name == 'img' && %w(src alt).include?(attribute)
+          end
+        end
+
+        def self.replace_useless_tags_in_p_tag_with_content(node)
+          if node.name == 'p'
+            node.replace node.content
           end
         end
 
