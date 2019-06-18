@@ -45,7 +45,7 @@ module Utils
       RestClient::Request.execute(
         method: :get,
         url: img_url,
-        timeout: 3
+        timeout: 10
       ).body
     end
 
