@@ -60,6 +60,25 @@ module Quantum
     end
   end
 
+  # 帮助创建存储进程使用的 client
+  module Client
+    def self.create(service_name, redis_url:, size: 5, timeout: 5)
+      @clients ||= {}
+      @clients[service_name] =
+        Sidekiq::Client.new(ConnectionPool.new(size: size, timeout: timeout) do
+          fail 'quantum build client must provide redis_url' if redis_url.blank?
+
+          Redis.new(redis_url)
+        end)
+      @clients[service_name]
+    end
+
+    def self.find(service_name)
+      @clients ||= {}
+      @clients[service_name]
+    end
+  end
+
   class << self
     # 给其他服务推送消息
     #
@@ -129,7 +148,8 @@ module Quantum
 
       job_client =
         client ||
-        fetch_job_client(from, to, event)
+        fetch_job_client(from, to, event) ||
+        Client.find(to)
 
       case job_client
       when Sidekiq::Client
@@ -156,6 +176,18 @@ module Quantum
     # end
     def config(&block)
       class_exec(&block)
+    end
+
+    # 创建全局客户端 DSL
+    # Quantum.config do
+    #   client :bi, redis_url: ENV.fetch('QUANTUM_REDIS_URL_BI'), size: 20
+    #
+    #   tunnel from: :newsfeed, to: :bi do
+    #     event :fetch_one_error, queue: :"#{ENV['RAILS_ENV']}_bi_default", job: 'Newsfeed::CreateErrorRecordJob'
+    #   end
+    # end
+    def client(service_name, redis_url:, size: 5, timeout: 5)
+      Client.create(service_name, redis_url: redis_url, size: 5, timeout: 5)
     end
 
     # 连接到其他的服务 DSL
