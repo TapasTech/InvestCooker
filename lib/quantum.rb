@@ -68,7 +68,7 @@ module Quantum
         Sidekiq::Client.new(ConnectionPool.new(size: size, timeout: timeout) do
           fail 'quantum build client must provide redis_url' if redis_url.blank?
 
-          Redis.new(redis_url)
+          Redis.new(url: redis_url)
         end)
       @clients[service_name]
     end
