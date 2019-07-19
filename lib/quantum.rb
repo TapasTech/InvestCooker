@@ -63,11 +63,10 @@ module Quantum
   # 帮助创建存储进程使用的 client
   module Client
     def self.create(service_name, redis_url:, size: 5, timeout: 5)
+      return if redis_url.blank?
       @clients ||= {}
       @clients[service_name] =
         Sidekiq::Client.new(ConnectionPool.new(size: size, timeout: timeout) do
-          fail 'quantum build client must provide redis_url' if redis_url.blank?
-
           Redis.new(url: redis_url)
         end)
       @clients[service_name]
