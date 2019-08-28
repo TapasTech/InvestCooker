@@ -36,6 +36,9 @@ class InformationTagsRuleParser
     '来源为' => ->(i, c) { i.origin_website == c },
     '来源不为' => ->(i, c) { i.origin_website != c },
     '头图为' => ->(i, c) { i.cover_pictures.present? }, # NOTE 目前只校验存在
+    '行业板块为' => ->(i, c) { i.stock_industry_codes.present? }, # NOTE 目前只校验存在
+    '地域板块为' => ->(i, c) { i.stock_region_codes.present? }, # NOTE 目前只校验存在
+    '概念板块为' => ->(i, c) { i.stock_concept_codes.present? }, # NOTE 目前只校验存在
     '作者不为' => ->(i, c) { i.author != c },
     '作者为' => ->(i, c) { i.author == c },
     '稿件类型为' => -> (i, c) { i.display_type == c },
