@@ -17,7 +17,7 @@ module InvestAdmin
            .each do |klass|
              h = InvestAdmin::BusHandler.find_or_initialize_by(name: name, value: klass.name)
              h.description = klass.try(:description)
-             h.save
+             h.save if h.changed?
            end
       end
     end
