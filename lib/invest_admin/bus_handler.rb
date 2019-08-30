@@ -15,11 +15,9 @@ module InvestAdmin
            .map{ |n| n.split('.').first.camelize }
            .map { |class_name| class_name.constantize }
            .each do |klass|
-             InvestAdmin::BusHandler.find_or_create_by(
-               name: name,
-               value: klass.name,
-               description: klass.try(:description)
-             )
+             h = InvestAdmin::BusHandler.find_or_initialize_by(name: name, value: klass.name)
+             h.description = klass.try(:description)
+             h.save
            end
       end
     end
