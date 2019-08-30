@@ -6,6 +6,7 @@ module InvestAdmin
 
     field :name,  type: String
     field :value, type: String
+    field :description, type: String
 
     def self.sync!
       %w(filter driver modifier adapter).each do |name|
