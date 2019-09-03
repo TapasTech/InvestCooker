@@ -7,6 +7,7 @@ module InvestAdmin
     field :name,  type: String
     field :value, type: String
     field :description, type: String
+    field :meta_fields, type: Array, default: -> { [] }
 
     def self.sync!
       %w(filter driver modifier adapter).each do |name|
@@ -17,6 +18,7 @@ module InvestAdmin
            .each do |klass|
              h = InvestAdmin::BusHandler.find_or_initialize_by(name: name, value: klass.name)
              h.description = klass.try(:description)
+             h.meta_fields = klass.try(:meta_fields).to_a
              h.save if h.changed?
            end
       end
