@@ -43,7 +43,8 @@ class InformationTagsRuleParser
     '作者为' => ->(i, c) { i.author == c },
     '稿件类型为' => -> (i, c) { i.display_type == c },
     '视频审核状态为' => -> (i, c) { i.video_audit_state == c },
-    '发布到了' => -> (i, c) { i.display_published_receiver_names.to_a.include?(c) }
+    '发布到了' => -> (i, c) { i.display_published_receiver_names.to_a.include?(c) },
+    '属性标签为' => -> (i, c) { i&.ant_scene_labels.to_a.include?(c) }
   }
 
   VS = -> (f, e) {
