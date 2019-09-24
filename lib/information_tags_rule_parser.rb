@@ -28,6 +28,7 @@ class InformationTagsRuleParser
     '栏目='    => ->(i, c) { i.column_names.include?(c) },
     '标题开头为' => ->(i, c) { i.title&.index(c) == 0 },
     '专题为'    => ->(i, c) { i.special_subjects.include?(c) },
+    '专题不为'    => ->(i, c) { !i.special_subjects.include?(c) },
     '内容标签为' => ->(i, c) { i.tag_info&.content_tags.to_a.include?(c) },
     '子栏目为' => ->(i, c) { i.tag_info&.sub_column == c },
     '子栏目不为' => ->(i, c) { i.tag_info&.sub_column != c },
