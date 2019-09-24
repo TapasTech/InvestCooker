@@ -30,6 +30,7 @@ class InformationTagsRuleParser
     '专题为'    => ->(i, c) { i.special_subjects.include?(c) },
     '专题不为'    => ->(i, c) { !i.special_subjects.include?(c) },
     '内容标签为' => ->(i, c) { i.tag_info&.content_tags.to_a.include?(c) },
+    '内容标签不为' => ->(i, c) { !i.tag_info&.content_tags.to_a.include?(c) },
     '子栏目为' => ->(i, c) { i.tag_info&.sub_column == c },
     '子栏目不为' => ->(i, c) { i.tag_info&.sub_column != c },
     '运营标签为' => ->(i, c) { i.tag_info&.opr_tags.to_a.map(&:name).include?(c) },
