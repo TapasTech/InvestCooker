@@ -26,7 +26,10 @@ module Utils
     end
 
     def self.upload_nokogiri(img_node, placeholder: nil)
-      cdn_src = Utils::Image.upload_cdn(img_node['src']) rescue nil
+      origin_src = img_node['src'].to_s
+      src = handle_src(origin_src)
+
+      cdn_src = Utils::Image.upload_cdn(src) rescue nil
 
       if cdn_src.present? && size_of(cdn_src).to_i > 0
         img_node['src'] = cdn_src
@@ -41,11 +44,15 @@ module Utils
       end
     end
 
+    def self.handle_src(origin_src)
+      origin_src.start_with?("//") ? "http:#{origin_src}" : origin_src
+    end
+
     def self.download(img_url)
       RestClient::Request.execute(
         method: :get,
         url: img_url,
-        timeout: 10
+        timeout: 30
       ).body
     end
 
