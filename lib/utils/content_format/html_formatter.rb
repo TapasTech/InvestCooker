@@ -192,8 +192,8 @@ module Utils
         def self.remove_blank_node(node)
           lambda do |node_name|
             return if node_name == 'img'
-            return remove_blank_br_node(node) if node_name == 'br'
-            remove_blank_none_br_node(node)
+            # return remove_blank_br_node(node) if node_name == 'br'
+            # remove_blank_none_br_node(node)
           end[node.name]
         end
 
