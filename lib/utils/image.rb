@@ -156,12 +156,7 @@ module Utils
           CDNStore.new(url, holder.key)
         end
 
-      # 检查图片是否已存在，存在的图片不进行上传
-      if holder.cdn.exists?
-        return holder.cdn.cdn_url
-      else
-        return holder.upload
-      end
+      return holder.upload
     end
 
     # 通过挂载 OSS volume 上传
