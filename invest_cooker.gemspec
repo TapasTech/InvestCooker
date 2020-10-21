@@ -8,4 +8,8 @@ Gem::Specification.new do |s|
   s.email    = 'lifeng@dtcj.com'
   s.licenses = ['Nonstandard']
   s.files    = Dir[File.join("**", "lib", "**", "*.rb")]
+
+  s.add_dependency 'activesupport'
+  s.add_dependency 'aliyun-sdk'
+  s.add_dependency 'fastimage'
 end
