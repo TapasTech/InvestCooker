@@ -1,0 +1,541 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ACMachine	lib/utils/jydb_stock/ac_machine.rb	/^    class ACMachine$/;"	c	class:Utils.JYDBStock
+AbstractScheduleWorker	lib/abstract_schedule_worker.rb	/^class AbstractScheduleWorker$/;"	c
+AcceptedOrganizationsByOrigin	lib/invest_admin/accepted_organizations_by_origin.rb	/^  class AcceptedOrganizationsByOrigin$/;"	c	class:InvestAdmin
+ActiveSupport	lib/monkey_patches/timezone.rb	/^class ActiveSupport::TimeZone$/;"	c
+Adder	lib/utils/jydb_stock/adder.rb	/^    class Adder$/;"	c	class:Utils.JYDBStock
+Admin	lib/invest_admin/admin.rb	/^  class Admin$/;"	c	class:InvestAdmin
+AliyunOSS	lib/cdn/aliyun_oss.rb	/^  class AliyunOSS$/;"	c	class:CDN
+AliyunOSSToken	lib/cdn/aliyun_oss_token.rb	/^  class AliyunOSSToken$/;"	c	class:CDN
+AntVodSign	lib/concerns/ant_vod_sign.rb	/^module AntVodSign$/;"	m
+AtomicJob	lib/concerns/atomic_job.rb	/^module AtomicJob$/;"	m
+AtomicPerform	lib/concerns/atomic_job.rb	/^  module AtomicPerform$/;"	m	class:AtomicJob
+BaseDocumentParser	lib/invest_cooker/base_document_parser.rb	/^class BaseDocumentParser$/;"	c
+BasicFormatter	lib/utils/content_format/basic_formatter.rb	/^    class BasicFormatter$/;"	c	class:Utils.ContentFormat
+BusHandler	lib/invest_admin/bus_handler.rb	/^  class BusHandler$/;"	c	class:InvestAdmin
+CBN	lib/invest_cooker/cbn.rb	/^  module CBN$/;"	m	class:InvestCooker
+CBN	lib/invest_cooker/cbn/client.rb	/^  module CBN$/;"	m	class:InvestCooker
+CDN	lib/cdn/aliyun_oss.rb	/^module CDN$/;"	m
+CDN	lib/cdn/aliyun_oss_token.rb	/^module CDN$/;"	m
+CDN	lib/cdn/qiniu_token.rb	/^module CDN$/;"	m
+CDNInfo	lib/invest_admin/cdn_info.rb	/^  class CDNInfo$/;"	c	class:InvestAdmin
+CDNStore	lib/utils/image.rb	/^    class CDNStore$/;"	c	class:Utils.Image
+Cache	lib/utils/cache.rb	/^  class Cache$/;"	c	class:Utils
+Callback	lib/quantum.rb	/^  module Callback$/;"	m	class:Quantum
+Callbacks	lib/monkey_patches/elasticsearch.rb	/^  module Callbacks$/;"	m	class:Elasticsearch
+CheckGenerator	lib/invest_cooker/yicai/check_generator.rb	/^    class CheckGenerator$/;"	c	class:InvestCooker.YICAI
+ClassMethods	lib/concerns/atomic_job.rb	/^  module ClassMethods$/;"	m	class:AtomicJob
+ClassMethods	lib/utils/content_format/html_formatter.rb	/^      module ClassMethods$/;"	m	class:Utils.ContentFormat.HTMLFormatter.formatted_content
+ClassModule	lib/dsl/market_periods_dsl.rb	/^  module ClassModule$/;"	m
+Client	lib/invest_cooker/cbn/client.rb	/^    class Client$/;"	c	class:InvestCooker.CBN
+Client	lib/invest_cooker/gli/client.rb	/^    class Client$/;"	c	class:InvestCooker.GLI
+Client	lib/invest_cooker/jjgcb/client.rb	/^    class Client$/;"	c	class:InvestCooker.JJGCB
+Client	lib/invest_cooker/mayi/client.rb	/^    class Client$/;"	c	class:InvestCooker.MAYI
+Client	lib/invest_cooker/ycwb/client.rb	/^    class Client$/;"	c	class:InvestCooker.YCWB
+Client	lib/invest_cooker/yicai/client.rb	/^    class Client$/;"	c	class:InvestCooker.YICAI
+Client	lib/quantum.rb	/^  module Client$/;"	m	class:Quantum
+ComposeOrganizationMergeRule	lib/invest_admin/compose_organization_merge_rule.rb	/^  class ComposeOrganizationMergeRule$/;"	c	class:InvestAdmin
+Configuration	lib/invest_cooker/configuration.rb	/^  class Configuration$/;"	c	class:InvestCooker
+ContentFormat	lib/utils/content_format.rb	/^  module ContentFormat$/;"	m	class:Utils
+ContentFormat	lib/utils/content_format/basic_formatter.rb	/^  module ContentFormat$/;"	m	class:Utils
+ContentFormat	lib/utils/content_format/html_formatter.rb	/^  module ContentFormat$/;"	m	class:Utils
+ContentFormat	lib/utils/content_format/string_formatter.rb	/^  module ContentFormat$/;"	m	class:Utils
+ContentTag	lib/invest_admin/content_tag.rb	/^  class ContentTag$/;"	c	class:InvestAdmin
+CopyrightWhiteListByOrigin	lib/invest_admin/copyright_white_list_by_origin.rb	/^  class CopyrightWhiteListByOrigin$/;"	c	class:InvestAdmin
+DebugLogger	lib/debug_logger.rb	/^class DebugLogger < Logger$/;"	c
+DefaultPrivilege	lib/invest_admin/default_privilege.rb	/^  class DefaultPrivilege$/;"	c	class:InvestAdmin
+DingTalk	lib/utils/ding_talk.rb	/^  class DingTalk$/;"	c	class:Utils
+DoNotChangeGLIFields	lib/invest_cooker/do_not_change_gli_fields.rb	/^module DoNotChangeGLIFields$/;"	m
+DocumentParser	lib/invest_cooker/gli/document_parser.rb	/^    class DocumentParser < BaseDocumentParser$/;"	c	class:InvestCooker.GLI
+DocumentParser	lib/invest_cooker/mayi/document_parser.rb	/^    class DocumentParser < BaseDocumentParser$/;"	c	class:InvestCooker.MAYI
+EachTextAdder	lib/utils/jydb_stock/each_text_adder.rb	/^    class EachTextAdder$/;"	c	class:Utils.JYDBStock
+Elasticsearch	lib/monkey_patches/elasticsearch.rb	/^class Elasticsearch::Model::Indexing::Mappings$/;"	c
+Elasticsearch	lib/monkey_patches/elasticsearch.rb	/^module Elasticsearch::Model::Adapter::Mongoid$/;"	m
+Elasticsearch	lib/monkey_patches/elasticsearch.rb	/^module Elasticsearch::Model::Serializing::InstanceMethods$/;"	m
+Email	lib/utils/email.rb	/^  class Email$/;"	c	class:Utils
+Extractor	lib/utils/jydb_stock/extractor.rb	/^    class Extractor$/;"	c	class:Utils.JYDBStock
+FileHolder	lib/utils/image.rb	/^    class FileHolder$/;"	c	class:Utils.Image
+ForbiddenComposeOrganization	lib/invest_admin/forbidden_compose_organization.rb	/^  class ForbiddenComposeOrganization$/;"	c	class:InvestAdmin
+ForbiddenOriginWebsite	lib/invest_admin/forbidden_origin_website.rb	/^  class ForbiddenOriginWebsite$/;"	c	class:InvestAdmin
+ForbiddenWord	lib/invest_admin/forbidden_word.rb	/^  class ForbiddenWord$/;"	c	class:InvestAdmin
+GLI	lib/invest_cooker/gli.rb	/^  module GLI$/;"	m	class:InvestCooker
+GLI	lib/invest_cooker/gli/client.rb	/^  module GLI$/;"	m	class:InvestCooker
+GLI	lib/invest_cooker/gli/document_parser.rb	/^  module GLI$/;"	m	class:InvestCooker
+GLI	lib/invest_cooker/gli/record.rb	/^  module GLI$/;"	m	class:InvestCooker
+GLI	lib/invest_cooker/gli/service.rb	/^  module GLI$/;"	m	class:InvestCooker
+GLI	lib/invest_cooker/gli/validator.rb	/^  module GLI$/;"	m	class:InvestCooker
+HTMLFormatter	lib/utils/content_format/html_formatter.rb	/^    class HTMLFormatter < BasicFormatter$/;"	c	class:Utils.ContentFormat
+Hola	lib/hola.rb	/^class Hola$/;"	c
+HostInfo	lib/hola.rb	/^  class HostInfo$/;"	c	class:Hola
+Html	lib/utils/html.rb	/^  class Html$/;"	c	class:Utils
+Image	lib/utils/image.rb	/^  class Image$/;"	c	class:Utils
+ImportantOriginWebsite	lib/invest_admin/important_origin_website.rb	/^  class ImportantOriginWebsite$/;"	c	class:InvestAdmin
+ImportantTitleWord	lib/invest_admin/important_title_word.rb	/^  class ImportantTitleWord$/;"	c	class:InvestAdmin
+Importing	lib/monkey_patches/elasticsearch.rb	/^  module Importing$/;"	m
+InformationTagsRule	lib/invest_admin/information_tags_rule.rb	/^  class InformationTagsRule$/;"	c	class:InvestAdmin
+InformationTagsRuleParser	lib/information_tags_rule_parser.rb	/^class InformationTagsRuleParser$/;"	c
+InvestAdmin	lib/invest_admin.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/accepted_organizations_by_origin.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/admin.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/bus_handler.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/cdn_info.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/compose_organization_merge_rule.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/content_tag.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/copyright_white_list_by_origin.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/default_privilege.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/forbidden_compose_organization.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/forbidden_origin_website.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/forbidden_word.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/important_origin_website.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/important_title_word.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/information_tags_rule.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/mayi_live_origin_website_output_black_list.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/naive_filter_config.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/opr_tag.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/origin_website_merge_rule.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/relative_stock.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/release_note.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/statistics_monthly_goal.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/stock_chinese_name_abbr.rb	/^module InvestAdmin$/;"	m
+InvestAdmin	lib/invest_admin/sub_column.rb	/^module InvestAdmin$/;"	m
+InvestCooker	lib/invest_cooker.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/cbn.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/cbn/client.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/configuration.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/gli.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/gli/client.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/gli/document_parser.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/gli/record.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/gli/service.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/gli/validator.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/jjgcb.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/jjgcb/client.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/mayi.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/mayi/client.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/mayi/document_parser.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/mayi/request_record.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/ycwb.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/ycwb/client.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/yicai.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/yicai/check_generator.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/yicai/client.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/yicai/push_client.rb	/^module InvestCooker$/;"	m
+InvestCooker	lib/invest_cooker/yicai/request_record.rb	/^module InvestCooker$/;"	m
+InvestDocsStub	lib/concerns/invest_docs_stub.rb	/^module InvestDocsStub$/;"	m
+JJGCB	lib/invest_cooker/jjgcb.rb	/^  module JJGCB$/;"	m	class:InvestCooker
+JJGCB	lib/invest_cooker/jjgcb/client.rb	/^  module JJGCB$/;"	m	class:InvestCooker
+JYDBStock	lib/utils/jydb_stock.rb	/^  module JYDBStock$/;"	m	class:Utils
+JYDBStock	lib/utils/jydb_stock/ac_machine.rb	/^  module JYDBStock$/;"	m	class:Utils
+JYDBStock	lib/utils/jydb_stock/adder.rb	/^  module JYDBStock$/;"	m	class:Utils
+JYDBStock	lib/utils/jydb_stock/each_text_adder.rb	/^  module JYDBStock$/;"	m	class:Utils
+JYDBStock	lib/utils/jydb_stock/extractor.rb	/^  module JYDBStock$/;"	m	class:Utils
+JYDBStock	lib/utils/jydb_stock/skipper.rb	/^  module JYDBStock$/;"	m	class:Utils
+MAYI	lib/invest_cooker/mayi.rb	/^  module MAYI$/;"	m	class:InvestCooker
+MAYI	lib/invest_cooker/mayi/client.rb	/^  module MAYI$/;"	m	class:InvestCooker
+MAYI	lib/invest_cooker/mayi/document_parser.rb	/^  module MAYI$/;"	m	class:InvestCooker
+MAYI	lib/invest_cooker/mayi/request_record.rb	/^  module MAYI$/;"	m	class:InvestCooker
+MAYILiveOriginWebsiteOutputBlackList	lib/invest_admin/mayi_live_origin_website_output_black_list.rb	/^  class MAYILiveOriginWebsiteOutputBlackList$/;"	c	class:InvestAdmin
+NaiveFilterConfig	lib/invest_admin/naive_filter_config.rb	/^  class NaiveFilterConfig$/;"	c	class:InvestAdmin
+OSSVolumeStore	lib/utils/image.rb	/^    class OSSVolumeStore$/;"	c	class:Utils.Image
+OprTag	lib/invest_admin/opr_tag.rb	/^  class OprTag$/;"	c	class:InvestAdmin
+OriginWebsiteMergeRule	lib/invest_admin/origin_website_merge_rule.rb	/^  class OriginWebsiteMergeRule$/;"	c	class:InvestAdmin
+PinYin	lib/monkey_patches/pinyin.rb	/^module PinYin$/;"	m
+Pod	lib/hola.rb	/^  class Pod$/;"	c	class:Hola
+PushClient	lib/invest_cooker/yicai/push_client.rb	/^    class PushClient$/;"	c	class:InvestCooker.YICAI
+QiniuToken	lib/cdn/qiniu_token.rb	/^  class QiniuToken$/;"	c	class:CDN
+Quantum	lib/quantum.rb	/^module Quantum$/;"	m
+RSA	lib/utils/rsa.rb	/^  class RSA$/;"	c	class:Utils
+Random	lib/utils/random.rb	/^  class Random$/;"	c	class:Utils
+Record	lib/invest_cooker/gli/record.rb	/^    class Record$/;"	c	class:InvestCooker.GLI
+RelativeStock	lib/invest_admin/relative_stock.rb	/^  class RelativeStock$/;"	c	class:InvestAdmin
+ReleaseNote	lib/invest_admin/release_note.rb	/^  class ReleaseNote$/;"	c	class:InvestAdmin
+RequestRecord	lib/invest_cooker/mayi/request_record.rb	/^    class RequestRecord$/;"	c	class:InvestCooker.MAYI
+RequestRecord	lib/invest_cooker/yicai/request_record.rb	/^    class RequestRecord$/;"	c	class:InvestCooker.YICAI
+Service	lib/invest_cooker/gli/service.rb	/^    class Service$/;"	c	class:InvestCooker.GLI
+Service	lib/utils/ding_talk.rb	/^    class Service$/;"	c	class:Utils.DingTalk
+Skipper	lib/utils/jydb_stock/skipper.rb	/^    class Skipper$/;"	c	class:Utils.JYDBStock
+SmoothCache	lib/utils/smooth_cache.rb	/^  class SmoothCache$/;"	c	class:Utils
+StatisticsMonthlyGoal	lib/invest_admin/statistics_monthly_goal.rb	/^  class StatisticsMonthlyGoal$/;"	c	class:InvestAdmin
+StockChineseNameAbbr	lib/invest_admin/stock_chinese_name_abbr.rb	/^  class StockChineseNameAbbr$/;"	c	class:InvestAdmin
+StringFormatter	lib/utils/content_format/string_formatter.rb	/^    class StringFormatter < BasicFormatter$/;"	c	class:Utils.ContentFormat
+SubColumn	lib/invest_admin/sub_column.rb	/^  class SubColumn$/;"	c	class:InvestAdmin
+UrlHolder	lib/utils/image.rb	/^    class UrlHolder$/;"	c	class:Utils.Image
+Utils	lib/utils.rb	/^module Utils$/;"	m
+Utils	lib/utils/cache.rb	/^module Utils$/;"	m
+Utils	lib/utils/content_format.rb	/^module Utils$/;"	m
+Utils	lib/utils/content_format/basic_formatter.rb	/^module Utils$/;"	m
+Utils	lib/utils/content_format/html_formatter.rb	/^module Utils$/;"	m
+Utils	lib/utils/content_format/string_formatter.rb	/^module Utils$/;"	m
+Utils	lib/utils/ding_talk.rb	/^module Utils$/;"	m
+Utils	lib/utils/email.rb	/^module Utils$/;"	m
+Utils	lib/utils/html.rb	/^module Utils$/;"	m
+Utils	lib/utils/image.rb	/^module Utils$/;"	m
+Utils	lib/utils/jydb_stock.rb	/^module Utils$/;"	m
+Utils	lib/utils/jydb_stock/ac_machine.rb	/^module Utils$/;"	m
+Utils	lib/utils/jydb_stock/adder.rb	/^module Utils$/;"	m
+Utils	lib/utils/jydb_stock/each_text_adder.rb	/^module Utils$/;"	m
+Utils	lib/utils/jydb_stock/extractor.rb	/^module Utils$/;"	m
+Utils	lib/utils/jydb_stock/skipper.rb	/^module Utils$/;"	m
+Utils	lib/utils/random.rb	/^module Utils$/;"	m
+Utils	lib/utils/rsa.rb	/^module Utils$/;"	m
+Utils	lib/utils/smooth_cache.rb	/^module Utils$/;"	m
+ValidImageSize	lib/utils/image.rb	/^    module ValidImageSize$/;"	m	class:Utils.Image
+Validation	lib/invest_cooker/gli/validator.rb	/^      class Validation < Struct.new(:message)$/;"	c	class:InvestCooker.GLI.Validator
+Validator	lib/invest_cooker/gli/validator.rb	/^    class Validator$/;"	c	class:InvestCooker.GLI
+WithTempFile	lib/concerns/with_temp_file.rb	/^module WithTempFile$/;"	m
+YCWB	lib/invest_cooker/ycwb.rb	/^  module YCWB$/;"	m	class:InvestCooker
+YCWB	lib/invest_cooker/ycwb/client.rb	/^  module YCWB$/;"	m	class:InvestCooker
+YICAI	lib/invest_cooker/yicai.rb	/^  module YICAI$/;"	m	class:InvestCooker
+YICAI	lib/invest_cooker/yicai/check_generator.rb	/^  module YICAI$/;"	m	class:InvestCooker
+YICAI	lib/invest_cooker/yicai/client.rb	/^  module YICAI$/;"	m	class:InvestCooker
+YICAI	lib/invest_cooker/yicai/push_client.rb	/^  module YICAI$/;"	m	class:InvestCooker
+YICAI	lib/invest_cooker/yicai/request_record.rb	/^  module YICAI$/;"	m	class:InvestCooker
+__find_in_batches	lib/monkey_patches/elasticsearch.rb	/^    def __find_in_batches(options={}, &block)$/;"	f	class:Importing
+__now__	lib/abstract_schedule_worker.rb	/^  def __now__$/;"	f	class:AbstractScheduleWorker
+__ordered_names__	lib/utils/jydb_stock/ac_machine.rb	/^      def __ordered_names__(list)$/;"	f	class:Utils.JYDBStock.ACMachine
+__transform	lib/monkey_patches/elasticsearch.rb	/^    def __transform$/;"	f	class:Importing
+add	lib/hola.rb	/^  def add(hosts)$/;"	f	class:Hola
+add_config	lib/dsl/class_config_dsl.rb	/^      def add_config(name)$/;"	f
+add_one_stock_code	lib/utils/jydb_stock/adder.rb	/^      def add_one_stock_code$/;"	f	class:Utils.JYDBStock.Adder
+add_one_stock_code	lib/utils/jydb_stock/each_text_adder.rb	/^      def add_one_stock_code(name, codes, skip)$/;"	f	class:Utils.JYDBStock.EachTextAdder
+add_stock	lib/utils/jydb_stock.rb	/^    def add_stock$/;"	f	class:Utils.JYDBStock
+add_stock_codes!	lib/utils/jydb_stock.rb	/^    def add_stock_codes!$/;"	f	class:Utils.JYDBStock
+add_two_chinese_space_before_paragraph	lib/utils/content_format/html_formatter.rb	/^        def self.add_two_chinese_space_before_paragraph(p_tag)$/;"	F	class:Utils.ContentFormat.HTMLFormatter.formatted_content.ClassMethods
+after_dump	lib/invest_cooker/base_document_parser.rb	/^    def after_dump(&block)$/;"	f	class:BaseDocumentParser
+ant_remove_blank	lib/utils/content_format.rb	/^    def ant_remove_blank$/;"	f	class:Utils.ContentFormat
+app_key	lib/invest_cooker/yicai/check_generator.rb	/^      def self.app_key$/;"	F	class:InvestCooker.YICAI.CheckGenerator
+aquire_lock	lib/concerns/atomic_job.rb	/^  def aquire_lock$/;"	f
+as_html?	lib/utils/content_format/html_formatter.rb	/^      def as_html?$/;"	f	class:Utils.ContentFormat.HTMLFormatter
+as_indexed_json	lib/monkey_patches/elasticsearch.rb	/^  def as_indexed_json(options={})$/;"	f	class:Elasticsearch
+attribute	lib/invest_cooker/base_document_parser.rb	/^    def attribute(name, &block)$/;"	f	class:BaseDocumentParser
+before	lib/dsl/search_filter_dsl.rb	/^  def before(&block)$/;"	f
+before_dump	lib/invest_cooker/base_document_parser.rb	/^    def before_dump(&block)$/;"	f	class:BaseDocumentParser
+build	lib/utils/smooth_cache.rb	/^    def build(data, time=TIME_ZONE.now)$/;"	f	class:Utils.SmoothCache
+build_array_json	lib/monkey_patches/elasticsearch.rb	/^  def build_array_json(mappings, model, json)$/;"	f	class:Elasticsearch
+build_hash_json	lib/monkey_patches/elasticsearch.rb	/^  def build_hash_json(mappings, model, json)$/;"	f
+build_indexed_json	lib/monkey_patches/elasticsearch.rb	/^  def build_indexed_json(mappings, model, json)$/;"	f	class:Elasticsearch
+cache_key	lib/concerns/cache_by_params.rb	/^    def cache_key$/;"	f
+cbn_rsa_private	lib/utils/rsa.rb	/^      def cbn_rsa_private$/;"	f	class:Utils.RSA
+check	lib/invest_cooker/ycwb/client.rb	/^      def check$/;"	f	class:InvestCooker.YCWB.Client
+check_list	lib/invest_cooker/ycwb/client.rb	/^      def self.check_list$/;"	F	class:InvestCooker.YCWB.Client
+clear!	lib/hola.rb	/^  def clear!$/;"	f	class:Hola
+clear_class	lib/utils/content_format/html_formatter.rb	/^        def self.clear_class(node)$/;"	F	class:Utils.ContentFormat.HTMLFormatter.formatted_content.ClassMethods.remove_blank_node
+clear_content_by_dom	lib/utils/content_format/html_formatter.rb	/^      def clear_content_by_dom$/;"	f	class:Utils.ContentFormat.HTMLFormatter.formatted_content
+clear_one_node_by_dom	lib/utils/content_format/html_formatter.rb	/^        def self.clear_one_node_by_dom(node)$/;"	F	class:Utils.ContentFormat.HTMLFormatter.formatted_content.ClassMethods
+clear_style	lib/utils/content_format/html_formatter.rb	/^      def clear_style$/;"	f	class:Utils.ContentFormat.HTMLFormatter.formatted_content
+clear_style_of_content	lib/utils/content_format.rb	/^    def clear_style_of_content$/;"	f	class:Utils.ContentFormat
+clear_style_of_content_2	lib/utils/content_format.rb	/^    def clear_style_of_content_2$/;"	f	class:Utils.ContentFormat
+clear_style_of_content_summary_title	lib/utils/content_format.rb	/^    def clear_style_of_content_summary_title$/;"	f	class:Utils.ContentFormat
+clear_style_of_summary	lib/utils/content_format.rb	/^    def clear_style_of_summary$/;"	f	class:Utils.ContentFormat
+clear_style_of_title	lib/utils/content_format.rb	/^    def clear_style_of_title$/;"	f	class:Utils.ContentFormat
+client	lib/quantum.rb	/^    def client(service_name, redis_url:, size: 5, timeout: 5)$/;"	f	class:Quantum.Client
+client_info	lib/utils/cache.rb	/^    def self.client_info$/;"	F	class:Utils.Cache
+code_hash	lib/invest_admin/relative_stock.rb	/^      def code_hash$/;"	f	class:InvestAdmin.RelativeStock
+collection	lib/dsl/search_filter_dsl.rb	/^  def collection(&block)$/;"	f
+config	lib/information_tags_rule_parser.rb	/^  def config$/;"	f
+config	lib/quantum.rb	/^    def config(&block)$/;"	f	class:Quantum.Client
+config_lock	lib/concerns/atomic_job.rb	/^  def config_lock$/;"	f	class:AtomicJob
+configuration	lib/cdn/aliyun_oss.rb	/^    def configuration$/;"	f	class:CDN.AliyunOSS
+configuration	lib/invest_cooker.rb	/^    def configuration$/;"	f	class:InvestCooker
+configuration	lib/utils/html.rb	/^      def configuration$/;"	f	class:Utils.Html
+configure	lib/invest_cooker.rb	/^    def configure$/;"	f	class:InvestCooker
+connection	lib/invest_cooker/cbn/client.rb	/^      def connection(&block)$/;"	f	class:InvestCooker.CBN.Client
+connection	lib/invest_cooker/gli/client.rb	/^      def connection(&block)$/;"	f	class:InvestCooker.GLI.Client.read
+content	lib/utils/content_format/basic_formatter.rb	/^      def content$/;"	f	class:Utils.ContentFormat.BasicFormatter
+content_index_scan	lib/utils/jydb_stock/skipper.rb	/^      def content_index_scan(name)$/;"	f	class:Utils.JYDBStock.Skipper
+content_to_plain_text	lib/utils/content_format.rb	/^    def content_to_plain_text$/;"	f	class:Utils.ContentFormat
+continuing_register	lib/hola.rb	/^    def continuing_register(service=ENV['hola_service'], redis: nil)$/;"	f	class:Hola
+create	lib/invest_cooker/gli/record.rb	/^        def create(data_hash)$/;"	f	class:InvestCooker.GLI.Record
+create	lib/quantum.rb	/^    def self.create(service_name, redis_url:, size: 5, timeout: 5)$/;"	F	class:Quantum.Client
+date	lib/invest_cooker/gli/client.rb	/^      def date$/;"	f	class:InvestCooker.GLI.Client
+dead?	lib/hola.rb	/^    def dead?$/;"	f	class:Hola.Pod
+define	lib/monkey_patches/graphql.rb	/^      def define(&block)$/;"	f
+define_job_class	lib/quantum.rb	/^    def define_job_class(queue, job)$/;"	f	class:Quantum.Client
+define_task	lib/startup_helpers.rb	/^def define_task(type, task, command, process)$/;"	f
+destroy	lib/cdn/aliyun_oss.rb	/^    def destroy(file_name, bucket=configuration.oss_default_bucket)$/;"	f	class:CDN.AliyunOSS
+digital_code	lib/utils/random.rb	/^    def self.digital_code(length)$/;"	F	class:Utils.Random
+doc	lib/utils/content_format/html_formatter.rb	/^      def doc$/;"	f	class:Utils.ContentFormat.HTMLFormatter.formatted_content
+download	lib/utils/image.rb	/^    def self.download(img_url)$/;"	F	class:Utils.Image
+download_rar	lib/invest_cooker/jjgcb/client.rb	/^      def download_rar$/;"	f	class:InvestCooker.JJGCB.Client
+download_zip	lib/invest_cooker/yicai/client.rb	/^      def download_zip(option={})$/;"	f	class:InvestCooker.YICAI.Client
+dump	lib/invest_cooker/base_document_parser.rb	/^    def dump(document, options={})$/;"	f	class:BaseDocumentParser
+duplicate_schedules	lib/abstract_schedule_worker.rb	/^  def self.duplicate_schedules$/;"	F	class:AbstractScheduleWorker
+editor_id_for_src	lib/utils/image.rb	/^    def self.editor_id_for_src(src, editor_id)$/;"	F	class:Utils.Image
+ensure_dubble_chinese_blank_before_each_paragraph	lib/utils/content_format/html_formatter.rb	/^      def ensure_dubble_chinese_blank_before_each_paragraph$/;"	f	class:Utils.ContentFormat.HTMLFormatter.formatted_content
+evaluate_considering_block_arity	lib/invest_cooker/base_document_parser.rb	/^    def evaluate_considering_block_arity(document, options, block)$/;"	f	class:BaseDocumentParser
+evaluate_result	lib/invest_cooker/base_document_parser.rb	/^    def evaluate_result(document, options)$/;"	f	class:BaseDocumentParser
+event	lib/quantum.rb	/^    def event(name, queue:, job:)$/;"	f	class:Quantum.Client
+everyday_at	lib/abstract_schedule_worker.rb	/^  def everyday_at(now=__now__, time=2.hours)$/;"	f	class:AbstractScheduleWorker
+exec_dump	lib/invest_cooker/base_document_parser.rb	/^    def exec_dump(document, options)$/;"	f	class:BaseDocumentParser
+exists?	lib/cdn/aliyun_oss.rb	/^    def exists?(file_name, bucket=configuration.oss_default_bucket)$/;"	f	class:CDN.AliyunOSS
+exists?	lib/utils/image.rb	/^      def exists?$/;"	f	class:Utils.Image.CDNStore
+exists?	lib/utils/image.rb	/^      def exists?$/;"	f	class:Utils.Image.OSSVolumeStore
+extract_callback	lib/quantum.rb	/^    def extract_callback(message)$/;"	f	class:Quantum.Callback
+extract_editor_id	lib/utils/image.rb	/^    def self.extract_editor_id(img_url)$/;"	F	class:Utils.Image
+extract_stock_codes_from_info	lib/utils/jydb_stock/extractor.rb	/^      def extract_stock_codes_from_info(infos)$/;"	f	class:Utils.JYDBStock.Extractor
+extractor	lib/utils/jydb_stock.rb	/^    def extractor$/;"	f	class:Utils.JYDBStock
+fake_indexes_for_skip	lib/utils/jydb_stock/skipper.rb	/^      def fake_indexes_for_skip(name)$/;"	f	class:Utils.JYDBStock.Skipper
+fetch	lib/hola.rb	/^    def fetch(service)$/;"	f	class:Hola
+fetch	lib/hola.rb	/^  def fetch$/;"	f	class:Hola
+fetch	lib/utils/smooth_cache.rb	/^    def fetch$/;"	f	class:Utils.SmoothCache
+fetch_job_class	lib/quantum.rb	/^    def fetch_job_class(from, to, event)$/;"	f	class:Quantum.Client
+fetch_job_client	lib/quantum.rb	/^    def fetch_job_client(from, to, event)$/;"	f	class:Quantum.Client
+fetch_ports_from_api	lib/hola.rb	/^    def fetch_ports_from_api$/;"	f	class:Hola.HostInfo
+file_names	lib/invest_cooker/gli/client.rb	/^      def file_names$/;"	f	class:InvestCooker.GLI.Client.read
+file_path	lib/invest_cooker/cbn/client.rb	/^      def file_path(file_name)$/;"	f	class:InvestCooker.CBN.Client
+filter	lib/dsl/search_filter_dsl.rb	/^  def filter(key: nil, name:, title:, type: :multi, &block)$/;"	f
+filters	lib/dsl/search_filter_dsl.rb	/^  def filters(&block)$/;"	f
+find	lib/quantum.rb	/^    def self.find(service_name)$/;"	F	class:Quantum.Client.create
+format	lib/utils/content_format/basic_formatter.rb	/^      def self.format(content, options={}, &block)$/;"	F	class:Utils.ContentFormat.BasicFormatter
+format_by	lib/utils/content_format.rb	/^    def format_by(formatter_klass, *methods)$/;"	f	class:Utils.ContentFormat
+format_content	lib/utils/content_format.rb	/^    def format_content$/;"	f	class:Utils.ContentFormat
+format_content!	lib/utils/jydb_stock.rb	/^    def format_content!$/;"	f	class:Utils.JYDBStock
+format_line_divide_by_slash_n	lib/utils/content_format/string_formatter.rb	/^      def format_line_divide_by_slash_n$/;"	f	class:Utils.ContentFormat.StringFormatter
+format_message	lib/debug_logger.rb	/^  def format_message(severity, timestamp, progname, msg)$/;"	f	class:DebugLogger
+format_with	lib/utils/content_format.rb	/^    def format_with(field_name, options={})$/;"	f	class:Utils.ContentFormat
+formatted_content	lib/utils/content_format/basic_formatter.rb	/^      def formatted_content$/;"	f	class:Utils.ContentFormat.BasicFormatter
+formatted_content	lib/utils/content_format/html_formatter.rb	/^      def formatted_content$/;"	f	class:Utils.ContentFormat.HTMLFormatter
+formatted_content	lib/utils/content_format/string_formatter.rb	/^      def formatted_content$/;"	f	class:Utils.ContentFormat.StringFormatter
+fresh_file_names	lib/invest_cooker/gli/service.rb	/^        def fresh_file_names$/;"	f	class:InvestCooker.GLI.Service
+gbk_json	lib/invest_cooker/mayi/client.rb	/^      def gbk_json(hash)$/;"	f	class:InvestCooker.MAYI.Client
+generate_base64_signiture	lib/utils/rsa.rb	/^      def generate_base64_signiture(data)$/;"	f	class:Utils.RSA
+generate_check	lib/invest_cooker/yicai/check_generator.rb	/^      def self.generate_check(str)$/;"	F	class:InvestCooker.YICAI.CheckGenerator
+generate_image_data	lib/invest_cooker/mayi/document_parser.rb	/^        def generate_image_data(url)$/;"	f	class:InvestCooker.MAYI.DocumentParser
+generate_live_check	lib/invest_cooker/yicai/check_generator.rb	/^      def self.generate_live_check(information)$/;"	F	class:InvestCooker.YICAI.CheckGenerator
+generate_news_check	lib/invest_cooker/yicai/check_generator.rb	/^      def self.generate_news_check(information)$/;"	F	class:InvestCooker.YICAI.CheckGenerator
+generate_token	lib/cdn/aliyun_oss_token.rb	/^    def generate_token$/;"	f	class:CDN.AliyunOSSToken
+generate_token	lib/cdn/qiniu_token.rb	/^    def generate_token(return_body: nil, save_key: nil, expires_in: nil)$/;"	f	class:CDN.QiniuToken
+get_field	lib/monkey_patches/elasticsearch.rb	/^  def get_field(model, field_name)$/;"	f
+get_rsa_public_key	lib/utils/rsa.rb	/^      def get_rsa_public_key(sender)$/;"	f	class:Utils.RSA
+goal	lib/invest_admin/statistics_monthly_goal.rb	/^    def goal$/;"	f	class:InvestAdmin.StatisticsMonthlyGoal
+gzip_content	lib/invest_cooker/mayi/document_parser.rb	/^        def gzip_content(json_hash)$/;"	f	class:InvestCooker.MAYI.DocumentParser
+handle_content_images	lib/invest_cooker/mayi/document_parser.rb	/^        def handle_content_images(json_hash, is_live)$/;"	f	class:InvestCooker.MAYI.DocumentParser
+handle_image	lib/invest_cooker/mayi/document_parser.rb	/^        def handle_image(json_hash, url)$/;"	f	class:InvestCooker.MAYI.DocumentParser
+handle_response_with_retry	lib/invest_cooker/mayi/client.rb	/^      def handle_response_with_retry$/;"	f	class:InvestCooker.MAYI.Client
+handle_response_with_retry	lib/invest_cooker/yicai/push_client.rb	/^      def handle_response_with_retry$/;"	f	class:InvestCooker.YICAI.PushClient
+handle_src	lib/utils/image.rb	/^    def self.handle_src(origin_src)$/;"	F	class:Utils.Image
+handle_title_image	lib/invest_cooker/mayi/document_parser.rb	/^        def handle_title_image(json_hash)$/;"	f	class:InvestCooker.MAYI.DocumentParser
+healthy?	lib/hola.rb	/^    def healthy?$/;"	f	class:Hola.Pod
+hexdigest	lib/utils/image.rb	/^    def self.hexdigest(img_url, remote: true)$/;"	F	class:Utils.Image
+ignore_names	lib/utils/jydb_stock/extractor.rb	/^      def ignore_names$/;"	f	class:Utils.JYDBStock.Extractor
+included	lib/monkey_patches/elasticsearch.rb	/^    def self.included(base)$/;"	F	class:Elasticsearch.Callbacks
+information	lib/dsl/market_periods_dsl.rb	/^    def information(name)$/;"	f	class:ClassModule
+information_tag	lib/dsl/information_tags_dsl.rb	/^      def information_tag(name, &block)$/;"	f
+information_tag_merge	lib/dsl/information_tags_dsl.rb	/^      def information_tag_merge(&block)$/;"	f
+information_tags	lib/dsl/information_tags_dsl.rb	/^      def information_tags$/;"	f
+information_tags	lib/dsl/information_tags_dsl.rb	/^    def information_tags$/;"	f
+information_tags_include?	lib/dsl/information_tags_dsl.rb	/^    def information_tags_include?(name)$/;"	f
+inherited	lib/abstract_schedule_worker.rb	/^    def self.inherited(child_class)$/;"	F	class:AbstractScheduleWorker
+init	lib/hola.rb	/^    def init(service, redis: nil)$/;"	f	class:Hola
+init!	lib/invest_admin/relative_stock.rb	/^      def init!$/;"	f	class:InvestAdmin.RelativeStock
+initial_job_tasks	lib/startup_helpers.rb	/^def initial_job_tasks(require_file: nil, quiet_stop: false)$/;"	f
+initial_server_tasks	lib/startup_helpers.rb	/^def initial_server_tasks$/;"	f
+initial_sneaker_tasks	lib/startup_helpers.rb	/^def initial_sneaker_tasks$/;"	f
+initial_tasks_meta	lib/startup_helpers.rb	/^def initial_tasks_meta(type, quiet: false)$/;"	f
+initialize	lib/cdn/aliyun_oss.rb	/^    def initialize$/;"	f	class:CDN.AliyunOSS
+initialize	lib/cdn/aliyun_oss_token.rb	/^    def initialize$/;"	f	class:CDN.AliyunOSSToken
+initialize	lib/cdn/qiniu_token.rb	/^    def initialize$/;"	f	class:CDN.QiniuToken
+initialize	lib/concerns/cache_by_params.rb	/^    def initialize(params)$/;"	f
+initialize	lib/dsl/market_periods_dsl.rb	/^  def initialize(now=Time.zone.now)$/;"	f
+initialize	lib/hola.rb	/^    def initialize(service)$/;"	f	class:Hola.HostInfo
+initialize	lib/hola.rb	/^    def initialize(service, host, redis)$/;"	f	class:Hola.Pod
+initialize	lib/hola.rb	/^  def initialize(service, redis: nil)$/;"	f	class:Hola
+initialize	lib/information_tags_rule_parser.rb	/^  def initialize(rule)$/;"	f	class:InformationTagsRuleParser
+initialize	lib/invest_cooker/cbn/client.rb	/^      def initialize(time=TIME_ZONE.call.now)$/;"	f	class:InvestCooker.CBN.Client
+initialize	lib/invest_cooker/configuration.rb	/^    def initialize$/;"	f	class:InvestCooker.Configuration
+initialize	lib/invest_cooker/gli/client.rb	/^      def initialize(time=TIME_ZONE.call.now)$/;"	f	class:InvestCooker.GLI.Client
+initialize	lib/invest_cooker/gli/service.rb	/^      def initialize(client=nil)$/;"	f	class:InvestCooker.GLI.Service
+initialize	lib/invest_cooker/mayi/client.rb	/^      def initialize(api:, action:, data:, retry_time: 1)$/;"	f	class:InvestCooker.MAYI.Client
+initialize	lib/invest_cooker/yicai/client.rb	/^      def initialize$/;"	f	class:InvestCooker.YICAI.Client
+initialize	lib/invest_cooker/yicai/push_client.rb	/^      def initialize(type:, data:, retry_time: 3)$/;"	f	class:InvestCooker.YICAI.PushClient
+initialize	lib/utils/content_format/basic_formatter.rb	/^      def initialize(content, options={})$/;"	f	class:Utils.ContentFormat.BasicFormatter
+initialize	lib/utils/content_format/html_formatter.rb	/^      def initialize(content, options={})$/;"	f	class:Utils.ContentFormat.HTMLFormatter
+initialize	lib/utils/ding_talk.rb	/^      def initialize(url)$/;"	f	class:Utils.DingTalk.Service
+initialize	lib/utils/image.rb	/^      def initialize($/;"	f	class:Utils.Image.CDNStore
+initialize	lib/utils/image.rb	/^      def initialize(path:, key:)$/;"	f	class:Utils.Image.FileHolder
+initialize	lib/utils/image.rb	/^      def initialize(path_or_url, key)$/;"	f	class:Utils.Image.OSSVolumeStore
+initialize	lib/utils/image.rb	/^      def initialize(url:, key:)$/;"	f	class:Utils.Image.UrlHolder
+initialize	lib/utils/jydb_stock/ac_machine.rb	/^      def initialize(content)$/;"	f	class:Utils.JYDBStock.ACMachine
+initialize	lib/utils/jydb_stock/adder.rb	/^      def initialize(content, name, codes, skip)$/;"	f	class:Utils.JYDBStock.Adder
+initialize	lib/utils/jydb_stock/each_text_adder.rb	/^      def initialize(content)$/;"	f	class:Utils.JYDBStock.EachTextAdder
+initialize	lib/utils/jydb_stock/extractor.rb	/^      def initialize(content)$/;"	f	class:Utils.JYDBStock.Extractor
+initialize	lib/utils/jydb_stock/skipper.rb	/^      def initialize(content, name_list)$/;"	f	class:Utils.JYDBStock.Skipper
+initialize	lib/utils/smooth_cache.rb	/^    def initialize(pointer_key, pointer_store: $redis_object, cache_store: Utils::Cache.redis, &parse_block)$/;"	f	class:Utils.SmoothCache
+initialize_job_class!	lib/quantum.rb	/^    def initialize_job_class!(from:, to:, event:, queue:, job:)$/;"	f	class:Quantum.Client
+initialize_job_client	lib/quantum.rb	/^    def initialize_job_client(from:, to:, event:, client:)$/;"	f	class:Quantum.Client
+invest_docs_api_auth	lib/concerns/invest_docs_stub.rb	/^  def invest_docs_api_auth$/;"	f	class:InvestDocsStub.invest_docs_api_multi_aggs
+invest_docs_api_doc_dups	lib/concerns/invest_docs_stub.rb	/^  def invest_docs_api_doc_dups(params)$/;"	f	class:InvestDocsStub
+invest_docs_api_document_popups	lib/concerns/invest_docs_stub.rb	/^  def invest_docs_api_document_popups(params)$/;"	f	class:InvestDocsStub
+invest_docs_api_info_dups	lib/concerns/invest_docs_stub.rb	/^  def invest_docs_api_info_dups(params)$/;"	f	class:InvestDocsStub
+invest_docs_api_information_exports	lib/concerns/invest_docs_stub.rb	/^  def invest_docs_api_information_exports(params)$/;"	f	class:InvestDocsStub
+invest_docs_api_multi_aggs	lib/concerns/invest_docs_stub.rb	/^  def invest_docs_api_multi_aggs(params)$/;"	f	class:InvestDocsStub
+invest_docs_api_url	lib/concerns/invest_docs_stub.rb	/^  def invest_docs_api_url$/;"	f	class:InvestDocsStub.invest_docs_api_multi_aggs
+invest_docs_request	lib/concerns/invest_docs_stub.rb	/^  def invest_docs_request(params)$/;"	f	class:InvestDocsStub.invest_docs_api_multi_aggs
+invest_url_for	lib/invest_cooker/gli/record.rb	/^        def invest_url_for(source_id)$/;"	f	class:InvestCooker.GLI.Record
+ip	lib/hola.rb	/^    def ip$/;"	f	class:Hola.HostInfo
+iterate_doc	lib/utils/content_format/html_formatter.rb	/^        def self.iterate_doc(node, &block)$/;"	F	class:Utils.ContentFormat.HTMLFormatter.formatted_content.ClassMethods.remove_blank_node
+job_key	lib/quantum.rb	/^    def job_key(from, to, event)$/;"	f	class:Quantum.Client
+job_processes	lib/startup_helpers.rb	/^def job_processes$/;"	f
+key	lib/utils/image.rb	/^      def key$/;"	f	class:Utils.Image.UrlHolder
+limit_frequency	lib/concerns/limit_frequency.rb	/^    def self.limit_frequency(method_name, key:, time: nil)$/;"	F
+limit_frequency	lib/concerns/limit_frequency.rb	/^  def limit_frequency(key:, time: nil)$/;"	f
+list	lib/hola.rb	/^  def list$/;"	f	class:Hola
+list	lib/invest_cooker/cbn/client.rb	/^      def list(page=nil, per=nil, &filter)$/;"	f	class:InvestCooker.CBN.Client
+list	lib/invest_cooker/ycwb/client.rb	/^      def list(cid, pagesize: 100, page: 1)$/;"	f	class:InvestCooker.YCWB.Client
+mac	lib/invest_cooker/mayi/client.rb	/^      def mac$/;"	f	class:InvestCooker.MAYI.Client
+mail	lib/quantum.rb	/^    def mail(from:, to:, event:, message:, client: nil, queue: nil, job: nil)$/;"	f	class:Quantum.Client
+md5	lib/concerns/cache_by_params.rb	/^    def md5$/;"	f
+merge_multi_connected_slash_n	lib/utils/content_format/string_formatter.rb	/^      def merge_multi_connected_slash_n$/;"	f	class:Utils.ContentFormat.StringFormatter
+message	lib/invest_cooker/yicai/client.rb	/^      def message$/;"	f	class:InvestCooker.YICAI.Client
+method_missing	lib/monkey_patches/graphql.rb	/^  def method_missing(name, *_args)$/;"	f
+modify_each_text!	lib/utils/jydb_stock/each_text_adder.rb	/^      def modify_each_text!$/;"	f	class:Utils.JYDBStock.EachTextAdder
+name_index	lib/utils/jydb_stock/adder.rb	/^      def name_index$/;"	f	class:Utils.JYDBStock.Adder
+name_list	lib/utils/jydb_stock/extractor.rb	/^      def name_list$/;"	f	class:Utils.JYDBStock.Extractor
+next_schedule	lib/abstract_schedule_worker.rb	/^  def next_schedule$/;"	f	class:AbstractScheduleWorker
+of_string	lib/monkey_patches/pinyin.rb	/^      def of_string(*args, &block)$/;"	f	class:PinYin
+old_file_names	lib/invest_cooker/gli/service.rb	/^        def old_file_names$/;"	f	class:InvestCooker.GLI.Service
+p_tags	lib/utils/content_format/html_formatter.rb	/^      def p_tags$/;"	f	class:Utils.ContentFormat.HTMLFormatter.formatted_content
+parent	lib/invest_admin/sub_column.rb	/^    def parent$/;"	f	class:InvestAdmin.SubColumn
+parse	lib/information_tags_rule_parser.rb	/^  def parse(d, *ts_as)$/;"	f
+parse	lib/monkey_patches/timezone.rb	/^    def parse(str, now = self.now)$/;"	f	class:ActiveSupport
+parse_time	lib/invest_cooker/yicai/client.rb	/^      def parse_time$/;"	f	class:InvestCooker.YICAI.Client
+perform	lib/abstract_schedule_worker.rb	/^  def perform$/;"	f	class:AbstractScheduleWorker
+perform	lib/concerns/atomic_job.rb	/^    def perform(*args)$/;"	f	class:AtomicJob.AtomicPerform
+perform	lib/quantum.rb	/^                    def perform(*args); end$/;"	f	class:Quantum.Client.define_job_class
+pid_path	lib/startup_helpers.rb	/^def pid_path$/;"	f
+ports	lib/hola.rb	/^    def ports$/;"	f	class:Hola.HostInfo
+possible_stock_codes	lib/utils/jydb_stock.rb	/^    def possible_stock_codes$/;"	f	class:Utils.JYDBStock
+possible_stock_codes	lib/utils/jydb_stock/extractor.rb	/^      def possible_stock_codes$/;"	f	class:Utils.JYDBStock.Extractor
+post	lib/utils/ding_talk.rb	/^      def post(hash)$/;"	f	class:Utils.DingTalk.Service
+rar_files	lib/invest_cooker/jjgcb/client.rb	/^      def rar_files$/;"	f	class:InvestCooker.JJGCB.Client
+rar_path	lib/invest_cooker/jjgcb/client.rb	/^      def rar_path$/;"	f	class:InvestCooker.JJGCB.Client
+read	lib/invest_cooker/cbn/client.rb	/^      def read(file_name)$/;"	f	class:InvestCooker.CBN.Client
+read	lib/invest_cooker/gli/client.rb	/^      def read(file_name)$/;"	f	class:InvestCooker.GLI.Client
+read	lib/invest_cooker/gli/service.rb	/^      def read$/;"	f	class:InvestCooker.GLI.Service
+read	lib/invest_cooker/ycwb/client.rb	/^      def read(nid)$/;"	f	class:InvestCooker.YCWB.Client
+read_all_files	lib/invest_cooker/gli/service.rb	/^      def read_all_files$/;"	f	class:InvestCooker.GLI.Service
+read_file_data	lib/invest_cooker/gli/service.rb	/^      def read_file_data(file_name, logger)$/;"	f	class:InvestCooker.GLI.Service
+read_fresh_files	lib/invest_cooker/gli/service.rb	/^      def read_fresh_files$/;"	f	class:InvestCooker.GLI.Service
+record_request	lib/invest_cooker/mayi/client.rb	/^      def record_request$/;"	f	class:InvestCooker.MAYI.Client
+record_request	lib/invest_cooker/yicai/push_client.rb	/^      def record_request$/;"	f	class:InvestCooker.YICAI.PushClient
+redis	lib/utils/cache.rb	/^    def self.redis$/;"	F	class:Utils.Cache
+redis_batch_delete	lib/utils/cache.rb	/^    def self.redis_batch_delete(key)$/;"	F	class:Utils.Cache
+refresh	lib/utils/smooth_cache.rb	/^    def refresh(_)$/;"	f	class:Utils.SmoothCache
+reject_reason	lib/invest_cooker/gli/validator.rb	/^        def reject_reason$/;"	f	class:InvestCooker.GLI.Validator.Validation
+reject_reason_as_history	lib/invest_cooker/gli/validator.rb	/^        def reject_reason_as_history$/;"	f	class:InvestCooker.GLI.Validator.Validation
+relative_codes	lib/utils/jydb_stock/extractor.rb	/^      def relative_codes$/;"	f	class:Utils.JYDBStock.Extractor
+release_lock	lib/concerns/atomic_job.rb	/^  def release_lock$/;"	f
+remember	lib/concerns/remember.rb	/^      def remember(*method_names)$/;"	f
+remove_blank_before_p_tags	lib/utils/content_format/html_formatter.rb	/^      def remove_blank_before_p_tags$/;"	f	class:Utils.ContentFormat.HTMLFormatter.formatted_content
+remove_blank_before_paragraph	lib/utils/content_format/html_formatter.rb	/^        def self.remove_blank_before_paragraph(p_tag)$/;"	F	class:Utils.ContentFormat.HTMLFormatter.formatted_content.ClassMethods
+remove_blank_br_node	lib/utils/content_format/html_formatter.rb	/^        def self.remove_blank_br_node(node)$/;"	F	class:Utils.ContentFormat.HTMLFormatter.formatted_content.ClassMethods.remove_blank_node
+remove_blank_char	lib/utils/content_format/html_formatter.rb	/^        def self.remove_blank_char(p_tag)$/;"	F	class:Utils.ContentFormat.HTMLFormatter.formatted_content.ClassMethods
+remove_blank_node	lib/utils/content_format/html_formatter.rb	/^        def self.remove_blank_node(node)$/;"	F	class:Utils.ContentFormat.HTMLFormatter.formatted_content.ClassMethods
+remove_blank_none_br_node	lib/utils/content_format/html_formatter.rb	/^        def self.remove_blank_none_br_node(node)$/;"	F	class:Utils.ContentFormat.HTMLFormatter.formatted_content.ClassMethods.remove_blank_node
+remove_blanks	lib/utils/content_format/html_formatter.rb	/^      def remove_blanks$/;"	f	class:Utils.ContentFormat.HTMLFormatter.formatted_content
+remove_markup	lib/utils/content_format/html_formatter.rb	/^      def remove_markup(html_str)$/;"	f	class:Utils.ContentFormat.HTMLFormatter.formatted_content
+remove_space	lib/utils/content_format.rb	/^    def remove_space$/;"	f	class:Utils.ContentFormat
+remove_space_from_line	lib/utils/content_format/string_formatter.rb	/^      def self.remove_space_from_line(line)$/;"	F	class:Utils.ContentFormat.StringFormatter
+remove_stock_code_highlight	lib/utils/content_format.rb	/^    def remove_stock_code_highlight$/;"	f	class:Utils.ContentFormat
+remove_stock_code_highlight	lib/utils/content_format/html_formatter.rb	/^      def remove_stock_code_highlight$/;"	f	class:Utils.ContentFormat.HTMLFormatter.formatted_content
+remove_stock_code_suffix	lib/utils/content_format.rb	/^    def remove_stock_code_suffix$/;"	f	class:Utils.ContentFormat
+remove_stock_code_suffix	lib/utils/content_format/html_formatter.rb	/^      def remove_stock_code_suffix$/;"	f	class:Utils.ContentFormat.HTMLFormatter.formatted_content
+remove_useless_tags	lib/utils/content_format/html_formatter.rb	/^        def self.remove_useless_tags(node)$/;"	F	class:Utils.ContentFormat.HTMLFormatter.formatted_content.ClassMethods.remove_blank_node
+replace_all_hyper_link_with_span_tag	lib/utils/content_format/html_formatter.rb	/^        def self.replace_all_hyper_link_with_span_tag(node)$/;"	F	class:Utils.ContentFormat.HTMLFormatter.formatted_content.ClassMethods.remove_blank_node
+replace_all_new_line_wrap_tag_with_p_tag	lib/utils/content_format/html_formatter.rb	/^        def self.replace_all_new_line_wrap_tag_with_p_tag(node)$/;"	F	class:Utils.ContentFormat.HTMLFormatter.formatted_content.ClassMethods.remove_blank_node
+replace_br_with_slash_n	lib/utils/content_format/string_formatter.rb	/^      def replace_br_with_slash_n$/;"	f	class:Utils.ContentFormat.StringFormatter
+replace_content_images_with_cdn	lib/utils/html.rb	/^      def replace_content_images_with_cdn($/;"	f	class:Utils.Html
+replace_node_with_content	lib/utils/content_format/html_formatter.rb	/^        def self.replace_node_with_content(node)$/;"	F	class:Utils.ContentFormat.HTMLFormatter.formatted_content.ClassMethods.remove_blank_node
+replace_p_tag_with_slash_n	lib/utils/content_format/string_formatter.rb	/^      def replace_p_tag_with_slash_n$/;"	f	class:Utils.ContentFormat.StringFormatter
+replace_tags	lib/utils/content_format.rb	/^    def replace_tags(field:, from:, to:, wrap: nil, unwrap: nil)$/;"	f	class:Utils.ContentFormat
+replace_tags	lib/utils/content_format/html_formatter.rb	/^      def replace_tags$/;"	f	class:Utils.ContentFormat.HTMLFormatter.formatted_content
+replace_text	lib/utils/jydb_stock/adder.rb	/^      def replace_text$/;"	f	class:Utils.JYDBStock.Adder
+request	lib/invest_cooker/mayi/client.rb	/^      def request(method: :post)$/;"	f	class:InvestCooker.MAYI.Client
+request	lib/invest_cooker/ycwb/client.rb	/^      def request$/;"	f	class:InvestCooker.YCWB.Client
+request	lib/invest_cooker/yicai/push_client.rb	/^      def request(method: :post)$/;"	f	class:InvestCooker.YICAI.PushClient
+request_again	lib/invest_cooker/mayi/client.rb	/^      def request_again$/;"	f	class:InvestCooker.MAYI.Client
+request_again	lib/invest_cooker/yicai/push_client.rb	/^      def request_again$/;"	f	class:InvestCooker.YICAI.PushClient
+request_json	lib/invest_cooker/mayi/client.rb	/^      def request_json$/;"	f	class:InvestCooker.MAYI.Client
+request_json	lib/invest_cooker/yicai/push_client.rb	/^      def request_json$/;"	f	class:InvestCooker.YICAI.PushClient
+request_params	lib/invest_cooker/ycwb/client.rb	/^      def request_params$/;"	f	class:InvestCooker.YCWB.Client
+request_success?	lib/invest_cooker/mayi/client.rb	/^      def request_success?$/;"	f	class:InvestCooker.MAYI.Client
+request_success?	lib/invest_cooker/yicai/push_client.rb	/^      def request_success?$/;"	f	class:InvestCooker.YICAI.PushClient
+resolve=	lib/monkey_patches/graphql.rb	/^  def resolve=(proc = nil, service: nil, action: nil)$/;"	f
+run_schedule_works	lib/abstract_schedule_worker.rb	/^  def run_schedule_works$/;"	f	class:AbstractScheduleWorker
+sample	lib/concerns/mongoid_sample.rb	/^      def sample$/;"	f
+send_email	lib/utils/email.rb	/^      def send_email(email:, subject:, text_body: '', html_body: '', attach_path: nil)$/;"	f	class:Utils.Email
+send_markdown_message	lib/utils/ding_talk.rb	/^      def send_markdown_message(title:, text:)$/;"	f	class:Utils.DingTalk.Service
+send_markdown_message	lib/utils/ding_talk.rb	/^    def self.send_markdown_message(url:, title:, text:)$/;"	F	class:Utils.DingTalk
+send_report_email!	lib/utils/email.rb	/^      def send_report_email!(data)$/;"	f	class:Utils.Email
+send_reset_password_email!	lib/utils/email.rb	/^      def send_reset_password_email!(data)$/;"	f	class:Utils.Email
+send_welcome_email!	lib/utils/email.rb	/^      def send_welcome_email!(data)$/;"	f	class:Utils.Email
+server_processes	lib/startup_helpers.rb	/^def server_processes$/;"	f
+setup_redis_key_expire_time	lib/invest_cooker/gli/service.rb	/^        def setup_redis_key_expire_time$/;"	f	class:InvestCooker.GLI.Service
+signed_url	lib/cdn/aliyun_oss.rb	/^    def signed_url(file_name, bucket=configuration.oss_default_bucket)$/;"	f	class:CDN.AliyunOSS
+site_url	lib/utils/email.rb	/^      def site_url$/;"	f	class:Utils.Email
+size	lib/utils/image.rb	/^      def size$/;"	f	class:Utils.Image.FileHolder
+size	lib/utils/image.rb	/^      def size$/;"	f	class:Utils.Image.UrlHolder
+size_of	lib/utils/image.rb	/^    def self.size_of(img_url)$/;"	F	class:Utils.Image
+skip	lib/utils/jydb_stock/skipper.rb	/^      def skip(name)$/;"	f	class:Utils.JYDBStock.Skipper
+skip_added	lib/utils/jydb_stock/each_text_adder.rb	/^      def skip_added(name)$/;"	f	class:Utils.JYDBStock.EachTextAdder
+skip_dump	lib/invest_cooker/base_document_parser.rb	/^    def skip_dump(&block)$/;"	f	class:BaseDocumentParser
+skipper	lib/utils/jydb_stock.rb	/^    def skipper$/;"	f	class:Utils.JYDBStock
+sneaker_processes	lib/startup_helpers.rb	/^def sneaker_processes$/;"	f
+sneaker_workers	lib/startup_helpers.rb	/^def sneaker_workers$/;"	f
+soft_format_content	lib/utils/content_format.rb	/^    def soft_format_content$/;"	f	class:Utils.ContentFormat
+src_with_editor_id	lib/utils/image.rb	/^    def self.src_with_editor_id(src, editor_id)$/;"	F	class:Utils.Image
+src_without_editor_id	lib/utils/image.rb	/^    def self.src_without_editor_id(src)$/;"	F	class:Utils.Image
+start_god	lib/startup_helpers.rb	/^def start_god(config_job: nil, config_server: nil, config_sneaker: nil)$/;"	f
+start_god_meta	lib/startup_helpers.rb	/^def start_god_meta(type, callback)$/;"	f
+start_with_a_img_tag	lib/utils/content_format/html_formatter.rb	/^        def self.start_with_a_img_tag?(p_tag)$/;"	F	class:Utils.ContentFormat.HTMLFormatter.formatted_content.ClassMethods
+stock_code_highlights	lib/utils/content_format/html_formatter.rb	/^      def stock_code_highlights$/;"	f	class:Utils.ContentFormat.HTMLFormatter.formatted_content
+stock_info	lib/utils/jydb_stock/extractor.rb	/^      def stock_info$/;"	f	class:Utils.JYDBStock.Extractor
+stock_name_in_content	lib/utils/jydb_stock/adder.rb	/^      def stock_name_in_content$/;"	f	class:Utils.JYDBStock.Adder
+stock_name_infos_data	lib/utils/jydb_stock/ac_machine.rb	/^      def stock_name_infos_data$/;"	f	class:Utils.JYDBStock.ACMachine
+stock_name_map_codes	lib/utils/jydb_stock/extractor.rb	/^      def stock_name_map_codes$/;"	f	class:Utils.JYDBStock.Extractor
+strip_html_string	lib/invest_cooker/gli/validator.rb	/^      def self.strip_html_string(str)$/;"	F	class:InvestCooker.GLI.Validator
+sync	lib/invest_admin/bus_handler.rb	/^    def self.sync!$/;"	F	class:InvestAdmin.BusHandler
+tag	lib/utils/jydb_stock/adder.rb	/^      def tag$/;"	f	class:Utils.JYDBStock.Adder
+time_to_go?	lib/abstract_schedule_worker.rb	/^  def time_to_go?$/;"	f	class:AbstractScheduleWorker
+time_to_go_each_day?	lib/abstract_schedule_worker.rb	/^  def time_to_go_each_day?(now=__now__)$/;"	f	class:AbstractScheduleWorker
+to_filter	lib/invest_admin/naive_filter_config.rb	/^    def self.to_filter$/;"	F	class:InvestAdmin.NaiveFilterConfig
+to_filter	lib/invest_admin/naive_filter_config.rb	/^    def to_filter$/;"	f	class:InvestAdmin.NaiveFilterConfig
+to_hash	lib/monkey_patches/elasticsearch.rb	/^  def to_hash$/;"	f	class:Elasticsearch
+to_hash	lib/utils/email.rb	/^      def to_hash(data)$/;"	f	class:Utils.Email
+to_set	lib/hola.rb	/^    def to_set$/;"	f	class:Hola.HostInfo
+trans_id	lib/invest_cooker/mayi/client.rb	/^      def trans_id(now=Time.zone.now)$/;"	f	class:InvestCooker.MAYI.Client
+tunnel	lib/quantum.rb	/^    def tunnel(from:, to:, client: nil, &block)$/;"	f	class:Quantum.Client
+type	lib/monkey_patches/graphql.rb	/^  def type$/;"	f
+type_of	lib/utils/image.rb	/^    def self.type_of(img_url)$/;"	F	class:Utils.Image
+update_daily	lib/invest_cooker/gli/record.rb	/^        def update_daily(date: TIME_ZONE.call.now.beginning_of_day)$/;"	f	class:InvestCooker.GLI.Record
+updated_at	lib/concerns/cache_by_params.rb	/^    def updated_at$/;"	f
+upload	lib/cdn/aliyun_oss.rb	/^    def upload(file_name, file_path, bucket=configuration.oss_default_bucket)$/;"	f	class:CDN.AliyunOSS
+upload	lib/utils/image.rb	/^      def upload$/;"	f	class:Utils.Image.CDNStore
+upload	lib/utils/image.rb	/^      def upload$/;"	f	class:Utils.Image.FileHolder
+upload	lib/utils/image.rb	/^      def upload$/;"	f	class:Utils.Image.OSSVolumeStore
+upload	lib/utils/image.rb	/^      def upload$/;"	f	class:Utils.Image.UrlHolder
+upload_cdn	lib/utils/image.rb	/^    def self.upload_cdn($/;"	F	class:Utils.Image
+upload_file	lib/utils/image.rb	/^      def upload_file$/;"	f	class:Utils.Image.CDNStore
+upload_file	lib/utils/image.rb	/^      def upload_file$/;"	f	class:Utils.Image.OSSVolumeStore
+upload_nokogiri	lib/utils/image.rb	/^    def self.upload_nokogiri($/;"	F	class:Utils.Image
+url	lib/invest_cooker/mayi/client.rb	/^      def url$/;"	f	class:InvestCooker.MAYI.Client
+url	lib/invest_cooker/yicai/push_client.rb	/^      def url$/;"	f	class:InvestCooker.YICAI.PushClient
+valid?	lib/invest_cooker/gli/validator.rb	/^        def valid?$/;"	f	class:InvestCooker.GLI.Validator.Validation
+valid_as_histroy?	lib/invest_cooker/gli/validator.rb	/^        def valid_as_histroy?$/;"	f	class:InvestCooker.GLI.Validator.Validation
+valid_column_set	lib/invest_cooker/gli/validator.rb	/^      def self.valid_column_set$/;"	F	class:InvestCooker.GLI.Validator
+valid_image_url?	lib/invest_cooker/mayi/document_parser.rb	/^        def valid_image_url?(url)$/;"	f	class:InvestCooker.MAYI.DocumentParser
+valid_size?	lib/utils/image.rb	/^      def valid_size?$/;"	f	class:Utils.Image.ValidImageSize
+valid_tags	lib/utils/content_format.rb	/^    def valid_tags$/;"	f	class:Utils.ContentFormat
+validate_file	lib/invest_cooker/gli/validator.rb	/^      def self.validate_file(file_name)$/;"	F	class:InvestCooker.GLI.Validator
+validation	lib/invest_cooker/gli/validator.rb	/^      def self.validation(data)$/;"	F	class:InvestCooker.GLI.Validator
+verify_base64_signiture	lib/utils/rsa.rb	/^      def verify_base64_signiture(base64_signature, data, sender: :mayi)$/;"	f	class:Utils.RSA
+vod_sign	lib/concerns/ant_vod_sign.rb	/^  def vod_sign(params)$/;"	f	class:AntVodSign
+weak_password	lib/utils/random.rb	/^    def self.weak_password(length)$/;"	F	class:Utils.Random
+with_temp_file	lib/concerns/with_temp_file.rb	/^  def with_temp_file(data, mode: 'w+')$/;"	f	class:WithTempFile
+write	lib/invest_cooker/gli/client.rb	/^      def write(file_name, file_str, valid=true)$/;"	f	class:InvestCooker.GLI.Client.read
+zip_file	lib/invest_cooker/yicai/client.rb	/^      def zip_file$/;"	f	class:InvestCooker.YICAI.Client

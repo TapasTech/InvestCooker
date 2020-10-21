@@ -2,6 +2,9 @@ PATH
   remote: .
   specs:
     invest_cooker (1.27.1)
+      activesupport
+      aliyun-sdk
+      fastimage
 
 GEM
   remote: https://rubygems.org/
@@ -64,10 +67,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activesupport
-  aliyun-sdk
   byebug
-  fastimage
   invest_cooker!
   rspec
 
