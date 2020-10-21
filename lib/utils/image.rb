@@ -1,6 +1,7 @@
 require 'active_support/core_ext'
 require 'concerns/with_temp_file'
 require 'fastimage'
+require 'cdn/aliyun_oss'
 
 # Utils::Image
 # 图片处理工具类
