@@ -1,4 +1,7 @@
+require 'active_support/core_ext'
 require 'concerns/with_temp_file'
+require 'fastimage'
+
 # Utils::Image
 # 图片处理工具类
 module Utils
@@ -25,11 +28,16 @@ module Utils
       editor_id
     end
 
-    def self.upload_nokogiri(img_node, placeholder: nil)
+    def self.upload_nokogiri(
+                              img_node,
+                              placeholder: nil,
+                              cdn_endpoint: InvestCooker.configuration.oss_endpoint,
+                              oss_bucket: InvestCooker.configuration.oss_default_bucket
+                            )
       origin_src = img_node['src'].to_s
       src = handle_src(origin_src)
 
-      cdn_src = Utils::Image.upload_cdn(src) rescue nil
+      cdn_src = Utils::Image.upload_cdn(src, remote: true, key: nil, cdn_endpoint: cdn_endpoint, oss_bucket: oss_bucket)
 
       if cdn_src.present? && size_of(cdn_src).to_i > 0
         img_node['src'] = cdn_src
@@ -134,7 +142,13 @@ module Utils
     # NOTE 新的接口如果图片不存在，也会返回地址
     # 上传一个图片文件到 CDN
     # 抓取一个图片到 CDN (默认)
-    def self.upload_cdn(url, remote: true, key: nil)
+    def self.upload_cdn(
+                         url,
+                         remote: true,
+                         key: nil,
+                         cdn_endpoint: InvestCooker.configuration.oss_endpoint,
+                         oss_bucket: InvestCooker.configuration.oss_default_bucket
+                       )
       if remote
         holder = UrlHolder.new(url: url, key: key)
       else
@@ -153,7 +167,7 @@ module Utils
         if OSSVolumeStore::PATH.present?
           OSSVolumeStore.new(url, holder.key)
         else
-          CDNStore.new(url, holder.key)
+          CDNStore.new(url, holder.key, cdn_endpoint, oss_bucket)
         end
 
       return holder.upload
@@ -197,13 +211,19 @@ module Utils
     # 通过 OSS sdk 上传
     class CDNStore
       include WithTempFile
-      attr_accessor :file_path, :target_url, :key, :cdn_url
+      attr_accessor :file_path, :target_url, :key, :cdn_url, :oss_bucket
 
-      def initialize(path_or_url, key)
+      def initialize(
+                      path_or_url,
+                      key,
+                      cdn_endpoint=InvestCooker.configuration.oss_endpoint,
+                      oss_bucket=InvestCooker.configuration.oss_default_bucket
+                    )
         self.file_path  = path_or_url
         self.target_url = path_or_url
         self.key = key
-        self.cdn_url = "#{CDN::AliyunOSS::ENDPOINT}/#{key}"
+        self.cdn_url = "#{cdn_endpoint}/#{key}"
+        self.oss_bucket = oss_bucket
       end
 
       def exists?
@@ -215,7 +235,7 @@ module Utils
         data = Utils::Image.download(target_url)
 
         with_temp_file(data, mode: 'wb') do |path|
-          CDN::AliyunOSS.instance.upload(key, path)
+          CDN::AliyunOSS.instance.upload(key, path, oss_bucket)
         end
       end
 
