@@ -1,3 +1,5 @@
+require 'invest_cooker/configuration.rb'
+
 module InvestCooker
   # 目前项目的时间有两种
   # Rails 中使用 Time.zone.now
@@ -12,6 +14,18 @@ module InvestCooker
     return Rail.root        if const_defined?('Rails')
     return Application.root if const_defined?('Application')
     ''
+  end
+
+  class << self
+    attr_writer :configuration
+
+    def configuration
+      @configuration ||= Configuration.new
+    end
+
+    def configure
+      yield(configuration)
+    end
   end
 end
 
