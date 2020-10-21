@@ -1,5 +1,8 @@
 # Utils::Html
 # html文本处理工具类
+require 'utils/image'
+require 'nokogiri'
+
 module Utils
   class Html
     class << self
