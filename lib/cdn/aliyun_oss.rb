@@ -12,7 +12,7 @@ module CDN
         access_key_secret: configuration.oss_access_key_secret,
         open_timeout: configuration.oss_open_timeout,
         read_timeout: configuration.oss_read_timeout,
-        cname: true
+        cname: configuration.oss_cname
       }
 
       @client = ::Aliyun::OSS::Client.new(oss_config)
