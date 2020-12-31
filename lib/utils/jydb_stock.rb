@@ -40,7 +40,7 @@ module Utils
     end
 
     def extractor
-      content_text = Nokogiri::HTML.fragment(@content).content
+      content_text = Nokogiri::HTML.fragment(CGI::escapeHTML(@content)).content
       content_text.gsub!('&', '&amp;')
 
       Extractor.new(content_text)
