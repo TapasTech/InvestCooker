@@ -27,7 +27,7 @@ module Utils
       end
 
       def modify_each_text!
-        doc = Nokogiri::HTML(@content)
+        doc = Nokogiri::HTML(CGI::escapeHTML(@content))
         doc.search('//text()').to_a.each { |t| yield t }
         @content = doc.css('body').inner_html.gsub("\n", '')
       end
