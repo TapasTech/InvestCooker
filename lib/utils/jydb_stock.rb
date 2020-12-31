@@ -41,6 +41,7 @@ module Utils
 
     def extractor
       content_text = Nokogiri::HTML.fragment(CGI::escapeHTML(@content)).content
+      $debug_logger.info content_text if $debug_logger
       content_text.gsub!('&', '&amp;')
 
       Extractor.new(content_text)
