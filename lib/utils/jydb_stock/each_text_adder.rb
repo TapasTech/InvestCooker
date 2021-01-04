@@ -13,7 +13,7 @@ module Utils
           content_before = t.content.clone
           content_after  = t.content.clone
           Adder.new(content_after, name, codes, skip).add_one_stock_code
-          t.replace(content_after)
+          t.replace(CGI::escapeHTML(content_after))
 
           content_before != content_after
         } }
@@ -27,9 +27,9 @@ module Utils
       end
 
       def modify_each_text!
-        doc = Nokogiri::HTML(@content)
+        doc = Nokogiri::HTML(CGI::escapeHTML(@content))
         doc.search('//text()').to_a.each { |t| yield t }
-        @content = doc.css('body').inner_html.gsub("\n", '')
+        @content = CGI::unescapeHTML(doc.css('body').inner_html.gsub("\n", ''))
       end
     end
   end
