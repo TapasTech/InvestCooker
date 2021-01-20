@@ -8,5 +8,6 @@ module InvestAdmin
     field :parent, type: String
     field :source, type: String # 增同名，改 source，删同名，看 source
     field :targets, type: Array # 标记分发到不同的使用场景
+    field :highlighted, type: Boolean
   end
 end
