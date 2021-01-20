@@ -34,7 +34,8 @@ concern :SearchFilterDSL do
     :sort,         # 排序
     :type,         # 筛选项的类型
     :parent_value, # 指向父节点的值
-    :description   # 附带描述信息
+    :description,   # 附带描述信息,
+    :highlighted
   ].each do |key|
     define_method(key) do |&block|
       @filters[@this_filter][:"#{key}_block"] = block
