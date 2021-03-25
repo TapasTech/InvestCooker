@@ -98,7 +98,7 @@ module Utils
       QUIZ_VALID_TAGS = {
         elements: %w(p span),
         attributes: {
-          'span' => %w(style class),
+          'span' => %w(style class url),
           'p'    => %w(style)
         }
       }
