@@ -46,8 +46,7 @@ module Utils
         '&lt;' => '<',
         '&gt;' => '>',
         '&quot;' => '"',
-        '&apos;' => "'",
-        "\n" => ""
+        '&apos;' => "'"
       }
 
       # 替换被 Sanitize 转换的 character entity
